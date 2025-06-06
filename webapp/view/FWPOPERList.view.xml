@@ -1,0 +1,42 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="com.olam.pmworkorder.controller.FWPOPERList"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page title="{i18n>OpenWo}" id="id_FWPOperPage" showHeader="true" class="FWPPage" showNavButton="true" navButtonPress="onLogoPress">
+		<content>
+			<Toolbar class="fwp_subheader">
+				<Input liveChange="onSearch" id="searchId" class="searchFields" placeholder="{i18n>Search}"/>
+			</Toolbar>
+			<VBox>
+
+			<List id="id_listoper" class="cl_listmargintop" items="{path:'FWPOperModel>/'}"
+				itemPress="fnOpenOperationDetails" updateFinished="fnUpdateFinished" >
+				<CustomListItem type="Navigation">
+					<VBox class="sapUiTinyMargin">
+						<Toolbar height="1.5rem" class="cl_fwp_toolbarCss">
+							<core:Icon visible="{= ${FWPOperModel>ConfText} !== ''}" src="sap-icon://sys-enter-2" size="1rem" height="1rem" width="1rem" color="green"/>
+							<Text class="cl_fwp_wotitle" text="{path:'FWPOperModel>Vornr'} - "/>
+							<!-- <Text text="{FWPOperModel>OperText}" class="cl_fwp_date1"/> -->
+							<Text text="{FWPOperModel>Ltxa1}" class="cl_fwp_date1"/>
+						</Toolbar>
+						<Toolbar height="1.8rem" class="cl_fwp_toolbarCss">
+							<Text text="{FWPOperModel>EQKTX}" class="cl_fwp_date"/>
+						</Toolbar>
+						<Toolbar height="1.5rem" class="cl_fwp_toolbarCss">
+							<Text text="{FWPOperModel>Arbpl}" class="cl_fwp_date"/>
+						</Toolbar>
+						<Toolbar height="1.5rem" class="cl_fwp_toolbarCss">
+							<Link class="cl_sublink" text="{i18n>Items}" width="100%" press="onShowItems"/>
+							<Link class="cl_sublink" text="{i18n>Services}" width="30%" press="onShowServices"/>
+						</Toolbar>
+					</VBox>
+				</CustomListItem>
+			</List>
+			</VBox>
+		</content>
+		<footer>
+			<Toolbar class="cl_footertoolbar">
+				<ToolbarSpacer/>
+				<Button text="{i18n>SUBMIT}" class="cl_footerbutton" press="onSubmit"/>
+			</Toolbar>
+		</footer>
+	</Page>
+</mvc:View>

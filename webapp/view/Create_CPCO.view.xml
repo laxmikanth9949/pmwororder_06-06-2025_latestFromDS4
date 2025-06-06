@@ -1,0 +1,111 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="com.olam.pmworkorder.controller.Create_CPCO"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:f="sap.ui.layout.form" xmlns:ndc="sap.ndc">
+<Page title="Calibration Order Confirmation" showHeader="true" class="pageBg_PM cl_page toolHeader_PM" floatingFooter="true" showNavButton="true"
+				navButtonPress="onLogoPress">
+	<customHeader>
+		<Bar id="BAR_TITLE" class="sapHeaderBar_CSQ">
+			<contentLeft>
+				<Button icon="sap-icon://nav-back" press="onLogoPress" class="homeIcon_PM"></Button>
+			</contentLeft>
+			<contentMiddle>
+				<Title text="Calibration Order Confirmation"/>
+			</contentMiddle>
+			<contentRight>
+				<Button icon="sap-icon://refresh" visible="false" press="onPressRefresh" class="homeIcon_PM"></Button>
+				<Button icon="sap-icon://customize" visible="false" press="onPressCustom" class="homeIcon_PM"></Button>
+			</contentRight>
+		</Bar>
+	</customHeader>
+	<content>
+		<!-- <Toolbar class="sapUiLargeMarginTop" visible="false">
+			<SegmentedButton width="98%" visible="false">
+				<items>
+					<SegmentedButtonItem text="Header" key="Header" press="onHeader"/>
+					<SegmentedButtonItem text="Operations" key="Operations" press="onOperations" id="operationsId"/>
+				</items>
+			</SegmentedButton>
+		</Toolbar> -->
+		<f:Form editable="false" class="MainPanel_PM sapUiSizeCompact" id="formId">
+			<f:layout>
+				<f:ResponsiveGridLayout labelSpanXL="3" labelSpanL="4" labelSpanM="12" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0"
+					emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="2" singleContainerFullSize="false"/>
+			</f:layout>
+			<f:formContainers>
+				<f:FormContainer>
+					<f:formElements>
+						<f:FormElement>
+							<f:label>
+								<Label class="cl_Label_PS" text="{i18n>Equipment}"/>
+							</f:label>
+							<f:fields>
+								<HBox>
+									<Input id="cp_EquipId" valueHelpRequest="onEquipF4" showValueHelp="true" liveChange="onEquipmentChange" class="Input_PM">
+										<layoutData>
+											<FlexItemData growFactor="1"/>
+										</layoutData>
+									</Input>
+									<ndc:BarcodeScannerButton id="id_scanbutton" class="sapUiSmallMarginBegin" scanFail="fnBarcodeFailed" scanSuccess="fnBarcodeSuccess" tooltip="{i18n>Scanner}"/>
+								</HBox>
+								<Text id="EquipDesId_cp" visible="false"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement>
+													
+							<f:label>
+								<Label class="cl_Label_PS" text="{i18n>WorkOrder}"/>
+							</f:label>
+							<f:fields>
+							<HBox>
+								<Input class="Input_PM" id="cp_WoId" showValueHelp="true" valueHelpRequest="onWorkOrderF4" change="onOrderChange"></Input>
+							</HBox>
+							<Text id="OrderDesId_cp" visible="false"/>
+							</f:fields>
+						</f:FormElement>
+					</f:formElements>
+				</f:FormContainer>
+			</f:formContainers>
+		</f:Form>
+		<VBox class="IconTabFilterScroll2" id="ComponentPanel1" visible="true">
+			<List class="" id="WoListMain" visible="true" items="{path : 'oModel_OperationList>/'}" itemPress="onPressItem" updateFinished="fnUpdateList" >
+				<CustomListItem class="custlist_PN" type="Active">
+					<VBox>
+						<FlexBox alignItems="Start" justifyContent="SpaceBetween">
+							<HBox>
+								<Label text="{i18n>Operation} :" design="Bold" class="label SapUiTinyMarginEnd"></Label>
+								<Text text="{oModel_OperationList>Operation}" class="SapUiTinyMarginEnd"/>
+							</HBox>
+							<HBox alignItems="End" justifyContent="End" class="label SapUiTinyMarginEnd" >
+								<core:Icon src="sap-icon://edit" color="blue" visible="false" id="editOprId" press="onAddMain"></core:Icon>
+							</HBox>
+						</FlexBox>
+						<HBox>
+							<Label text="{i18n>Description} :" design="Bold" class=" label SapUiTinyMarginEnd"></Label>
+							<Text text="{oModel_OperationList>Description}" class="SapUiTinyMarginEnd"/>
+						</HBox>
+						<FlexBox alignItems="Start" justifyContent="SpaceBetween">
+							<HBox>
+								<Label text="{i18n>ActWork} : " design="Bold" class="label SapUiTinyMarginEnd"></Label>
+								<Text text="{path:'oModel_OperationList>ActWork', formatter:'.formatter.getHoursMinsformat'}" class="SapUiTinyMarginEnd"/>
+							</HBox>
+							<HBox visible="false" alignItems="End" justifyContent="End" class="showMoreLessClass">
+								<core:Icon src="sap-icon://delete" color="red" press="onDeleteOprItem"></core:Icon>
+							</HBox>
+						</FlexBox>
+						<HBox>
+							<Label text="{i18n>ConfText} :" design="Bold" class=" label SapUiTinyMarginEnd"></Label>
+							<Text text="{oModel_OperationList>ConfText}" class="SapUiTinyMarginEnd"/>
+						</HBox>
+					</VBox>
+				</CustomListItem>
+			</List>
+		</VBox>
+	</content>
+	<footer>
+		<OverflowToolbar>
+			<Button type="Reject" id="addOprId" enabled="false" icon="sap-icon://positive" text="{i18n>conOpr}" class="ChangeBtn_PM" press="onAddMain"/>
+			<ToolbarSpacer/>
+			<Button type="Accept" icon="sap-icon://save" text="{i18n>Submit}" press="onCreate" class="ChangeBtn_PM"/>
+		</OverflowToolbar>
+	</footer>
+</Page>
+</mvc:View>

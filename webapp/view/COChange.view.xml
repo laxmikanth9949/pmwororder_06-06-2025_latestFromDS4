@@ -1,0 +1,428 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout" xmlns:ndc="sap.ndc"
+	xmlns="sap.m" controllerName="com.olam.pmworkorder.controller.COChange" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:f="sap.ui.layout.form">
+	<Page title="{i18n>ChangeCO}" showHeader="true" class="pageBg_PM cl_page toolHeader_PM" showNavButton="true"
+				navButtonPress="onLogoPress">
+		<customHeader>
+			<Bar id="BAR_TITLE" class="sapHeaderBar_CSQ">
+				<contentLeft>
+					<Button icon="sap-icon://nav-back" press="onLogoPress" class="homeIcon_PM"></Button>
+				</contentLeft>
+				<contentMiddle>
+					<Title text="{i18n>ChangeCO}"/>
+				</contentMiddle>
+				<contentRight>
+				<!--	<Button icon="sap-icon://customize" press="onPressCustom" class="homeIcon_PM"></Button>	-->
+					<Button icon="sap-icon://decline" press="onNavBack" class="homeIcon_PM"></Button>
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<content>
+		<Toolbar class="sapUiLargeMarginTop">
+			<SegmentedButton width="98%" id="id_segment_coch">
+				<items>
+					<SegmentedButtonItem text="{i18n>Header}" key="Header" press="onHeader"/>
+					<SegmentedButtonItem text="{i18n>Operations}" key="Operations" press="onOperations"/>
+				</items>
+			</SegmentedButton>
+		</Toolbar>
+		<f:Form editable="false" class="MainPanelWO_PM sapUiSizeCompact" id="formIdCH">
+				<f:layout>
+					<f:ResponsiveGridLayout labelSpanXL="3" labelSpanL="4" labelSpanM="12" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0"
+						emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="2" singleContainerFullSize="false"/>
+				</f:layout>
+				<f:formContainers>
+					<f:FormContainer>
+						<f:formElements>
+							<f:FormElement>
+								<f:label>
+								<Label class="cl_Label_PS" text="{i18n>WorkOrder}"/>
+							</f:label>
+							<f:fields>
+								<Input class="Input_PM" id="ch_WoIdCH" value="{oWOHeaderObjModel>/OrderNumber}" enabled="false" showValueHelp="true" valueHelpRequest="onWorkOrderF4" change="onOrderChange"></Input>
+							</f:fields>
+							</f:FormElement>
+							<f:FormElement>
+								<f:label>
+									<Label class="cl_Label_PS" text="{i18n>PlanningPlant}"/>
+								</f:label>
+								<f:fields>
+									<Input  id="plantIdCH" value="{oWOHeaderObjModel>/Planplant}" enabled="true" showValueHelp="false" class="Input_PM"
+											maxLength="4"></Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement>
+								<f:label>
+									<Label class="cl_Label_PS" text="{i18n>Equipment}"/>
+								</f:label>
+								<f:fields>
+									<HBox>
+										<Input  id="eqidCH" value="{oWOHeaderObjModel>/Equipment}" valueHelpRequest="onEquipF4" enabled="true" showValueHelp="true" class="Input_PM"
+											liveChange="onChangeEquipment">
+											<layoutData>
+												<FlexItemData growFactor="1"/>
+											</layoutData>
+										</Input>
+										<ndc:BarcodeScannerButton class="sapUiSmallMarginBegin" scanFail="fnBarcodeFailed" scanSuccess="fnBarcodeSuccess" tooltip="{i18n>Scanner}"/>
+									</HBox>
+									<Text id="idEquipmentDes_COCH" text="{oWOHeaderObjModel>/EQKTX}" class="sapUiSmallMarginBegin" visible="false"/>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement>
+								<f:label>
+									<Label class="cl_Label_PS" text="{i18n>FunctionalLocation}"/>
+								</f:label>
+								<f:fields>
+									<Input id="PoIdCH" value="{oWOHeaderObjModel>/FunctLoc}" change="onChangeFloc" valueHelpRequest="onFunLocF4" enabled="true" showValueHelp="true" class="Input_PM"/>
+                             <!--       <ComboBox showSecondaryValues="false" id="PoId" items="{oFunctionalModel>/}" change="onChangepo" class="CB_PM" selectedKey="{oWOHeaderObjModel>/FunctLoc}">
+											<core:ListItem key="{oFunctionalModel>TPLNR}" text="{oFunctionalModel>TPLNR}"/>
+										</ComboBox>	-->
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement id="id_areaelementCH">
+                                <f:label>
+                                    <Label class="cl_Label_PS" text="{i18n>AreaRecom}" required="true"/>
+                                </f:label>
+                                <f:fields>
+									<Input id="id_arearecomCH" value="" enabled="false" class="Input_PM"/>
+                                </f:fields>
+                            </f:FormElement>
+							<f:FormElement id="id_faixaelementCH">
+                                <f:label>
+                                    <Label class="cl_Label_PS" text="{i18n>FaixaRecom}" required="true"/>
+                                </f:label>
+                                <f:fields>
+									<Input id="id_faixarecomCH" value="" liveChange="onlyNumbers" enabled="true" class="Input_PM" description="%"/>
+                                </f:fields>
+                            </f:FormElement>
+							<f:FormElement>
+								<f:label>
+									<Label class="cl_Label_PS" text="{i18n>PlannerGroup}" required="true"/>
+								</f:label>
+								<f:fields>
+									<ComboBox class="CB_PM" showSecondaryValues="true" id="pgIdCH" items="{oPlannerModel>/}" enabled="false" change="onChangepo" selectedKey="{oWOHeaderObjModel>/Plangroup}">
+											<core:ListItem key="{oPlannerModel>Plangroup}" text="{oPlannerModel>Plangroup}" additionalText="{oPlannerModel>Eqktx}"/>
+										</ComboBox>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement>
+								<f:label>
+									<Label class="cl_Label_PS" text="{i18n>Workcenter}"/>
+								</f:label>
+								<f:fields>
+									<ComboBox class="CB_PM"  showSecondaryValues="true" enabled="false"  id="wcidCH" items="{oWorkcenterModel>/}" change="onChangepo" >
+											<core:ListItem key="{oWorkcenterModel>Arbpl}" text="{oWorkcenterModel>Arbpl}" additionalText="{oWorkcenterModel>Ltxa1}"/>
+										</ComboBox>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement>
+								<f:label>
+									<Label class="cl_Label_PS" text="{i18n>WorkOrderType}" required="true"/>
+								</f:label>
+								<f:fields>
+										<ComboBox id="woidCH" class="CB_PM" showSecondaryValues="false" change="onChangeType"   selectedKey="{oWOHeaderObjModel>/OrderType}" enabled="false">
+											<core:Item key="00" text="{i18n>CalibrationOrderC}" /> <!-- ZM05 -->
+											
+										</ComboBox>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement>
+                                <f:label>
+                                    <Label class="cl_Label_PS" text="{i18n>PMActivityType}" required="false" />
+                                </f:label>
+                                <f:fields>
+                                   <Input id="id_pmactCH" value="" valueHelpRequest="onPMActTypeF4" enabled="true" showValueHelp="true" class="Input_PM"/>
+                                </f:fields>
+                            </f:FormElement>
+							<f:FormElement id="revBlockIdCH" visible="false">
+								<f:label>
+									<Label class="cl_Label_PS" text="{i18n>Revision}" required="true"/>
+								</f:label>
+								<f:fields>
+									<Input class="Input_PM" id="revidCH" showValueHelp="true" valueHelpRequest="onRevisionF4" enabled="false" valueHelpOnly="true" value="{oWOHeaderObjModel>/Revision}"></Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement>
+								<f:label>
+									<Label class="cl_Label_PS" text="{i18n>Description}"/>
+								</f:label>
+								<f:fields>
+									<Input class="Input_PM" id="desidCH" enabled="true" showValueHelp="false" value="{oWOHeaderObjModel>/ShortText}" maxLength="40"></Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement visible="false">
+								<f:label>
+									<Label class="cl_Label_PS" text="{i18n>BusinessArea}"/>
+								</f:label>
+								<f:fields>
+									<Input class="Input_PM" id="baidCH" enabled="false" showValueHelp="false" value="{oWOHeaderObjModel>/BusArea}"></Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement id="malFnDateBlockIdCH" visible="false">
+								<f:label>
+									<Label class="cl_Label_PS" text="{i18n>MalFnDT}"/>
+								</f:label>
+								<f:fields>
+					<!--				<DateTimePicker id="stMlDTId" displayFormat="medium" change="handleChange" class="Input_PM"
+									value="{path:'oWOHeaderObjModel>/Strmlfndate', type:'sap.ui.model.type.DateTime', formatOptions: { style: 'medium', strictParsing: true}}"/>	-->
+									<DateTimePicker id="stMlDTIdCOCH" displayFormat="MM/dd/yyyy, HH:mm:ss aa" change="handleChange" class="Input_PM"
+									value="{path:'oWOHeaderObjModel>/StartDate', type:'sap.ui.model.type.DateTime', formatOptions: { style: 'medium', strictParsing: true}}"/>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement id="stDateBlockIdCH" visible="true">
+								<f:label>
+									<Label class="cl_Label_PS" text="{i18n>StDT}"/>
+								</f:label>
+								<f:fields>
+									<DateTimePicker id="stDTIdCOCH" change="handleChange" class="Input_PM" displayFormat="MM/dd/yyyy, HH:mm:ss aa"
+									value="{path:'oWOHeaderObjModel>/StartDate', type:'sap.ui.model.type.DateTime', formatOptions: { style: 'medium', strictParsing: true}}"/>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement>
+								<f:label>
+									<Label class="cl_Label_PS" text="{i18n>Breakdown}"/>
+								</f:label>
+								<f:fields>
+									<CheckBox editable="false" id="brCheckIdCH" class="CheckBox_PM"/>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement visible="false">
+                                <f:label>
+                                    <Label class="cl_Label_PS" text="{i18n>Permit}" />
+                                </f:label>
+                                <f:fields>
+                                    <HBox>
+                                        <CheckBox id="permitCheckIdCH" class="CheckBox_PM" select="onPermitCheck"/>
+                                        <Button id="permitInfoBtnCH" visible="false" icon="sap-icon://message-information" press="onPermitInfoPress" />
+                                    </HBox>
+                                </f:fields>
+                            </f:FormElement>
+							<f:FormElement>
+                                <f:label>
+                                    <Label class="cl_Label_PS" text="{i18n>UserStatus}" />
+                                </f:label>
+                                <f:fields>
+                                  <ComboBox class="CB_PM" showSecondaryValues="true" id="id_UserstatusOrderCH" selectionChange="handleSelectionChange" selectionFinish="handleSelectionFinish" value="{oOrderUserStatusModel>/Workcenter}" items="{ path: 'oOrderUserStatusModel>/', sorter: { path: 'ESTAT' } }">
+												<core:ListItem key="{oOrderUserStatusModel>Estat}" text="{oOrderUserStatusModel>Estat}" additionalText="{oOrderUserStatusModel>Txt04}-{oOrderUserStatusModel>Txt30}"/>
+		                            </ComboBox>
+                                </f:fields>
+                            </f:FormElement>
+							
+							 <f:FormElement>
+                                <f:label>
+                                    <Label class="cl_Label_PS" text="{i18n>Priority}" required="true" />
+                                </f:label>
+                                <f:fields>
+                                  <ComboBox class="CB_PM" showSecondaryValues="true" id="idPriorityCH"  value="{oWOHeaderObjModel>/Priority}" items="{ path: 'oPriorityModel_Order>/', sorter: { path: 'Priok'} }">
+												<core:ListItem key="{oPriorityModel_Order>Priok}" text="{oPriorityModel_Order>Priok}" additionalText="{oPriorityModel_Order>Priokx}"/>
+								 </ComboBox>
+                                </f:fields>
+                            </f:FormElement>
+                            <f:FormElement>
+                                <!-- <f:label>
+                                    <Label class="cl_Label_PS" text="{i18n>Task List}" />
+                                </f:label> -->
+                                <f:fields>
+                                    <HBox>
+                                        <Button text="{i18n>AddTask}" icon="sap-icon://task" class="sapUiSmallMargin" press="onAddTaskPress" />
+                                    </HBox>
+                                </f:fields>
+                            </f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+				</f:formContainers>
+			</f:Form>
+			<VBox class="IconTabFilterScroll2" id="ComponentPanel1CH" visible="false">
+				<HBox alignItems="End" justifyContent="End" class="showMoreLessClass SapUiSmallMarginEnd" id="id_printpreviewCH">
+                                   
+			<Button icon="sap-icon://print" text="{i18n>PrintPreview}" press="onOpenPrintPreview" class="SapUiSmallMarginEnd ChangeBtn_PM"/>
+                                   
+            </HBox>
+                <List class="sapUiSizeCompact" id="WoListMainCH" visible="true" items="{ path : 'oModel_Item>/',sorter: { path: 'Vornr', ascending: true}}">
+                    <CustomListItem class="custlist_PN" type="Inactive" press="onListItemPress">
+                        <VBox>
+                            <FlexBox alignItems="Start" justifyContent="SpaceBetween">
+                                <HBox>
+                                    <Label text="{i18n>LineItemII}" design="Bold" class="label SapUiTinyMarginEnd"></Label>
+                                    <Text text="{oModel_Item>Vornr}" class="SapUiTinyMarginEnd" />
+                                </HBox>
+                                <HBox alignItems="End" justifyContent="End" class="showMoreLessClass">
+                                    <!--  <core:Icon src="sap-icon://add" color="blue" press="onAdd"></core:Icon> -->
+									<Button  text=" + Opr" press="onEditItemDetails_CH" class="SapUiTinyMarginEnd btnFontSizeStyle"/>
+                                    <Button  text=" + Mtrl" press="onAdd" class="btnFontSizeStyle SapUiTinyMarginBegin" visible="{= ${oModel_Item>ControlKey} !== 'PM03' }"/>
+                                </HBox>
+                            </FlexBox>
+							 <FlexBox alignItems="Start" justifyContent="SpaceBetween">
+                                <HBox>
+                                    <Label text="{i18n>TextI}" design="Bold" class="label SapUiTinyMarginEnd"></Label>
+                                    <Text text="{oModel_Item>Ltxa1}" class="SapUiTinyMarginEnd" />
+                                </HBox>
+                                <HBox alignItems="End" justifyContent="End" class="showMoreLessClass">
+                                    <core:Icon src="sap-icon://delete" color="red" press="onDelete"></core:Icon>
+                                </HBox>
+                            </FlexBox>
+                            <FlexBox alignItems="Start" justifyContent="SpaceBetween">
+                                <HBox>
+                                    <Label text="{i18n>conKey}" design="Bold" class=" label SapUiTinyMarginEnd"></Label>
+                                    <Text text="{oModel_Item>ControlKey}" class="SapUiTinyMarginEnd" />
+                                </HBox>
+                                <HBox alignItems="End" justifyContent="End" class="showMoreLessClass">
+                                    <!--  <core:Icon src="sap-icon://add" color="blue" press="onAdd"></core:Icon> -->
+                                    <Button  text=" + Serv" press="onAddServiceToOpr" class="btnFontSizeStyle" visible="{= ${oModel_Item>ControlKey} === 'PM03' }"/>
+                                </HBox>
+                            </FlexBox>
+                            <HBox >
+                                <Label text="{i18n>WorkCenterI}" design="Bold" class=" label SapUiTinyMarginEnd"></Label>
+                                <Text text="{oModel_Item>Arbpl}" class="SapUiTinyMarginEnd" />
+                            </HBox>
+							<HBox visible="{= ${oModel_Item>ControlKey} !== 'PM03'}">
+                                <Label text="{i18n>WorkAct}" design="Bold" class=" label SapUiTinyMarginEnd"></Label>
+                                <Text text="{oModel_Item>Arbei}-{oModel_Item>Arbeh}" class="SapUiTinyMarginEnd" />
+                            </HBox>
+							<HBox>
+                                <Label text="{i18n>NormalAct}" design="Bold" class=" label SapUiTinyMarginEnd"></Label>
+                                <Text text="{oModel_Item>Dauno}-{oModel_Item>Daune}" class="SapUiTinyMarginEnd" />
+                            </HBox>
+							<HBox>
+                                <Label text="{i18n>Calkey}" design="Bold" class=" label SapUiTinyMarginEnd"></Label>
+                                <Text text="{oModel_Item>Indet}-{oModel_Item>IndetDesc}" class="SapUiTinyMarginEnd" />
+                            </HBox>
+							<HBox>
+                                <Label text="{i18n>ActiType}" design="Bold" class=" label SapUiTinyMarginEnd"></Label>
+                                <Text text="{oModel_Item>Larnt}" class="SapUiTinyMarginEnd" />
+                            </HBox>
+							<HBox>
+                                <Label text="{i18n>Capno}" design="Bold" class=" label SapUiTinyMarginEnd"></Label>
+                                <Text text="{oModel_Item>Anzzl}" class="SapUiTinyMarginEnd" />
+                            </HBox>
+                           
+                            <HBox visible="{= ${oModel_Item>ControlKey} === 'PM03' }">
+                                <Label text="{i18n>PurGrp}" design="Bold" class=" label SapUiTinyMarginEnd"></Label>
+                                <Text text="{oModel_Item>PurGroup}" class="SapUiTinyMarginEnd" />
+                            </HBox>
+                            <HBox visible="{= ${oModel_Item>ControlKey} === 'PM03' }">
+                                <Label text="{i18n>PurOrg}" design="Bold" class=" label SapUiTinyMarginEnd"></Label>
+                                <Text text="{oModel_Item>PurchOrg}" class="SapUiTinyMarginEnd" />
+                            </HBox>
+                            <HBox visible="{= ${oModel_Item>ControlKey} === 'PM03' }">
+                                <Label text="{i18n>MatGrp}" design="Bold" class=" label SapUiTinyMarginEnd"></Label>
+                                <Text text="{oModel_Item>MatlGroup}" class="SapUiTinyMarginEnd" />
+                            </HBox>
+							<HBox visible="{= ${oModel_Item>ControlKey} === 'PM03' }">
+                                <Label text="{i18n>RequestedBy}" design="Bold" class=" label SapUiTinyMarginEnd"></Label>
+                                <Text text="{oModel_Item>Reqby}" class="SapUiTinyMarginEnd" />
+                            </HBox>
+							<FlexBox alignItems="Start" justifyContent="SpaceBetween">
+								<HBox class="showMoreLessClass">
+									<Link text="{i18n>ShowItem}" id="showItemCH" visible="true" class="ShowMoreText_MassRel sapUiTinyMarginEnd sapUiTinyMarginTop" press="_handlePressMore">
+									</Link>
+									<Link text="{i18n>HideItem}" visible="false" id="hideItemCH" class="ShowMoreText_MassRel sapUiTinyMarginEnd sapUiTinyMarginTop" press="_handleHideMore">
+									</Link>
+								</HBox>
+								 <HBox class="showMoreLessClass">
+									<Link text="{i18n>ShowServices}" id="showServiceCH" visible="true" class="ShowMoreText_MassRel sapUiTinyMarginEnd sapUiTinyMarginTop" press="onShowServices">
+									</Link>
+									<Link text="{i18n>HideServices}" visible="false" id="hideServiceCH" class="ShowMoreText_MassRel sapUiTinyMarginEnd sapUiTinyMarginTop" press="onHideServices">
+									</Link>
+								</HBox>
+							</FlexBox>
+                            <!--  <IconTabBar visible="{GlobalModel>/ServDetVisible}" headerMode="Inline" class="sapUiResponsiveContentPadding">
+                                <items>
+                                    <IconTabFilter text="Components"> -->
+                            <List id="idItemListCH" visible="false" items="{path : 'oModel_SubItem>/'}">
+                                <CustomListItem class="clCustomListItem sapUiTinyMarginTop sapUiTinyMarginBegin text1Rem" type="Active" press="onListItemPress">
+                                    <VBox>
+                                        <FlexBox alignItems="Start" justifyContent="SpaceBetween">
+                                            <HBox>
+                                                <Label text="{i18n>LineItemII}" design="Bold" class="label SapUiTinyMarginEnd"></Label>
+                                                <Text text=" {oModel_SubItem>Item}" class="SapUiTinyMarginBegin" />
+                                            </HBox>
+                                            <HBox alignItems="End" justifyContent="End" class="showMoreLessClass">
+                                                <core:Icon src="sap-icon://edit" color="blue" press="onEditItem"></core:Icon>
+                                            </HBox>
+                                        </FlexBox>
+                                        <HBox>
+                                            <Label text="{i18n>MaterialI}" design="Bold" class="label SapUiTinyMarginEnd"></Label>
+                                            <Text text=" {oModel_SubItem>MATERIAL}" class="SapUiTinyMarginBegin" />
+                                        </HBox>
+                                        <HBox>
+                                            <Label text="{i18n>MaterialDescriptionI}" design="Bold" class="label SapUiTinyMarginEnd"></Label>
+                                            <Text text=" {oModel_SubItem>MaterialDesc}" />
+                                        </HBox>
+										 <HBox>
+                                                <Label text="{i18n>SLoc} : " design="Bold" class="label SapUiTinyMarginEnd"></Label>
+                                                <Text text=" {oModel_SubItem>Sloc} " class="SapUiTinyMarginBegin" />
+                                           </HBox>
+                                        <FlexBox alignItems="Start" justifyContent="SpaceBetween">
+                                            <HBox>
+                                                <Label text="{i18n>UOMI}" design="Bold" class="label SapUiTinyMarginEnd"></Label>
+                                                <Text text=" {oModel_SubItem>UOM}" />
+                                            </HBox>
+                                            <HBox alignItems="End" justifyContent="End" class="showMoreLessClass">
+                                                <core:Icon src="sap-icon://delete" color="red" press="onDeleteItem"></core:Icon>
+                                            </HBox>
+                                        </FlexBox>
+                                        <HBox>
+                                            <Label text="{i18n>BalQuantityI}" design="Bold" class="label SapUiTinyMarginEnd"></Label>
+                                            <Text text=" {oModel_SubItem>REQUIREMENT_QUANTITY}" class="SapUiTinyMarginEnd" />
+                                        </HBox>
+										 <HBox visible="{path:'oModel_SubItem>Visible', formatter:'.formatter.getVisible1'}">
+                                            <Label text="{i18n>QantityPerHect} : " design="Bold" class="label SapUiTinyMarginEnd"></Label>
+                                            <Text text=" {oModel_SubItem>UnloadPt}" class="SapUiTinyMarginEnd" />
+                                        </HBox>
+                                    </VBox>
+                                </CustomListItem>
+                            </List>
+                            <List id="idServiceListCH" visible="false" items="{path : 'GlobalModel>/ServicesSubList'}">
+                                <CustomListItem class="clCustomListItem sapUiTinyMarginTop sapUiTinyMarginBegin text1Rem" type="Active" press="onListItemPress">
+                                    <VBox>
+                                        <FlexBox alignItems="Start" justifyContent="SpaceBetween">
+                                            <HBox>
+                                                <Label text="{i18n>ServiceNum}" design="Bold" class="label SapUiTinyMarginEnd"></Label>
+                                                <Text text=" {GlobalModel>ServiceNumber}" class="SapUiTinyMarginBegin" />
+                                            </HBox>
+                                            <HBox alignItems="End" justifyContent="End" class="showMoreLessClass">
+                                                <core:Icon src="sap-icon://edit" color="blue" press="onEditService"></core:Icon>
+                                            </HBox>
+                                        </FlexBox>
+                                        <HBox>
+                                            <Label text="{i18n>ServiceText}" design="Bold" class="label SapUiTinyMarginEnd"></Label>
+                                            <Text text=" {GlobalModel>ServiceText}" class="SapUiTinyMarginBegin" />
+                                        </HBox>
+                                        <HBox>
+                                            <Label text="{i18n>Price}" design="Bold" class="label SapUiTinyMarginEnd"></Label>
+                                            <Text text=" {GlobalModel>Price}" class="SapUiTinyMarginBegin" />
+                                        </HBox>
+                                        <HBox>
+                                            <Label text="{i18n>Quantity}" design="Bold" class="label SapUiTinyMarginEnd"></Label>
+                                            <Text text=" {GlobalModel>Qty}" />
+                                        </HBox>
+                                        <FlexBox alignItems="Start" justifyContent="SpaceBetween">
+                                            <HBox>
+                                                <Label text="{i18n>CostElement}" design="Bold" class="label SapUiTinyMarginEnd"></Label>
+                                                <Text text=" {GlobalModel>CostElement}" />
+                                            </HBox>
+                                            <HBox alignItems="End" justifyContent="End" class="showMoreLessClass">
+                                                <core:Icon src="sap-icon://delete" color="red" press="onDeleteServiceItem"></core:Icon>
+                                            </HBox>
+                                        </FlexBox>
+                                    </VBox>
+                                </CustomListItem>
+                            </List>
+                      
+                        </VBox>
+                    </CustomListItem>
+                </List>
+            </VBox>
+				
+				
+				
+		</content>
+		<footer>
+			<OverflowToolbar>
+				<Button type="Reject" icon="sap-icon://positive" text="{i18n>AddOperation}" id="addOprIdCH" class="ChangeBtn_PM" press="onAddMain"/>
+				<ToolbarSpacer/>
+				<Button type="Accept" icon="sap-icon://save" text="{i18n>Submit}" class="ChangeBtn_PM" press="onCreate"/>
+			</OverflowToolbar>
+		</footer>
+	</Page>
+</mvc:View>

@@ -1,0 +1,152 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="com.olam.pmworkorder.controller.MaintenanceList"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page title="{i18n>OpenWo}" showHeader="true" class="pageBg_PM cl_page toolHeader_PM"
+		showNavButton="true" navButtonPress="onLogoPress">
+		<customHeader>
+			<Bar id="BAR_TITLE" class="sapHeaderBar_CSQ">
+				<contentLeft>
+					<Button icon="sap-icon://nav-back" press="onLogoPress" class="homeIcon_PM"></Button>
+				</contentLeft>
+				<contentMiddle>
+					<Title text="{i18n>OpenWo}"/>
+				</contentMiddle>
+				<contentRight>
+					<!-- <Button icon="sap-icon://refresh" press="onPressRefresh" class="homeIcon_PM"></Button> -->
+					<Button icon="sap-icon://customize" press="onPressCustom" class="homeIcon_PM"></Button>
+					<Button icon="sap-icon://settings" press="onPressSettings" class="homeIcon_PM"></Button>
+				</contentRight>
+			</Bar>
+		</customHeader>
+	<!--	<subHeader>
+			<SearchField
+					liveChange="onSearch"
+					width="100%" />
+		</subHeader>	-->
+		<content>
+			<VBox>
+			<HBox alignItems="Center" justifyContent="Center" alignContent="Center">
+        <GenericTile
+            class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+            header="No Due"
+            press="onPress"
+            frameType="OneByHalf"
+        >
+            <TileContent>
+                <NumericContent id="idErrorColor"
+                    value=""
+                    valueColor="Error"
+                    withMargin="false"
+                />
+            </TileContent>
+        </GenericTile>
+        <GenericTile
+            class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+            header="Due Started"
+            press="onPress"
+            frameType="OneByHalf"
+        >
+            <TileContent>
+                <NumericContent
+                    value="" id="idCriticalColor"
+                    valueColor="Critical"
+                    withMargin="false"
+                />
+            </TileContent>
+        </GenericTile>  
+        <GenericTile
+            class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+            header="Due Available"
+            press="onPress"
+            frameType="OneByHalf"
+        >
+            <TileContent>
+                <NumericContent
+                    value="" id="idCompletedColor"
+                    valueColor="Good"
+                    withMargin="false"
+                />
+            </TileContent>
+        </GenericTile>	
+		<GenericTile
+            class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+            header="Total List"
+            press="onPress"
+            frameType="OneByHalf"
+        >
+            <TileContent>
+                <NumericContent
+                    value="" id="idTotalAll"
+                    valueColor="None"
+                    withMargin="false"
+                />
+            </TileContent>
+        </GenericTile>	
+</HBox>
+<Label/>
+<VBox alignItems="Center" justifyContent="Center" alignContent="Center">
+		<Label text="Selected Date Range:" design="Bold" />
+	<Label text="" id="idDateRangeSelected" design="Bold" />
+	</VBox>
+</VBox>
+
+			<Toolbar class="toolbarMargin">
+				<SearchField id="searchId"
+					liveChange="onSearch"
+					width="100%" />
+			</Toolbar>
+			<List  id="WorkorderList_ID_MP" visible="true" items="{oMPopenWOModel>/}" itemPress="onPressItem" class="sapUiSizeCompact">
+				
+			<!--	<StandardListItem
+				title="{oMPopenWOModel>NotificationNumber}"
+				description="{oMPopenWOModel>SHORT_TEXT}" />	-->
+				<items>
+					<CustomListItem class="custlist_NL" type="Active">
+						<FlexBox alignItems="Start" justifyContent="SpaceBetween">
+							<HBox>
+						<!--		<Label text="{path:'oMPopenWOModel>NPLDA',
+									type: 'sap.ui.model.type.Date',
+									formatOptions: {
+										style: 'medium'
+									}}" design="Bold" class="label SapUiTinyMarginEnd"></Label> -->
+									<Label text="{path:'oMPopenWOModel>Nplda',formatter:'.formatter.getDateValue_Cl'}" design="Bold" class="label SapUiTinyMarginEnd"></Label>
+							</HBox>
+							<HBox>
+								<Button icon="sap-icon://flag" type="Accept" visible="{= ${oMPopenWOModel>OrdStatus} === 'CRTD' }" press="onPressRel"/>
+							</HBox>	
+						</FlexBox>
+						<HBox>
+							<Label text="{i18n>PendingFrom} {oMPopenWOModel>PendingDays}" class="label SapUiTinyMarginEnd"></Label>
+						</HBox>
+						<HBox>
+							<Label text="{oMPopenWOModel>ShortText}" class="label SapUiTinyMarginEnd"></Label>
+						</HBox>
+						<FlexBox alignItems="Start" justifyContent="SpaceBetween">
+							<HBox>
+								<Label text="{oMPopenWOModel>OrderNumber}" class="label SapUiTinyMarginEnd"></Label>
+							</HBox>
+							<HBox>
+								<Text text="{oMPopenWOModel>OrderType}" class="SapUiTinyMarginBegin"/>
+							</HBox>
+						</FlexBox>
+				<!--	<HBox>
+							<Text text="{oMPopenWOModel>ShortText}" class="SapUiTinyMarginBegin"/>
+						</HBox>		-->
+					
+						<HBox visible="{= ${oMPopenWOModel>Eqktx} !== '' }">
+							<Text text="{oMPopenWOModel>Eqktx}" class="SapUiTinyMarginBegin"/>
+						</HBox>
+						<HBox visible="{= ${oMPopenWOModel>Eqktx} === '' }">
+							<Text text="{oMPopenWOModel>FunctLoc}" class="SapUiTinyMarginBegin"/>
+						</HBox>
+						<HBox>
+							<Text text="{i18n>BalOdoreader} : {oMPopenWOModel>BalOdoRead}" class="SapUiTinyMarginBegin"/>
+						</HBox>
+						
+				
+					</CustomListItem>
+				</items>
+			</List>
+		</content>
+				
+			</Page>
+</mvc:View>

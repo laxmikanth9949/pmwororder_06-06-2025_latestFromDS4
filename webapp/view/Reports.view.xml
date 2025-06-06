@@ -1,0 +1,80 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="com.olam.pmworkorder.controller.Reports"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:l="sap.ui.layout">
+	<Page title="{i18n>Reports}" showHeader="true" class="FWPPage" showNavButton="true" navButtonPress="onLogoPress">
+		<content>
+				<l:Grid class="cl_reportsmargintop" hSpacing="0" vSpacing="0" defaultSpan="L12 M12 S12">
+					<Panel class="cl_reportpanel">
+						<CustomListItem height="7rem" type="Active" press="onNotifAnalysisReport">
+							<VBox justifyContent="Center" alignContent="Center" alignItems="Center" class="cl_reportvbox" height="5rem">
+								<core:Icon src="sap-icon://bell" size="35px" width="35px" height="35px" color="#ff8888"/>
+							</VBox>
+							<HBox justifyContent="SpaceBetween" alignContent="Center" alignItems="Center" height="2rem">
+								<ObjectIdentifier title="Notification Analysis" class="cl_reporttile1"/>
+								<core:Icon src="sap-icon://trend-up" class="sapUiTinyMarginEnd" size="16px" width="16px" height="16px" color="#666666"/>
+							</HBox>
+						</CustomListItem>
+						<layoutData>
+							<l:GridData span="L4 M4 S6" />
+						</layoutData>
+					</Panel>
+					<Panel class="cl_reportpanel">
+						<CustomListItem height="7rem">
+							<VBox justifyContent="Center" alignContent="Center" alignItems="Center" class="cl_reportvbox" height="5rem">
+								<core:Icon src="sap-icon://order-status" size="35px" width="35px" height="35px" color="green"/>
+							</VBox>
+							<HBox justifyContent="SpaceBetween" alignContent="Center" alignItems="Center" height="2rem">
+								<ObjectIdentifier title="Work Order Analysis" class="cl_reporttile1"/>
+								<core:Icon class="sapUiTinyMarginEnd" src="sap-icon://trend-up" size="16px" width="16px" height="16px" color="#666666"/>
+							</HBox>						
+						</CustomListItem>
+						<layoutData>
+							<l:GridData span="L4 M4 S6" />
+						</layoutData>
+					</Panel>
+					<Panel class="cl_reportpanel">
+						<CustomListItem height="7rem">
+							<VBox justifyContent="Center" alignContent="Center" alignItems="Center" class="cl_reportvbox" height="5rem">
+								<core:Icon src="sap-icon://expense-report" size="35px" width="35px" height="35px" color="#346187"/>
+							</VBox>
+							<HBox justifyContent="SpaceBetween" alignContent="Center" alignItems="Center" height="2rem">
+								<ObjectIdentifier title="Maintenance Cost Analysis" class="cl_reporttile1"/>
+								<core:Icon class="sapUiTinyMarginEnd" src="sap-icon://trend-up" size="16px" width="16px" height="16px" color="#666666"/>
+							</HBox>						
+						</CustomListItem>
+						<layoutData>
+							<l:GridData span="L4 M4 S6" />
+						</layoutData>
+					</Panel>
+					<Panel class="cl_reportpanel">
+						<CustomListItem height="7rem">
+							<VBox justifyContent="Center" alignContent="Center" alignItems="Center" class="cl_reportvbox" height="5rem">
+								<core:Icon src="sap-icon://business-objects-experience" size="35px" width="35px" height="35px" color="#bb0000"/>
+							</VBox>
+							<HBox justifyContent="SpaceBetween" alignContent="Center" alignItems="Center" height="2rem">
+								<ObjectIdentifier title="Planned v/s Actual Cost" class="cl_reporttile1"/>
+								<core:Icon class="sapUiTinyMarginEnd" src="sap-icon://trend-up" size="16px" width="16px" height="16px" color="#666666"/>
+							</HBox>						
+						</CustomListItem>
+						<layoutData>
+							<l:GridData span="L4 M4 S6" />
+						</layoutData>
+					</Panel>
+					<Panel class="cl_reportpanel">
+						<CustomListItem height="7rem">
+							<VBox justifyContent="Center" alignContent="Center" alignItems="Center" class="cl_reportvbox" height="5rem">
+								<core:Icon src="sap-icon://trip-report" size="35px" width="35px" height="35px" color="#e8900e"/>
+							</VBox>
+							<HBox justifyContent="SpaceBetween" alignContent="Center" alignItems="Center" height="2rem">
+								<ObjectIdentifier title="MTTR MBTR and Avail Report" class="cl_reporttile1"/>
+								<core:Icon class="sapUiTinyMarginEnd" src="sap-icon://trend-up" size="16px" width="16px" height="16px" color="#666666"/>
+							</HBox>						
+						</CustomListItem>
+						<layoutData>
+							<l:GridData span="L4 M4 S6" />
+						</layoutData>
+					</Panel>
+				</l:Grid>
+		</content>
+		
+	</Page>
+</mvc:View>

@@ -1,0 +1,68 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="com.olam.pmworkorder.controller.NotifList"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page title="{i18n>NotifList}" showHeader="true" class="pageBg_PM cl_page toolHeader_PM"
+		showNavButton="true" navButtonPress="onLogoPress">
+		<customHeader>
+			<Bar id="BAR_TITLE" class="sapHeaderBar_CSQ">
+				<contentLeft>
+					<Button icon="sap-icon://nav-back" press="onLogoPress" class="homeIcon_PM"></Button>
+				</contentLeft>
+				<contentMiddle>
+					<Title text="{i18n>NotifList}"/>
+				</contentMiddle>
+				<contentRight>
+					<!-- <Button icon="sap-icon://refresh" press="onPressRefresh" class="homeIcon_PM"></Button> -->
+					<Button icon="sap-icon://customize" press="onPressCustom" class="homeIcon_PM"></Button>
+					<Button icon="sap-icon://settings" press="onPressSettings" class="homeIcon_PM"></Button>
+				</contentRight>
+			</Bar>
+		</customHeader>
+	<!--	<subHeader>
+			<SearchField
+					liveChange="onSearch"
+					width="100%" />
+		</subHeader>	-->
+		<content>
+			<Toolbar class="toolbarMargin">
+				<SearchField id="searchId"
+					liveChange="onSearch"
+					width="100%" />
+			</Toolbar>
+			<List  id="NotifList_ID" visible="true" items="{oNotificationNumber>/}" itemPress="onPressItem" class="sapUiSizeCompact">
+				<items>
+					<CustomListItem class="custlist_NL" type="Active">
+						<HBox justifyContent="SpaceBetween" alignItems="Center" alignContent="Center">
+							<Label text="{oNotificationNumber>QMTXT}" design="Bold" class="label SapUiTinyMarginEnd"/>
+							<Button icon="sap-icon://flag" type="Accept" visible="{= ${oNotificationNumber>TXT04} === 'OSNO' }" press="fnReleaseNotif"/>
+						</HBox>	
+					<FlexBox alignItems="Start" justifyContent="SpaceBetween">
+						<HBox>
+							<Label text="{oNotificationNumber>QMNUM}" class="label SapUiTinyMarginEnd"></Label>
+						</HBox>
+						<HBox>
+							<Label text="{oNotificationNumber>QMART}" class="SapUiTinyMarginBegin" design="Bold"/>
+						</HBox>	
+					</FlexBox>
+						<HBox visible="{= ${oNotificationNumber>EQKTX} !== '' }">
+					<!--		<Text text="{oNotificationNumber>EQUIPMENT} : {oNotificationNumber>EText}" class="SapUiTinyMarginBegin"/>	-->
+							<Text text="{oNotificationNumber>EQKTX}" class="SapUiTinyMarginBegin"/>	
+						</HBox>
+						<HBox visible="{= ${oNotificationNumber>TPLNR} !== '' }">
+							<Text text="{oNotificationNumber>TPLNR}" class="SapUiTinyMarginBegin"/>	
+						</HBox>
+					</CustomListItem>
+				</items>
+			</List>
+		</content>
+		<VBox>
+			<Button iconFirst="false" icon="sap-icon://add-filter" press="fnOpenFiterAction" class="cl_approval_processchart1"/>
+		</VBox>
+				<footer>
+					<OverflowToolbar>
+						<ToolbarSpacer/>
+							<Button icon="sap-icon://ui-notifications" id="syncButton" type="Accept" press="onPressNotifCreate" text="{i18n>Create}" tooltip="{i18n>SyncData}" class="ChangeBtn_PM"></Button>
+				<!--		<Button type="Emphasized" icon="sap-icon://create-form" class="roundSaveBtn_PM" press="onPressCreate"/>-->
+					</OverflowToolbar>
+				</footer>
+			</Page>
+</mvc:View>

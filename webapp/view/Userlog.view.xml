@@ -1,0 +1,65 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="com.olam.pmworkorder.controller.Userlog"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<App>
+		<pages>
+			<Page title="{i18n>CreateNotif}" showHeader="true" class="pageBg_PM cl_page toolHeader_PM" floatingFooter="true" showNavButton="true"
+				navButtonPress="onLogoPress">
+				<customHeader>
+					<Bar id="BAR_TITLE" class="sapHeaderBar_CSQ">
+						<contentLeft>
+							<Button icon="sap-icon://nav-back" press="onLogoPress" class="homeIcon_PM"></Button>
+						</contentLeft>
+						<contentMiddle>
+							<Title text="{i18n>Userlog}"/>
+						</contentMiddle>
+						<contentRight>
+							<Button icon="sap-icon://customize" press="onPressCustom" class="homeIcon_PM" visible="false"></Button>
+						</contentRight>
+					</Bar>
+				</customHeader>
+				<content>
+					<Toolbar class="toolbarMargin">
+				
+						<SearchField id="searchId" liveChange="onusersearch" width="100%"/>
+					</Toolbar>
+					<ScrollContainer vertical="true" focusable="true">
+						<List id="iduserlist" items="{JMuserlog>/}">
+							<items>
+							<CustomListItem type="Active">
+								<HBox width="100%" class="sapUiSmallMarginTop">
+								<VBox width="90%">
+									<!--<VBox>-->
+									<HBox>
+										<Label text="{i18n>objid} " width="5rem" class="sapUiTinyMarginBegin bold "/>
+										<Label text=": {JMuserlog>objid}" class="sapUiTinyMarginBegin "/>
+									</HBox>
+									<!--</VBox>-->
+									<!--<VBox>-->
+									<HBox>
+										<Label text="{i18n>doctype}" width="5rem" class="sapUiTinyMarginBegin bold "/>
+										<Label text=": {JMuserlog>doctype}" class="sapUiTinyMarginBegin "/>
+									</HBox>
+									<!--</VBox>-->
+									<!--<VBox>-->
+									<HBox>
+										<Label text="{i18n>activity}" width="5rem" class="sapUiTinyMarginBegin bold "/>
+										<Label text=": {JMuserlog>activity}" class="sapUiTinyMarginBegin "/>
+									</HBox>
+									<!--</VBox>-->
+									<!--<VBox>-->
+									<HBox class = "height">
+										<Label text="{i18n>date}" width="5rem" class="sapUiTinyMarginBegin bold"/>
+										<Label text=": {JMuserlog>date}" class="sapUiTinyMarginBegin"/>
+									</HBox>
+									<!--</VBox>-->
+								</VBox>
+								</HBox>
+							</CustomListItem>
+							</items>
+						</List>
+					</ScrollContainer>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

@@ -1,0 +1,109 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="com.olam.pmworkorder.controller.Cancel_CP"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:f="sap.ui.layout.form" xmlns:ndc="sap.ndc">
+	<App>
+		<pages>
+			<Page title="{i18n>CancelConfirm}" showHeader="false" class="DetailTitle masterPageBackground">
+				<content>
+					<Panel id="HeaderPanel1_Id" class="MainPanel_CP MainPanel_Hd_QMApproval" expandable="true" expanded="true">
+						<headerToolbar>
+							<Toolbar style="Clear">
+								<ToolbarSpacer/>
+								<Button icon="sap-icon://settings" press="onDownload"/>
+							</Toolbar>
+						</headerToolbar>
+						<l:Grid defaultSpan="L4 M4 S12" class="sapUiTinyMarginTop">
+							<l:content>
+								<VBox>
+									
+									<VBox alignItems="Start" class="sapUiSmallMarginButtom">
+										<Label text="{i18n>WorkOrder}" class=""></Label>
+										<Input id="cl_WoId" value="{oCancelLocalModel>/Orderid}" showValueHelp="true" class="InputPlaceholder_CP InputPlaceholder_CPD" valueHelpRequest="onWorkOrderF4" change="onOrderChange"></Input>
+									</VBox>
+									<VBox alignItems="Start" class="sapUiSmallMarginButtom">
+										<Label text="{i18n>Operation}" class=""></Label>
+										<Input id="cl_Opr" value="{oCancelLocalModel>/Operation}" showValueHelp="true" class="InputPlaceholder_CP InputPlaceholder_CPD" valueHelpRequest="onOperationF4" change="onOprChange"></Input>
+									</VBox>
+									<VBox alignItems="Start" class="sapUiSmallMarginButtom">
+										<Label text="{i18n>ConfNo}" class="" required="true"></Label>
+										<Input id="cl_ConNo" value="{oCancelLocalModel>/ConfNo}" showValueHelp="true" class="InputPlaceholder_CP InputPlaceholder_CPD" valueHelpRequest="onConfNoF4" change="onConNoChange"></Input>
+									</VBox>
+									<VBox alignItems="Start" class="sapUiSmallMarginButtom">
+										<Label text="{i18n>ConfCnt}" class="" required="true"></Label>
+										<Input id="cl_Cnt" value="{oCancelLocalModel>/ConfCnt}" showValueHelp="true" class="InputPlaceholder_CP InputPlaceholder_CPD" valueHelpRequest="onConfCntF4" change="onConfCntChange"></Input>
+									</VBox>
+									<VBox alignItems="Start" class="sapUiSmallMarginButtom">
+										<Label text="{i18n>ConfText}" class="" ></Label>
+										<Input id="cl_ConText" value="{oCancelLocalModel>/ConfText}" class="InputPlaceholder_CP InputPlaceholder_CPD" enabled="false"></Input>
+									</VBox>
+									
+									<VBox alignItems="Start" class="sapUiSmallMarginButtom">
+										<Label text="{i18n>CreatedBy}" class=""></Label>
+										<Input value="{oCancelLocalModel>/CreatedBy}" class="InputPlaceholder_CP InputPlaceholder_CPD" enabled="false"></Input>
+									</VBox>
+									<VBox alignItems="Start" class="sapUiSmallMarginButtom">
+										<Label text="{i18n>CreatedDate}" class=""></Label>
+										<DatePicker dateValue="{path:'oCancelLocalModel>/CreatedDate'}" displayFormat="dd-MM-yyyy" class="InputPlaceholder_CP InputPlaceholder_CPD" enabled="false"/>
+									</VBox>
+									<VBox alignItems="Start" class="sapUiSmallMarginButtom">
+										<Label text="{i18n>CreatedTime}" class=""></Label>
+										<Input value="{path:'oCancelLocalModel>/CreatedTime',formatter:'.formatter.getTimeValue_Cl'}" class="InputPlaceholder_CP InputPlaceholder_CPD" enabled="false"/>
+									</VBox>
+									<VBox  class="sapUiLargeMarginTop">
+										<Button icon="sap-icon://save" text="{i18n>Cancel}" class="Login_Btn" press="onCreate"/>
+									</VBox>
+									
+								</VBox>
+							</l:content>
+						</l:Grid>	
+					</Panel>
+					
+			<!--		<Panel>
+						<headerToolbar>
+							<Toolbar style="Clear">	
+								<Title text="{i18n>Operations}"/>
+								<ToolbarSpacer/>
+								<Button icon="sap-icon://add" id="addOprId" press="onAddMain" enabled="false"/>
+							</Toolbar>
+						</headerToolbar>
+						<List  class="" id="WoListMain" visible="true" items="{path : 'oModel_OperationList>/'}">
+							<CustomListItem class="clCustomListItem sapUiTinyMarginTop sapUiTinyMarginBegin text1Rem" type="Inactive" press="onListItemPress">
+								<VBox>
+									<HBox>
+										<Label text="{i18n>Operation}" design="Bold" class="label SapUiTinyMarginEnd"></Label>
+										<Text text="{oModel_OperationList>Operation}" class="SapUiTinyMarginEnd"/>
+									</HBox>
+									<HBox>
+										<Label text="{i18n>Description}" design="Bold" class="label SapUiTinyMarginEnd"></Label>
+										<Text text="{oModel_OperationList>Description}" class="SapUiTinyMarginEnd"/>
+									</HBox>
+									<HBox alignItems="End" justifyContent="End" class="label SapUiTinyMarginEnd" >
+										<core:Icon src="sap-icon://add" color="blue" id="editOprId"  width="2rem" height="2rem" class="Icons_Table_Delete" press="onAddMain"></core:Icon>
+									</HBox>
+									<HBox>
+										<Label text="{i18n>ActWork}" design="Bold" class="label SapUiTinyMarginEnd"></Label>
+										<Text text="{path:'oModel_OperationList>ActWork', formatter:'.formatter.getHoursMinsformat'}" class="SapUiTinyMarginEnd"/>
+									</HBox>
+									<HBox>
+										<Label text="{i18n>ConfText}" design="Bold" class="label SapUiTinyMarginEnd"></Label>
+										<Text text="{oModel_OperationList>ConfText}" class="SapUiTinyMarginEnd"/>
+									</HBox>
+									<HBox visible="{oModel_OperationList>Complete}">
+										<Label text="{i18n>Complete}" design="Bold" class="label SapUiTinyMarginEnd"></Label>
+										<Text text="{path:'oModel_OperationList>Complete', formatter:'.formatter.getCheckMark'}"/>
+									</HBox>
+									<HBox alignItems="End" justifyContent="End" class="label SapUiTinyMarginEnd" >
+										<core:Icon src="sap-icon://delete" color="red"  width="2rem" height="2rem" class="Icons_Table_Delete" press="onDeleteOprItem"></core:Icon>
+									</HBox> 
+								</VBox>
+							</CustomListItem>
+						</List>	
+						<HBox alignItems="Center" justifyContent="Center" >
+							<Button text="{i18n>Submit}" class="Login_Btn" press="onCreate"/>			
+						</HBox>
+					</Panel>	-->
+				</content>
+			</Page>
+		</pages>
+	</App>
+	
+</mvc:View>

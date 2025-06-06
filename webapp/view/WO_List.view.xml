@@ -1,0 +1,53 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="com.olam.pmworkorder.controller.WO_List"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page title="{i18n>WorkOrder}" showHeader="true" class="pageBg_PM cl_page toolHeader_PM" floatingFooter="true"
+		showNavButton="true" navButtonPress="onLogoPress">
+		<customHeader>
+			<Bar id="BAR_TITLE" class="sapHeaderBar_CSQ">
+				<contentLeft>
+					<Button icon="sap-icon://nav-back" press="onLogoPress" class="homeIcon_PM"></Button>
+				</contentLeft>
+				<contentMiddle>
+					<Title text="{i18n>WorkOrder}"/>
+				</contentMiddle>
+			</Bar>
+		</customHeader>
+		<content>
+			<VBox fitContainer="true" alignItems="Center" justifyContent="Center" alignContent="Center">
+			<VBox>
+				<CustomListItem class="custlistBtn_PM strip_Cl_Btn2" type="Active" press="onCreateWO" width="90%">
+						<HBox>
+							<core:Icon src="sap-icon://add-activity-2" class="sapUiSmallMarginBeginEnd CLIcon_PM"></core:Icon>
+							<Text text="{i18n>WorkOrder}" class="clText"></Text>
+						</HBox>
+					</CustomListItem>
+					<CustomListItem class="custlistBtn_PM strip_Cl_Btn4" type="Active" press="onChangeWO" visible="false">
+						<HBox>
+						<core:Icon src="sap-icon://inspect-down" class="sapUiSmallMarginBeginEnd CLIcon_PM" press="onChangeWO"></core:Icon>
+							<Text text="{i18n>ChangeWO}" class="clText"></Text>
+						</HBox>
+					</CustomListItem>
+					<CustomListItem class="custlistBtn_PM strip_Cl_Btn5" type="Active" press="onConfirmWO">
+						<HBox>
+							<core:Icon src="sap-icon://task" class="sapUiSmallMarginBeginEnd CLIcon_PM" press="onConfirmWO"></core:Icon>
+							<Text text="{i18n>WO_Confirmation}" class="clText"></Text>
+						</HBox>
+					</CustomListItem>
+			<!--		<CustomListItem class="custlist_PM strip_Cl_2" type="Active" press="onCancelConfirm">
+						<HBox>
+						<core:Icon src="sap-icon://inspect-down" class="sapUiSmallMarginBeginEnd CLIcon_PM" press="onCancelConfirm"></core:Icon>
+							<Text text="Cancel Confirmation"></Text>
+						</HBox>
+					</CustomListItem>	-->
+					
+					<CustomListItem class="custlistBtn_PM strip_Cl_Btn6" type="Active" press="onPressTeco">
+						<HBox>
+							<core:Icon src="sap-icon://complete" class="sapUiSmallMarginBeginEnd CLIcon_PM" press="onPressTeco"></core:Icon>
+							<Text text="{i18n>Teco1}" class="clText"></Text>
+						</HBox>
+					</CustomListItem>
+				</VBox>
+			</VBox>
+		</content>
+	</Page>		
+</mvc:View>

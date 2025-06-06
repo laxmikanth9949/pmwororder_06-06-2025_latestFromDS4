@@ -1,0 +1,321 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout" xmlns="sap.m"
+	controllerName="com.olam.pmworkorder.controller.ChangeNotif" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:f="sap.ui.layout.form"
+	xmlns:ndc="sap.ndc">
+	<Page showHeader="true" class="pageBg_PM cl_page toolHeader_PM" floatingFooter="true">
+		<customHeader>
+			<Bar id="BAR_TITLE" class="sapHeaderBar_CSQ">
+				<contentLeft>
+					<Button icon="sap-icon://nav-back" press="onLogoPress" class="homeIcon_PM"></Button>
+				</contentLeft>
+				<contentMiddle>
+					<Title text="{i18n>ChangeNotification}"/>
+				</contentMiddle>
+				<contentRight>
+					<!--   <Button icon="sap-icon://customize" press="onPressCustom" class="homeIcon_PM"></Button>		-->
+					<Button icon="sap-icon://decline" press="onClosePress" class="homeIcon_PM"></Button>
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<content>
+			<Toolbar class="sapUiLargeMarginTop">
+				<SegmentedButton width="98%" id="id_segment_notifcreate">
+					<items>
+						<SegmentedButtonItem text="{i18n>Header}" key="Header" id = "idheaderseg" press="onHeader"/>
+						<!--Added by malar-->
+						<SegmentedButtonItem text="{i18n>Cause_code}" key="Causecode" id = "idcauseseg" press="onCauseCode"/>
+					<!--Ended-->
+						<SegmentedButtonItem text="{i18n>Attachments}" key="Attachments" id = "idattachseg" press="onOperations" visible="false"/>
+					</items>
+				</SegmentedButton>
+			</Toolbar>
+			<f:Form editable="false" class="MainPanelWO_PM sapUiSizeCompact" id="formIdnotif">
+				<f:layout>
+					<f:ResponsiveGridLayout labelSpanXL="3" labelSpanL="4" labelSpanM="12" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0"
+						emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="2" singleContainerFullSize="false"/>
+				</f:layout>
+				<f:formContainers>
+					<f:FormContainer>
+						<f:formElements>
+							<f:FormElement>
+								<f:label>
+									<Label class="cl_Label_PS" text="{i18n>Notification}" required="true"/>
+								</f:label>
+								<f:fields>
+									<Input class="Input_PM" id="idNotificationNo" value="{oNotificationModel>/NotificationNumber}" valueHelpRequest="onNotifF4" enabled="false"
+										showValueHelp="true" change="onNotificationChange"></Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement>
+								<f:label>
+									<Label class="cl_Label_PS" text="{i18n>Plant}"/>
+								</f:label>
+								<f:fields>
+									<Input class="Input_PM" value="{oNotificationModel>/PLANPLANT}" editable="false"></Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement>
+								<f:label>
+									<Label class="cl_Label_PS" text="{i18n>Equipment}"/>
+								</f:label>
+								<f:fields>
+									<HBox>
+										<Input id="idEquipment_CH" value="{oNotificationModel>/EQUIPMENT}" valueHelpRequest="onEquipF4" enabled="true" showValueHelp="true"
+											class="Input_PM" liveChange="onEquipmentChange">
+											<layoutData>
+												<FlexItemData growFactor="1"/>
+											</layoutData>
+										</Input>
+										<ndc:BarcodeScannerButton class="sapUiSmallMarginBegin" scanFail="fnBarcodeFailed" scanSuccess="fnBarcodeSuccess" tooltip="{i18n>Scanner}"/>
+									</HBox>
+									<Text id="idEquipmentDes" class="sapUiSmallMarginBegin" visible="false"/>
+									<!--<Label text="" design="Bold"></Label>-->
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement>
+								<f:label>
+									<Label class="cl_Label_PS" text="{i18n>FLoc}" required="true"/>
+								</f:label>
+								<f:fields>
+									<Input id="idFLoc" value="{oNotificationModel>/FUNCT_LOC}" valueHelpRequest="onFunLocF4" change="onFlocChange" enabled="true"
+										showValueHelp="true" class="Input_PM"/>
+									<!--		<ComboBox id="idFLoc" showSecondaryValues="true" value="{oNotificationModel>/FLoc}" items="{ path: 'oFunctionalModel>/', sorter: { path: 'TPLNR' } }" change="onFlocChange" class="CB_PM">
+												<core:Item key="{oFunctionalModel>TPLNR}" text="{oFunctionalModel>TPLNR}"/>
+											</ComboBox>		-->
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement>
+								<f:label>
+									<Label class="cl_Label_PS" text="{i18n>PlannerGroup}" required="true"/>
+								</f:label>
+								<f:fields>
+									<ComboBox class="CB_PM" showSecondaryValues="true" id="idPlanner" value="{oNotificationModel>/PLANGROUP}"
+                                        items="{ path: 'oPlannerModel>/', sorter: { path: 'INGRP'} }">
+                                        <core:Item key="{oPlannerModel>INGRP}" text="{oPlannerModel>INGRP} : {oPlannerModel>PGTXT}"/>
+                                    </ComboBox>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement>
+								<f:label>
+									<Label class="cl_Label_PS" text="{i18n>Workcenter}" required="true"/>
+								</f:label>
+								<f:fields>
+									<ComboBox class="CB_PM" showSecondaryValues="true" value="{oNotificationModel>/PM_WKCTR}"
+										items="{ path: 'oWorkcenterModel>/', sorter: { path: 'text' } }">
+										 <core:Item key="{oWorkcenterModel>ARBPL}" text="{oWorkcenterModel>ARBPL} : {oWorkcenterModel>KTEXT_UP}"/>
+										
+										 <!-- <core:Item key="{oWorkcenterModel>Arbpl}" text="{oWorkcenterModel>Arbpl} : {oWorkcenterModel>Ktext}"/> -->
+									</ComboBox>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement>
+								<f:label>
+									<Label class="cl_Label_PS" text="{i18n>NotifType} / {i18n>Breakdown}" required="true"/>
+								</f:label>
+								<f:fields>
+									<HBox>
+										<ComboBox class="CB_PM" showSecondaryValues="true" id="idType" value="{oNotificationModel>/NOTIF_TYPE}"
+											items="{ path: 'oNotifTypeModel>/', sorter: { path: 'Text' } }" selectionChange="onTypeChange" change="onTypeChange">
+											<core:Item key="{oNotifTypeModel>Key}" text="{oNotifTypeModel>Text}"/>
+											<layoutData>
+												<FlexItemData growFactor="1"/>
+											</layoutData>
+										</ComboBox>
+										<CheckBox class="CheckBox_PM" editable="false" selected="{path: 'oNotificationModel>/BREAKDOWN'}"></CheckBox>
+									</HBox>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement>
+								<f:label>
+									<Label class="cl_Label_PS" text="{i18n>Desc}" required="true"/>
+								</f:label>
+								<f:fields>
+									<Input class="Input_PM" value="{oNotificationModel>/SHORT_TEXT}" maxLength="40"></Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement>
+								<f:label>
+									<Label class="cl_Label_PS" text="{i18n>StartTime}" required="true"/>
+								</f:label>
+								<f:fields>
+									<DateTimePicker id="stMlDTId"  change="handleChange" class="Input_PM"
+										value="{path:'oNotificationModel>/StDateTime', type:'sap.ui.model.type.DateTime', formatOptions: { style: 'medium', strictParsing: true}}"/>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement>
+								<f:label>
+									<Label class="cl_Label_PS" text="{i18n>EndTime}" required="true"/>
+								</f:label>
+								<f:fields>
+									<DateTimePicker id="stMlDWId" change="handleChange" class="Input_PM"
+										value="{path:'oNotificationModel>/EdDateTime', type:'sap.ui.model.type.DateTime', formatOptions: { style: 'medium', strictParsing: true}}" editable="false"/>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement>
+								<f:label>
+									<Label class="cl_Label_PS" text="{i18n>LongText}"/>
+								</f:label>
+								<f:fields>
+									<Input class="Input_PM" value="{oNotificationModel>/TDLINE}"></Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement>
+								<f:label>
+									<Label class="cl_Label_PS" text="{i18n>Priority}" required="true"/>
+								</f:label>
+								<f:fields>
+									<ComboBox class="CB_PM" showSecondaryValues="true" id="idPriority" value="{oNotificationModel>/PRIOK}" items="{ path: 'oPriorityModel>/', sorter: { path: 'PRIOK'} }">
+										<core:ListItem key="{oPriorityModel>PRIOK}" text="{oPriorityModel>PRIOK}" additionalText="{oPriorityModel>PRIOKX}"/>
+										</ComboBox>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement>
+								<f:label>
+									<Label class="cl_Label_PS" text="{i18n>UserStatus}"/>
+								</f:label>
+								<f:fields>
+									<MultiComboBox class="CB_PM" id="id_UserstatusNotif" showSecondaryValues="true" selectionChange="handleSelectionChange"
+                                        selectionFinish="handleSelectionFinish" value="{oNotificationModel>/Estat}" selectedkeys=""
+                                        items="{ path: 'oNotifUserStatusModel>/', sorter: { path: 'Estat' } }">
+                                        <core:ListItem key="{oNotifUserStatusModel>Estat}"
+                                            text="{oNotifUserStatusModel>Estat}-{oNotifUserStatusModel>Txt04}-{oNotifUserStatusModel>Txt30}"/>
+                                    </MultiComboBox>
+									<!--	<MultiInput showValueHelp="true" valueHelpOnly="true" valueHelpRequest="open_userstatus" id="id_UserstatusNotif" class="Input_PM"></MultiInput> -->
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement>
+								<f:label>
+									<Label  class="cl_Label_PS" text="{i18n>ReportedBy}" required="false"/>
+								</f:label>
+								<f:fields>
+									<Input class="Input_PM" id="idreportby" value="{GlobalModel>/SelectedNotif/REPORTEDBY}" maxLength="12"></Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement>
+								<f:label>
+									<Label class="cl_Label_PS" text="{i18n>CodeGroup}"/>
+								</f:label>
+								<f:fields>
+									<Input id="idCodeGroup" value="{oNotificationModel>/QMGRP}" valueHelpRequest="onCodeGrpF4" enabled="true" showValueHelp="true"
+										class="Input_PM"/>
+									<!--		<ComboBox id="idFLoc" showSecondaryValues="true" value="{oNotificationModel>/FLoc}" items="{ path: 'oFunctionalModel>/', sorter: { path: 'TPLNR' } }" change="onFlocChange" class="CB_PM">
+												<core:Item key="{oFunctionalModel>TPLNR}" text="{oFunctionalModel>TPLNR}"/>
+											</ComboBox>		-->
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement>
+								<f:label>
+									<Label class="cl_Label_PS" text="{i18n>Code}"/>
+								</f:label>
+								<f:fields>
+									<Input id="idCode" value="{oNotificationModel>/QMCOD}" valueHelpRequest="onCodeF4" enabled="true" showValueHelp="true" class="Input_PM"/>
+								</f:fields>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+				</f:formContainers>
+			</f:Form>
+			<VBox class="IconTabFilterScroll2" id="ComponentPanel1_notif" visible="false">
+				<List items="{path:'oNotificationModel>/Attachment/'}" class="cl_mpcustlist">
+					<headerToolbar >
+						<OverflowToolbar height="2rem" id="id_upload">
+							<content>
+								<Text text="{i18n>Upload}" class="cl_titlelist"/>
+								<ToolbarSpacer/>
+								<core:Icon class="sapUiSmallMarginEnd" src="sap-icon://upload" width="1rem" color="#427cac" height="1rem" size="1rem" press="onOpenUpload"/>
+							</content>
+						</OverflowToolbar>
+					</headerToolbar>
+					<CustomListItem type="Active" press="fnOpenOperationDetails">
+						<VBox class="sapUiTinyMargin">
+							<Toolbar height="1.5rem" class="cl_fwp_toolbarCss">
+								<Text class="cl_fwp_wotitle" text="{oNotificationModel>IvName}"/>
+								<ToolbarSpacer/>
+								<core:Icon class="sapUiTinyMarginEnd" src="sap-icon://delete" width="1rem" color="#e81d1d" height="1rem" size="1rem"
+									press="fnDeletePictures"/>
+							</Toolbar>
+						</VBox>
+					</CustomListItem>
+				</List>
+			</VBox>
+			<!--Added by malar-->
+			<ScrollContainer vertical="true" focusable="true">
+				<List id="idcauselist" class="cl_mpcustlist" items="{JMcauselist>/}" visible="false">
+					<items>
+						<CustomListItem type="Active" press="fncauseupdate">
+							<HBox width="100%">
+								<VBox width="10%" alignContent="Center" justifyContent="Center" alignItems="Center">
+									<CheckBox selected="{JMCauselist>Select}" id="idcheck" select="ondeletevalue"></CheckBox>
+								</VBox>
+								<VBox width="90%">
+									<VBox>
+										<HBox>
+											<Label text="{i18n>Object_part} " width="7rem"/>
+											<Label text=": {JMcauselist>objpardDesc}" class="sapUiTinyMarginBegin "/>
+										</HBox>
+									</VBox>
+									<VBox>
+										<HBox>
+											<Label text="{i18n>Object_partcode}" width="7rem"/>
+											<Label text=": {JMcauselist>objpartcodeDesc}" class="sapUiTinyMarginBegin "/>
+										</HBox>
+									</VBox>
+									<VBox>
+										<HBox>
+											<Label text="{i18n>damage}" width="7rem"/>
+											<Label text=": {JMcauselist>damgeDes}" class="sapUiTinyMarginBegin "/>
+										</HBox>
+									</VBox>
+									<VBox>
+										<HBox>
+											<Label text="{i18n>damagecode}" width="7rem"/>
+											<Label text=": {JMcauselist>damageCodeDesc}" class="sapUiTinyMarginBegin "/>
+										</HBox>
+									</VBox>
+									<VBox>
+										<HBox>
+											<Label text="{i18n>damagedes}" width="7rem"/>
+											<Label text=": {JMcauselist>damagedes} " class="sapUiTinyMarginBegin "/>
+										</HBox>
+									</VBox>
+									<VBox>
+										<HBox>
+											<Label text="{i18n>cause}" width="7rem"/>
+											<Label text=": {JMcauselist>causedesc}" class="sapUiTinyMarginBegin "/>
+										</HBox>
+									</VBox>
+									<VBox>
+										<HBox>
+											<Label text="{i18n>causecode}" width="7rem"/>
+											<Label text=": {JMcauselist>causecodedes}" class="sapUiTinyMarginBegin "/>
+										</HBox>
+									</VBox>
+									<VBox>
+										<HBox>
+											<Label text="{i18n>causedes}" width="7rem"/>
+											<Label text=": {JMcauselist>causedes} " class="sapUiTinyMarginBegin "/>
+										</HBox>
+									</VBox>
+								</VBox>
+							</HBox>
+						</CustomListItem>
+					</items>
+				</List>
+			</ScrollContainer>
+		</content>
+		<VBox visible="false" id="onCreatecause">
+			<Button iconFirst="false" icon="sap-icon://add" press="fnCreateCause" class="cl_approval_processchart1"/>
+		</VBox>
+		<VBox visible="false" id="ondeletelist">
+			<Button iconFirst="false" icon="sap-icon://delete" press="fnDelete" class="cl_approval_processchart1"/>
+		</VBox>
+		<!--Ended-->
+		<footer>
+			<OverflowToolbar>
+				<Button type="Reject" icon="sap-icon://add-activity-2" text="{i18n>WorkOrder}" class="ChangeBtn_PM" press="onCheckWO"/>
+				<ToolbarSpacer/>
+				<Button type="Accept" icon="sap-icon://save" text="{i18n>Change}" press="onChangeNotifbtn" class="ChangeBtn_PM"/>
+				<Button type="Accept" icon="sap-icon://save" text="{i18n>Complete}" press="onCheck" class="ChangeBtn_PM"/>
+			</OverflowToolbar>
+		</footer>
+	</Page>
+</mvc:View>

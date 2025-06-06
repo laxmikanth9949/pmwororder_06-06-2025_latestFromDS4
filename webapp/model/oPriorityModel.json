@@ -1,0 +1,11 @@
+{
+  "oPriorityModel": [
+    { "PRIOK": 1, "PRIOKX": "Very High" },
+
+    { "PRIOK": 2, "PRIOKX": "High" },
+    { "PRIOK": 3, "PRIOKX": "Medium" },
+    { "PRIOK": 4, "PRIOKX": "Low"},
+    { "PRIOK": 5, "PRIOKX": "Very Low"},
+    { "PRIOK": 6, "PRIOKX": "Very Very Low"}
+  ]
+}

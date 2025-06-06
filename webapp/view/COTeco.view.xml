@@ -1,0 +1,120 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="com.olam.pmworkorder.controller.COTeco"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:f="sap.ui.layout.form" xmlns:ndc="sap.ndc">
+	<Page class="pageBg_PM cl_page toolHeader_PM" floatingFooter="true" showNavButton="true" navButtonPress="onLogoPress" title="{i18n>Teco}">
+		<customHeader>
+			<Bar id="BAR_TITLE" class="sapHeaderBar_CSQ">
+				<contentLeft>
+					<Button icon="sap-icon://nav-back" press="onLogoPress" class="homeIcon_PM"></Button>
+				</contentLeft>
+				<contentMiddle>
+					<Title text="{i18n>Teco}"/>
+				</contentMiddle>
+				<contentRight>
+					<Button visible="false" icon="sap-icon://refresh" press="onPressRefresh" class="homeIcon_PM"></Button>
+					<Button visible="false" icon="sap-icon://settings" press="onDownload" class="homeIcon_PM"></Button>
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<content>
+			<f:Form editable="false" class="MainPanel_PM sapUiSizeCompact">
+				<f:layout>
+					<f:ResponsiveGridLayout labelSpanXL="3" labelSpanL="4" labelSpanM="12" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0"
+						emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="2" singleContainerFullSize="false"/>
+				</f:layout>
+				<f:formContainers>
+					<f:FormContainer>
+						<f:formElements>
+							<f:FormElement visible="false">
+								<f:label>
+									<Label class="cl_Label_PS" text="{i18n>Equipment}"/>
+								</f:label>
+								<f:fields>
+									<HBox>
+										<Input id="teco_EquipId" value="{oTecoModel>/Equnr}" valueHelpRequest="onEquipF4" showValueHelp="true" change="onEquipmentChange" class="Input_PM">
+											<layoutData>
+												<FlexItemData growFactor="1"/>
+											</layoutData>
+										</Input>
+										<ndc:BarcodeScannerButton class="sapUiSmallMarginBegin" scanFail="fnBarcodeFailed" scanSuccess="fnBarcodeSuccess" tooltip="{i18n>Scanner}"/>
+									</HBox>
+									<Text id="EquipDesId_cp" text="{path: 'oTecoModel>/Eqktu'}" visible="{= ${oTecoModel>/Eqktu} !== '' }"/>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement visible="false">
+								<f:label>
+									<Label class="cl_Label_PS" text="{i18n>FunctionalLocation}" tooltip="{i18n>FunctionalLocation}"/>
+								</f:label>
+								<f:fields>		
+										<Input class="Input_PM" id="idFloc_Teco" value="{oTecoModel>/Tplnr}" showValueHelp="true" valueHelpRequest="onfunlocf4" change="onOrderChange"></Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement>
+								<f:label>
+									<Label class="cl_Label_PS" text="{i18n>WorkOrder}" tooltip="{i18n>WorkOrder}"/>
+								</f:label>
+								<f:fields>		
+									
+										<Input enabled="false" class="Input_PM" value="{oTecoModel>/Aufnr}" id="idWONo" showValueHelp="true" valueHelpRequest="onWorkOrderF4" change="onOrderChange"></Input>
+							<!--		<ComboBox id="idWONo" showSecondaryValues="true" value="{path: 'oTecoModel>/Aufnr', formatter:'.formatter.fnRemoveZero'}"
+										items="{ path: 'oWoNumber>/', sorter: {path: 'Equnr'}}" selectionChange="onWoChange" class="CB_PM">
+										<core:ListItem key="{oWoNumber>Aufnr}" text="{path: 'oWoNumber>Aufnr', formatter:'.formatter.fnRemoveZero'} : {oWoNumber>Ktext}"/>
+									</ComboBox>	-->
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement>
+								<f:label>
+									<Label class="cl_Label_PS" text="{i18n>TecoEd}"/>
+								</f:label>
+								<f:fields>
+									<DatePicker id="TecoDTP" dateValue="{oTecoModel>/EdDate}" enabled="false" change="onMalfunctionDateTimeChange" class="Input_PM"/>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement>
+								<f:label>
+									<Label class="cl_Label_PS" text="{i18n>TecoET}"/>
+								</f:label>
+								<f:fields>
+									<TimePicker valueFormat="HHmmss" displayFormat="HH:mm:ss" class="Input_PM" support2400="true"  value ="{oTecoModel>/EdTime}"/>
+								</f:fields>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+				</f:formContainers>
+			</f:Form>
+			
+			<List class="sapUiSizeCompact" id="PendingList" visible="false">
+				<CustomListItem class="custlistCH_PN" type="Inactive" press="onListItemPress">
+					<VBox>
+						<HBox class="ClassHBox">
+							<Label text="{i18n>Type}:" design="Bold" class="label SapUiTinyMarginEnd"></Label>
+							<Text text="{oTecoModel>/Auart}" class="SapUiTinyMarginEnd"/>
+						</HBox>
+						<HBox class="ClassHBox" visible="{= ${oTecoModel>/Equnr} !== '' }" >
+							<Label text="{i18n>Equipment}:" design="Bold" class="label SapUiTinyMarginEnd"></Label>
+							<Text text="{path: 'oTecoModel>/Equnr', formatter:'.formatter.fnRemoveZero'}" class="SapUiTinyMarginEnd"/>
+						</HBox>
+						<HBox class="ClassHBox" visible="{= ${oTecoModel>/Equnr} !== '' }" >
+							<Label text="{i18n>EquipmentText}:" design="Bold" class="label SapUiTinyMarginEnd"></Label>
+							<Text text="{path: 'oTecoModel>/Eqktu'}" class="SapUiTinyMarginEnd"/>
+						</HBox>
+						<HBox class="ClassHBox" visible="{= ${oTecoModel>/Tplnr} !== '' }">
+							<Label text="{i18n>FunctionalLocation}:" design="Bold" class="label SapUiTinyMarginEnd"></Label>
+							<Text text="{oTecoModel>/Tplnr}" class="SapUiTinyMarginEnd"/>
+						</HBox>
+						
+						<HBox class="ClassHBox">
+							<!--STRMLFNDATE STRMLFNTIME ENDMLFNDATE ENDMLFNTIME BREAKDOWN DEVICEID TDLINE -->
+							<Label text="{i18n>Desc}" design="Bold" class="label SapUiTinyMarginEnd"></Label>
+							<Text text="{path: 'oTecoModel>/Ktext', formatter:'.formatter.fnRemoveZero'}" class="SapUiTinyMarginEnd"/>
+						</HBox></VBox>
+				</CustomListItem>
+			</List>
+		</content>
+		<footer>
+			<OverflowToolbar>
+				<ToolbarSpacer/>
+				<Button type="Accept" icon="sap-icon://save" text="Save" press="onSaveWo" class="ChangeBtn_PM"/>
+			</OverflowToolbar>
+		</footer>
+	</Page>
+</mvc:View>

@@ -1,0 +1,77 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="com.olam.pmworkorder.controller.OpenCalibList"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page title="{i18n>OpenCO}" showHeader="true" class="pageBg_PM cl_page toolHeader_PM"
+		showNavButton="true" navButtonPress="onLogoPress">
+		<customHeader>
+			<Bar id="BAR_TITLE" class="sapHeaderBar_CSQ">
+				<contentLeft>
+					<Button icon="sap-icon://nav-back" press="onLogoPress" class="homeIcon_PM"></Button>
+				</contentLeft>
+				<contentMiddle>
+					<Title text="{i18n>OpenCO}"/>
+				</contentMiddle>
+				<contentRight>
+					<!-- <Button icon="sap-icon://refresh" press="onPressRefresh" class="homeIcon_PM"></Button>  -->
+					<Button icon="sap-icon://customize" press="onPressCustom" class="homeIcon_PM"></Button>
+					<Button icon="sap-icon://settings" press="onPressSettings" class="homeIcon_PM"></Button>
+				</contentRight>
+			</Bar>
+		</customHeader>
+	<!--	<subHeader>
+			<SearchField
+					liveChange="onSearch"
+					width="100%" />
+		</subHeader>	-->
+		<content>
+			<Toolbar class="toolbarMargin">
+				<SearchField id="searchId"
+					liveChange="onSearch"
+					width="100%" />
+			</Toolbar>
+			<List  id="WorkorderList_ID" visible="true" items="{oOpenWOModel>/}" itemPress="onPressItem" class="sapUiSizeCompact">
+				
+			<!--	<StandardListItem
+				title="{oOpenWOModel>NotificationNumber}"
+				description="{oOpenWOModel>SHORT_TEXT}" />	-->
+				<items>
+					<CustomListItem class="custlist_NL" type="Active">
+					<FlexBox alignItems="Start" justifyContent="SpaceBetween">
+						<HBox>
+							<Label text="{oOpenWOModel>ShortText}" design="Bold" class="label SapUiTinyMarginEnd"></Label>
+						</HBox>
+						<HBox>
+							<Button icon="sap-icon://flag" type="Accept" visible="{= ${oOpenWOModel>OrdStatus} === 'CRTD' }" press="onPressRel"/>
+						</HBox>	
+					</FlexBox>
+						<FlexBox alignItems="Start" justifyContent="SpaceBetween">
+							<HBox>
+								<Label text="{oOpenWOModel>OrderNumber}" class="label SapUiTinyMarginEnd"></Label>
+							</HBox>
+						</FlexBox>
+				<!--	<HBox>
+							<Text text="{oOpenWOModel>ShortText}" class="SapUiTinyMarginBegin"/>
+						</HBox>		-->
+					
+						<HBox visible="{= ${oOpenWOModel>Eqktx} !== '' }">
+							<Text text="{oOpenWOModel>Eqktx}" class="SapUiTinyMarginBegin"/>
+						</HBox>
+						<HBox visible="{= ${oOpenWOModel>Eqktx} === '' }">
+							<Text text="{oOpenWOModel>FunctLoc}" class="SapUiTinyMarginBegin"/>
+						</HBox>
+				
+					</CustomListItem>
+				</items>
+			</List>
+		</content>
+		<VBox>
+			<Button iconFirst="false" icon="sap-icon://add-filter" press="fnOpenFiterAction" class="cl_approval_processchart1" visibile="false"/>
+		</VBox>
+				<footer>
+					<OverflowToolbar>
+						<ToolbarSpacer/>
+							<Button icon="sap-icon://ui-notifications" id="syncButton" type="Accept" press="onPressNotifCreate" text="{i18n>Create}" tooltip="{i18n>SyncData}" class="ChangeBtn_PM"></Button>
+				<!--		<Button type="Emphasized" icon="sap-icon://create-form" class="roundSaveBtn_PM" press="onPressCreate"/>-->
+					</OverflowToolbar>
+				</footer>
+			</Page>
+</mvc:View>

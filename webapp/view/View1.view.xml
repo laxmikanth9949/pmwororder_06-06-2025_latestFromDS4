@@ -1,0 +1,273 @@
+<mvc:View controllerName="com.olam.pmworkorder.controller.View1" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+	xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:ndc="sap.ndc" >
+	
+	<Page title="{i18n>WorkOrder1}" showHeader="true" class="FWPPage" floatingFooter="true">
+			<customHeader>
+			<Bar id="BAR_TITLE" class="sapHeaderBar_CSQ">
+				<contentLeft>
+				   <Button icon="sap-icon://home" press="onHomePress" class="homeIcon_PM"></Button>
+					<Button icon="sap-icon://settings" visible="false" press="onPressDownload" class="homeIcon_PM"></Button>
+				</contentLeft>
+				<contentMiddle>
+					<Title text="{i18n>WorkOrder1}"/>
+				</contentMiddle>
+				<contentRight>
+					<Button icon="sap-icon://journey-depart" press="onLogout" class="homeIcon_PM" visible="false"></Button>
+					<Label text="Plant :"  design="Bold"></Label>
+					<Title id="plantId" text="{WERKS}" />
+				</contentRight>
+			</Bar>
+		</customHeader>
+				<content>
+				
+					<l:Grid defaultSpan="L6 M6 S6" class="addMargin_PM">
+						<!--<Button icon="sap-icon://ui-notifications" text="Notification" class="tileBtn_PM cnCl" press="onPress"></Button>-->
+				<!--		<CustomListItem class="homeCustList" press="onPressDownload">
+							<VBox justifyContent="Center" type="Active"  alignItems="Center">
+								<Button icon="sap-icon://download" class="roundBtn_PM dmCl" press="onPressDownload"></Button>
+								<Text class="textCenter customWFull" text="{i18n>DownloadMaster}" wrapping="false"></Text>
+							</VBox>
+						</CustomListItem>		-->
+						<!-- <Panel class="cl_menupanel">
+							<CustomListItem height="7rem" type="Active" press="onPressDownload">
+								<VBox justifyContent="Center" alignContent="Center" alignItems="Center" class="cl_reportvbox" height="5rem">
+									<core:Icon src="sap-icon://key-user-settings" size="35px" width="35px" height="35px" color="green"/>
+								</VBox>
+								<HBox justifyContent="Center" alignContent="Center" alignItems="Center" height="2rem">
+									<ObjectIdentifier title="{i18n>DownloadMaster}" class="cl_viewtile"/>
+								</HBox>						
+							</CustomListItem>
+							<layoutData>
+								<l:GridData span="L4 M4 S6" />
+							</layoutData>
+						</Panel> -->
+						<Panel class="cl_menupanel">
+							<CustomListItem height="7rem" type="Active" press="onPressNotif">
+								<VBox justifyContent="Center" alignContent="Center" alignItems="Center" class="cl_reportvbox" height="5rem">
+									<core:Icon src="sap-icon://bell" size="35px" width="35px" height="35px" color="#ff8888"/>
+								</VBox>
+								<HBox justifyContent="Center" alignContent="Center" alignItems="Center" height="2rem">
+									<ObjectIdentifier title="{i18n>Notification}" class="cl_viewtile"/>
+								</HBox>
+							</CustomListItem>
+							<layoutData>
+								<l:GridData span="L4 M4 S6" />
+							</layoutData>
+						</Panel>
+						<Panel class="cl_menupanel">
+							<CustomListItem height="7rem" type="Active" press="onPressWO">
+								<VBox justifyContent="Center" alignContent="Center" alignItems="Center" class="cl_reportvbox" height="5rem">
+									<core:Icon src="sap-icon://order-status" size="35px" width="35px" height="35px" color="green"/>
+								</VBox>
+								<HBox justifyContent="Center" alignContent="Center" alignItems="Center" height="2rem">
+									<ObjectIdentifier title="{i18n>WorkOrder}" class="cl_viewtile"/>
+								</HBox>						
+							</CustomListItem>
+							<layoutData>
+								<l:GridData span="L4 M4 S6" />
+							</layoutData>
+						</Panel>
+						<Panel class="cl_menupanel">
+							<CustomListItem height="7rem" type="Active" press="onPressMD">
+								<VBox justifyContent="Center" alignContent="Center" alignItems="Center" class="cl_reportvbox" height="5rem">
+									<core:Icon src="sap-icon://documents" size="35px" width="35px" height="35px" color="#346187"/>
+								</VBox>
+								<HBox justifyContent="Center" alignContent="Center" alignItems="Center" height="2rem">
+									<ObjectIdentifier title="{i18n>MeasuringDoc}" class="cl_viewtile"/>
+								</HBox>						
+							</CustomListItem>
+							<layoutData>
+								<l:GridData span="L4 M4 S6" />
+							</layoutData>
+						</Panel>
+						<Panel class="cl_menupanel">
+							<CustomListItem height="7rem" type="Active" press="onMaintenanceList">
+								<VBox justifyContent="Center" alignContent="Center" alignItems="Center" class="cl_reportvbox" height="5rem">
+									<core:Icon src="sap-icon://list" size="35px" width="35px" height="35px" color="#bb0000"/>
+								</VBox>
+								<HBox justifyContent="Center" alignContent="Center" alignItems="Center" height="2rem">
+									<ObjectIdentifier title="{i18n>MaintenanceList}" class="cl_viewtile"/>
+								</HBox>						
+							</CustomListItem>
+							<layoutData>
+								<l:GridData span="L4 M4 S6" />
+							</layoutData>
+						</Panel>
+						
+						<Panel class="cl_menupanel">
+							<CustomListItem height="7rem" type="Active" press="onFWPPress">
+								<VBox justifyContent="Center" alignContent="Center" alignItems="Center" class="cl_reportvbox" height="5rem">
+									<core:Icon src="sap-icon://add-equipment" size="35px" width="35px" height="35px" color="#e8900e"/>
+								</VBox>
+								<HBox justifyContent="Center" alignContent="Center" alignItems="Center" height="2rem">
+									<ObjectIdentifier title="{i18n>FWP}" class="cl_viewtile"/>
+								</HBox>						
+							</CustomListItem>
+							<layoutData>
+								<l:GridData span="L4 M4 S6" />
+							</layoutData>
+						</Panel>
+						
+						
+						<Panel class="cl_menupanel">
+							<CustomListItem height="7rem" type="Active" press="onPressCalibration">
+								<VBox justifyContent="Center" alignContent="Center" alignItems="Center" class="cl_reportvbox" height="5rem">
+									<core:Icon src="sap-icon://measure" size="35px" width="35px" height="35px" color="green"/>
+								</VBox>
+								<HBox justifyContent="Center" alignContent="Center" alignItems="Center" height="2rem">
+									<ObjectIdentifier title="{i18n>Calibration}" class="cl_viewtile"/>
+								</HBox>
+							</CustomListItem>
+							<layoutData>
+								<l:GridData span="L4 M4 S6" />
+							</layoutData>
+						</Panel>
+						<Panel class="cl_menupanel">
+							<CustomListItem height="7rem" type="Active" press="onPressReports">
+								<VBox justifyContent="Center" alignContent="Center" alignItems="Center" class="cl_reportvbox" height="5rem">
+									<core:Icon src="sap-icon://tools-opportunity" size="35px" width="35px" height="35px" color="#ff8888"/>
+								</VBox>
+								<HBox justifyContent="Center" alignContent="Center" alignItems="Center" height="2rem">
+									<ObjectIdentifier title="{i18n>FWPReports}" class="cl_viewtile"/>
+								</HBox>
+							</CustomListItem>
+							<layoutData>
+								<l:GridData span="L4 M4 S6" />
+							</layoutData>
+						</Panel>
+						
+						<Panel class="cl_menupanel">
+							<CustomListItem height="7rem" type="Active" press="onPressKPIReports">
+								<VBox justifyContent="Center" alignContent="Center" alignItems="Center" class="cl_reportvbox" height="5rem">
+									<core:Icon src="sap-icon://bar-chart" size="35px" width="35px" height="35px" color="green"/>
+								</VBox>
+								<HBox justifyContent="Center" alignContent="Center" alignItems="Center" height="2rem">
+									<ObjectIdentifier title="{i18n>KPI}" class="cl_viewtile"/>
+								</HBox>
+							</CustomListItem>
+							<layoutData>
+								<l:GridData span="L4 M4 S6" />
+							</layoutData>
+						</Panel>
+						<!--
+						<Panel class="cl_menupanel">
+							<CustomListItem height="7rem" type="Active" press="onPressBreakdownReports">
+								<VBox justifyContent="Center" alignContent="Center" alignItems="Center" class="cl_reportvbox" height="5rem">
+									<core:Icon src="sap-icon://bar-chart" size="35px" width="35px" height="35px" color="green"/>
+								</VBox>
+								<HBox justifyContent="Center" alignContent="Center" alignItems="Center" height="2rem">
+									<ObjectIdentifier title="{i18n>BreakdownReport}" class="cl_viewtile"/>
+								</HBox>
+							</CustomListItem>
+							<layoutData>
+								<l:GridData span="L4 M4 S6" />
+							</layoutData>
+						</Panel>
+						-->
+						<Panel class="cl_menupanel" id="pendingTileId" visible="false">
+							<CustomListItem height="7rem" type="Active" press="onPressPending" >
+								<VBox justifyContent="Center" alignContent="Center" alignItems="Center" class="cl_reportvbox" height="5rem">
+									<core:Icon src="sap-icon://pending" size="35px" width="35px" height="35px" color="green"/>
+								</VBox>
+								<HBox justifyContent="Center" alignContent="Center" alignItems="Center" height="2rem">
+									<ObjectIdentifier title="{i18n>Pending}" class="cl_reporttile1"/>
+								</HBox>						
+							</CustomListItem>
+							<layoutData>
+								<l:GridData span="L4 M4 S6" />
+							</layoutData>
+						</Panel>
+						<Panel class="cl_menupanel" visible="false">
+							<CustomListItem height="7rem" type="Active" press="onPressBOM" >
+								<VBox justifyContent="Center" alignContent="Center" alignItems="Center" class="cl_reportvbox" height="5rem">
+									<core:Icon src="sap-icon://wrench" size="35px" width="35px" height="35px" color="green"/>
+								</VBox>
+								<HBox justifyContent="Center" alignContent="Center" alignItems="Center" height="2rem">
+									<ObjectIdentifier title="BOM" class="cl_reporttile1"/>
+								</HBox>						
+							</CustomListItem>
+							<layoutData>
+								<l:GridData span="L4 M4 S6" />
+							</layoutData>
+						</Panel>
+						<Panel class="cl_menupanel" visible="false">
+							<CustomListItem height="7rem" type="Active" press="onPressuserlog" >
+								<VBox justifyContent="Center" alignContent="Center" alignItems="Center" class="cl_reportvbox" height="5rem">
+									<core:Icon src="sap-icon://time-account" size="35px" width="35px" height="35px" color="#346187"/>
+								</VBox>
+								<HBox justifyContent="Center" alignContent="Center" alignItems="Center" height="2rem">
+									<ObjectIdentifier title="User Log" class="cl_reporttile1"/>
+								</HBox>						
+							</CustomListItem>
+							<layoutData>
+								<l:GridData span="L4 M4 S6" />
+							</layoutData>
+						</Panel>
+						
+						
+						
+						
+					
+						<CustomListItem class="homeCustList" type="Active"  press="onPressNotif" visible="false">
+							<VBox justifyContent="Center" alignItems="Center">
+								<Button icon="sap-icon://ui-notifications" class="roundBtn_PM cnCl" press="onPressNotif"></Button>
+								<Text class="textCenter customWFull" text="{i18n>Notification}" wrapping="false"></Text>
+							</VBox>
+						</CustomListItem>
+						<CustomListItem class="homeCustList" type="Active"  press="onPressWO" visible="false">
+							<VBox justifyContent="Center" alignItems="Center">
+								<Button icon="sap-icon://add-activity-2" class="roundBtn_PM woCl" press="onPressWO"></Button>
+								<Text class="textCenter customWFull" text="{i18n>WorkOrder}" wrapping="false"></Text>
+							</VBox>
+						</CustomListItem>
+						<CustomListItem class="homeCustList" type="Active"  press="onPressMD" visible="false">
+							<VBox justifyContent="Center" alignItems="Center">
+								<Button icon="sap-icon://documents" class="roundBtn_PM mdCl" press="onPressMD"></Button>
+								<Text class="textCenter customWFull" text="{i18n>MeasuringDoc}" wrapping="false"></Text>
+							</VBox>
+						</CustomListItem>
+						<CustomListItem class="homeCustList" type="Active"  press="onMaintenanceList" visible="false">
+							<VBox justifyContent="Center" alignItems="Center">
+								<Button icon="sap-icon://list" class="roundBtn_PM cdCl" press="onMaintenanceList"></Button>
+								<Text class="textCenter customWFull" text="{i18n>MaintenanceList}" wrapping="false"></Text>
+							</VBox>		
+						</CustomListItem>
+						<!-- Added by Manohar -->
+						<CustomListItem class="homeCustList" type="Active"  press="onFWPPress" visible="false">
+							<VBox justifyContent="Center" alignItems="Center">
+								<Button icon="sap-icon://add-equipment" class="roundBtn_PM fwp" press="onFWPPress"></Button>
+								<Text class="textCenter customWFull" text="{i18n>FWP}" wrapping="false"></Text>
+							</VBox>
+						</CustomListItem>
+						<CustomListItem class="homeCustList" type="Active"  press="onPressReports" visible="false">
+							<VBox justifyContent="Center" alignItems="Center">
+								<Button icon="sap-icon://tools-opportunity" class="roundBtn_PM reports" press="onPressReports"></Button>
+								<Text class="textCenter customWFull" text="{i18n>Reports}" wrapping="false"></Text>
+							</VBox>
+						</CustomListItem>
+						<CustomListItem class="homeCustList" type="Active"  press="onPressDownload" visible="false">
+							<VBox justifyContent="Center" alignItems="Center">
+								<Button icon="sap-icon://key-user-settings" class="roundBtn_PM setting" press="onPressDownload"></Button>
+								<Text class="textCenter customWFull" text="{i18n>DownloadMaster}" wrapping="false"></Text>
+							</VBox>
+						</CustomListItem>
+						<!-- Ended by Manohar -->
+						<CustomListItem class="homeCustList" type="Active"  press="onPressPending" visible="false">
+							<VBox justifyContent="Center" alignItems="Center">
+								<Button icon="sap-icon://pending" class="roundBtn_PM chnCl" press="onPressPending"></Button>
+								<Text class="textCenter customWFull" text="{i18n>Pending}" wrapping="false"></Text>
+							</VBox>
+						</CustomListItem>
+						
+			<!--			<CustomListItem class="homeCustList" type="Active"  press="onLogout">
+							<VBox justifyContent="Center" alignItems="Center">
+								<Button icon="sap-icon://documents" class="roundBtn_PM cdCl" press="onLogout"></Button>
+								<Text class="textCenter customWFull" text="{i18n>LogOut}" wrapping="false"></Text>
+							</VBox>		
+						</CustomListItem>		-->
+					</l:Grid>
+					
+					
+				</content>
+			</Page>
+</mvc:View>

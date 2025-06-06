@@ -1,0 +1,49 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="com.olam.pmworkorder.controller.FWPWOList"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:ndc="sap.ndc" >
+	<Page title="{i18n>OpenWo}" id="id_fwpwopage" showHeader="true" class="FWPPage" showNavButton="true" navButtonPress="onLogoPress">
+		<headerContent>
+			<ndc:BarcodeScannerButton class="sapUiSmallMarginBegin" scanFail="fnBarcodeFailed" scanSuccess="fnBarcodeSuccess" tooltip="{i18n>Scanner}" />
+		</headerContent>
+		<content>
+			<Toolbar class="fwp_subheader">
+				<Input liveChange="onSearch" id="searchId" class="searchFields" placeholder="{i18n>Search}"/>
+			</Toolbar>
+			<VBox>
+
+			<List id="id_listwo" class="cl_listmargintop" items="{path:'oOpenWOModel>/', sorter:{path:'DaysText', descending: false, group: true}}"
+				itemPress="fnOpenOperationList" updateFinished="fnUpdateFinished">
+				<CustomListItem type="Active">
+					<VBox class="sapUiTinyMargin">
+						<Toolbar height="1.7rem" class="cl_fwp_toolbarCss">
+							<Text class="cl_fwp_wotitle" text="{oOpenWOModel>ShortText}"/>
+							<ToolbarSpacer/>
+							<Button icon="sap-icon://flag" visible="{= ${oOpenWOModel>OrdStatus} === 'CRTD'}" press="onPressRelease" class="sapUiSizeCompact cl_worelease"/>
+						</Toolbar>
+						<Toolbar height="1.6rem" class="cl_fwp_toolbarCss">
+							<core:Icon color="orange" src="sap-icon://clinical-tast-tracker" size="1rem" width="1rem" height="1rem"></core:Icon>
+							<Text text="{oOpenWOModel>OrderNumber}" class="cl_fwp_date"/>
+							<ToolbarSpacer/>
+							<!-- <Text text="{path:'oOpenWOModel>NPLDA'}" class="cl_fwp_date" textAlign="Center" width="6.5rem"/> -->
+						</Toolbar>
+						<Toolbar height="1.6rem" class="cl_fwp_toolbarCss">
+							<core:Icon color="orange" src="sap-icon://technical-object" size="1rem" width="1rem" height="1rem"></core:Icon>
+							<Text text="{oOpenWOModel>Eqktx}" class="cl_fwp_date"/>
+						</Toolbar>
+						<Toolbar height="1.6rem" class="cl_fwp_toolbarCss">
+							<core:Icon color="orange" size="1rem" width="1rem" height="1rem"></core:Icon>
+							<Text text="{oOpenWOModel>Equipment}" class="cl_fwp_date"/>
+						</Toolbar>
+						<Toolbar height="1.6rem" class="cl_fwp_toolbarCss">
+							<core:Icon color="orange" src="sap-icon://instance" size="1rem" width="1rem" height="1rem"></core:Icon>
+							<Text text="{oOpenWOModel>TotalOper} operations" class="cl_fwp_date"/>
+						</Toolbar>
+					</VBox>
+				</CustomListItem>
+			</List>
+			</VBox>
+		</content>
+		<VBox>
+			<Button iconFirst="false" icon="sap-icon://customize" press="fnOpenFiterAction" class="cl_approval_processchart1"/>
+		</VBox>
+	</Page>
+</mvc:View>

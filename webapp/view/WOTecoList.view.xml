@@ -1,0 +1,74 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="com.olam.pmworkorder.controller.WOTecoList"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page title="{i18n>OpenWo}" showHeader="true" class="pageBg_PM cl_page toolHeader_PM"
+		showNavButton="true" navButtonPress="onLogoPress">
+		<customHeader>
+			<Bar id="BAR_TITLE" class="sapHeaderBar_CSQ">
+				<contentLeft>
+					<Button icon="sap-icon://nav-back" press="onLogoPress" class="homeIcon_PM"></Button>
+				</contentLeft>
+				<contentMiddle>
+					<Title text="{i18n>OpenWo}"/>
+				</contentMiddle>
+				<contentRight>
+					<!-- <Button icon="sap-icon://refresh" press="onPressRefresh" class="homeIcon_PM"></Button>  -->
+					<Button icon="sap-icon://customize" press="onPressCustom" class="homeIcon_PM"></Button>
+					<Button icon="sap-icon://settings" press="onDownload" class="homeIcon_PM"></Button>
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<content>
+			<Toolbar class="toolbarMargin">
+				<SearchField id="searchId"
+					liveChange="onSearch"
+					width="100%" />
+			</Toolbar>
+			<List id="id_listwo" visible="true" items="{oTecoModel>/}" itemPress="onPressItem" class="sapUiSizeCompact">
+				
+				<items>
+					<!-- <CustomListItem class="custlist_NL" type="Active">
+					<FlexBox alignItems="Start" justifyContent="SpaceBetween">
+						<HBox>
+							<Label text="{oTecoModel>Aufnr}" design="Bold" class="label SapUiTinyMarginEnd"></Label>
+						</HBox>
+					</FlexBox>
+						<VBox alignItems="Start" justifyContent="SpaceBetween" visible="{=${oTecoModel>Equnr} !== ''}">
+							<HBox>
+								<Label text="{oTecoModel>Eqktu}" class="label SapUiTinyMarginEnd"></Label>
+							</HBox>
+							<HBox>
+								<Text text="{oTecoModel>Equnr}" class="SapUiTinyMarginBegin"/>
+							</HBox>
+						</VBox>
+						<VBox alignItems="Start" justifyContent="SpaceBetween" visible="{=${oTecoModel>Equnr} === ''}">
+							<HBox>
+								<Text text="{oTecoModel>Tplnr}" class="SapUiTinyMarginBegin"/>
+							</HBox>
+						</VBox>
+					</CustomListItem> -->
+					<CustomListItem class="custlist_NL" type="Active">
+						<FlexBox alignItems="Start" justifyContent="SpaceBetween">
+							<HBox>
+								<Label text="{oTecoModel>OrderNumber}" design="Bold" class="label SapUiTinyMarginEnd"></Label>
+							</HBox>
+						</FlexBox>
+							<VBox alignItems="Start" justifyContent="SpaceBetween" visible="{=${oTecoModel>Equipment} !== ''}">
+								<HBox>
+									<Label text="{oTecoModel>ShortText}" class="label SapUiTinyMarginEnd"></Label>
+								</HBox>
+								<HBox>
+									<Text text="{oTecoModel>Equipment}" class="SapUiTinyMarginBegin"/>
+								</HBox>
+							</VBox>
+							<VBox alignItems="Start" justifyContent="SpaceBetween" visible="{=${oTecoModel>Equipment} === ''}">
+								<HBox>
+									<Text text="{oTecoModel>FunctLoc}" class="SapUiTinyMarginBegin"/>
+								</HBox>
+							</VBox>
+						</CustomListItem>
+				</items>
+			</List>
+		</content>
+				
+			</Page>
+</mvc:View>

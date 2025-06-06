@@ -1,0 +1,53 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="com.olam.pmworkorder.controller.DownLoadMaster"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:f="sap.ui.layout.form">
+			<Page title="{i18n>DownloadMaster}" class="FWPPage">
+				<customHeader>
+					<Bar id="BAR_TITLE" class="sapHeaderBar_PM">
+						<contentLeft>
+							<Button icon="sap-icon://home" press="onHomePress" class="homeIcon_PM"></Button>
+						</contentLeft>
+						<contentMiddle>
+							<Title text="{i18n>DownloadMaster}"/>
+						</contentMiddle>
+					</Bar>
+				</customHeader>
+				<content>
+					<VBox fitContainer="true" id="__vbox0" alignItems="Center" justifyContent="Center" alignContent="Center">
+						<items>
+							
+							<Label text="{i18n>Plant}" class="AppTitle1"></Label>
+							<HBox fitContainer="true"  alignItems="Center" justifyContent="Center" alignContent="Center">
+							<Input width="100%" id="idPlant" class="LoginM" value="{oModel>/Plant}" type="Number" maxLength="4" 
+									placeholder="{i18n>Plant}" valueHelpRequest="onPlantF4" showValueHelp="true" change="onPlantInputChange" />
+							</HBox>
+							
+							<Button visible="false" text="{i18n>Submit}"  icon="sap-icon://download" class="Login_Btn BtnIcon" press="onDownload"> </Button>
+						</items>		
+					</VBox>		
+					<Text id="burksId" visible="false"/>
+	<!--		<VBox fitContainer="true" id="__vbox0" alignItems="Center" justifyContent="Center" alignContent="Center" class="sapUiSmallMargin">
+				<f:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="3" labelSpanL="3"
+					labelSpanM="3" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsXL="1"
+					columnsL="1" columnsM="1">
+					<f:content>
+						<Label text="{i18n>Plant}" class="AppTitle1"></Label>
+						<Input width="100%" id="idPlant"  value="{oModel>/Plant}" type="Number" maxLength="4" placeholder="{i18n>Plant}"/>
+						<Label class="AppTitle1" text="{i18n>DateRange}" tooltip="{i18n>DateRange}"></Label>
+						<DateRangeSelection id="DRS_CMD"/>
+					</f:content>
+				</f:SimpleForm>
+				<VBox alignItems="Center" justifyContent="Center" class="sapUiSmallMargin">					
+					<Button text="{i18n>Submit}"  icon="sap-icon://download" class="Login_Btn BtnIcon" press="onDownload"> </Button>
+				</VBox>
+			</VBox>	-->
+			
+					
+		</content>
+		<footer>
+			<Toolbar class="cl_footertoolbar">
+				<ToolbarSpacer/>
+				<Button text="{i18n>Submit}" class="cl_footerbutton" press="onDownload" visible="false" />
+			</Toolbar>
+		</footer>
+	</Page>
+</mvc:View>

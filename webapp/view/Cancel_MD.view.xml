@@ -1,0 +1,188 @@
+<mvc:View xmlns="sap.m" controllerName="com.olam.pmworkorder.controller.Cancel_MD" xmlns:ndc="sap.ndc" xmlns:l="sap.ui.layout"
+	 xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:mvc="sap.ui.core.mvc">
+		<Page showHeader="true" class="pageBg_PM cl_page toolHeader_PM" floatingFooter="true" showNavButton="true" navButtonPress="onLogoPress">
+			<customHeader>
+				<Bar id="BAR_TITLE" class="sapHeaderBar_CSQ">
+					<contentLeft>
+						<Button icon="sap-icon://nav-back" press="onLogoPress" class="homeIcon_PM"></Button>
+					</contentLeft>
+					<contentMiddle>
+						<Title text="{i18n>CancelMeasuringDoc}"/>
+					</contentMiddle>
+					<contentRight>
+						<Button icon="sap-icon://refresh" press="onPressRefresh" class="homeIcon_PM"></Button>
+						<Button icon="sap-icon://customize" press="onPressCustom" class="homeIcon_PM"></Button>
+					</contentRight>
+				</Bar>
+			</customHeader>
+			<content>
+			<IconTabBar expanded="{device>/isNoPhone}" id="IconTabBarID1" class="TconTabTarBG addMargin_PM" select="onIconTabBarChange">
+				<items>
+					<IconTabFilter text="{i18n>Equipment}" key="basicData">
+						<f:Form editable="false" class="sapUiSizeCompact">
+							<f:layout>
+								<f:ResponsiveGridLayout labelSpanXL="4" labelSpanL="12" labelSpanM="12" labelSpanS="12" adjustLabelSpan="true" emptySpanXL="0" emptySpanL="0"
+									emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="2" singleContainerFullSize="true"/>
+							</f:layout>
+							<f:formContainers>
+								<f:FormContainer>
+									<f:formElements>
+										<f:FormElement>
+											<f:label>
+												<Label class="cl_Label_PS" text="{i18n>Equipment}" required="true"/>
+											</f:label>
+											<f:fields>
+												<HBox>
+													<Input value="{path:'oLocalCMDModel>/Equipment', formatter:'.formatter.fnRemoveZero'}" liveChange="onEquipmentLiveChange" valueHelpRequest="onEquipmentF4"
+														showSuggestion="false" suggestionItemSelected="onEquipSuggestionConfirm" suggestionItems="{oEquipmentModel>/}" showValueHelp="true" 
+														change="onEquipmentChange" class="Input_PM">
+														<suggestionItems>
+															<core:ListItem text="{oEqF4Model>Equnr}"/>
+														</suggestionItems>
+														<layoutData>
+															<FlexItemData growFactor="1"/>
+														</layoutData>
+													</Input>
+													<ndc:BarcodeScannerButton class="sapUiSmallMarginBegin" scanFail="fnBarcodeFailed" scanSuccess="fnBarcodeSuccess" tooltip="{i18n>Scanner}"/>
+												</HBox>
+											</f:fields>
+										</f:FormElement>
+										<f:FormElement>
+											<f:label >
+												<Label class="cl_Label_PS" text="{i18n>EquipText}" tooltip="{i18n>MPC}"></Label>
+											</f:label>
+											<f:fields>
+												<Input value="{oLocalCMDModel>/Equipment_Desc}" enabled="false" class="Input_PM"></Input>
+											</f:fields>
+										</f:FormElement>
+										<f:FormElement>
+											<f:label class="formClassLabel">
+												<Label class="cl_Label_PS" text="{i18n>MPC}" tooltip="{i18n>MPC}" required="true"></Label>
+											</f:label>
+											<f:fields>
+												<VBox>
+													<Input value="{path:'oLocalCMDModel>/MeasuringPoint', formatter:'.formatter.fnRemoveZero'}" liveChange="onMPCLiveChange" 
+														valueHelpRequest="onMPCF4" showValueHelp="true" class="Input_PM"></Input>
+												</VBox>
+											</f:fields>
+										</f:FormElement>
+										<f:FormElement>
+											<f:label class="formClassLabel">
+												<Label class="cl_Label_PS" text="{i18n>MPCDes}" tooltip="{i18n>MPC}"></Label>
+											</f:label>
+											<f:fields>
+												<Input enabled="false" value="{oLocalCMDModel>/MeasuringPointText}" class="Input_PM"></Input>
+											</f:fields>
+										</f:FormElement>
+										<f:FormElement>
+											<f:label class="formClassLabel">
+												<Label class="cl_Label_PS" text="{i18n>MDoc}" tooltip="{i18n>MDoc}" required="true"></Label>
+											</f:label>
+											<f:fields>
+												<Input value="{path:'oLocalCMDModel>/MeasuringDocNo', formatter:'.formatter.fnRemoveZero'}" liveChange="onMPCLiveChange" valueHelpRequest="onMDocF4" showValueHelp="true"
+														class="Input_PM"></Input>
+											</f:fields>
+										</f:FormElement>
+										<f:FormElement >
+											<f:label class="formClassLabel">
+												<Label class="cl_Label_PS" text="{i18n>Reason}" tooltip="{i18n>MPC}"></Label>
+											</f:label>
+											<f:fields>
+												<Input value="{oLocalCMDModel>/ShortText}" enabled="true" showValueHelp="false" class="Input_PM"></Input>
+											</f:fields>
+										</f:FormElement>
+									</f:formElements>
+								</f:FormContainer>
+							</f:formContainers>
+						</f:Form>
+					</IconTabFilter>
+					<IconTabFilter text="{i18n>FunctionLocation}">
+						<f:Form editable="true" class="sapUiSizeCompact formCL_MC">
+							<f:layout>
+								<f:ResponsiveGridLayout labelSpanXL="4" labelSpanL="12" labelSpanM="12" labelSpanS="12" adjustLabelSpan="true" emptySpanXL="0" emptySpanL="0"
+									emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="2" singleContainerFullSize="true"/>
+							</f:layout>
+							<f:formContainers class="formClass">
+								<f:FormContainer>
+									<f:formElements>
+										<f:FormElement>
+											<f:label class="formClassLabel">
+												<Label class="cl_Label_PS" text="{i18n>FunctionLocation}" tooltip="{i18n>Equipment}" required="true"></Label>
+											</f:label>
+											<f:fields>
+												<HBox>
+													<Input value="{path:'oLocalCMDModel>/FLoc', formatter:'.formatter.fnRemoveZero'}" valueHelpRequest="onFlocF4"
+														showSuggestion="true" suggestionItemSelected="onEquipSuggestionConfirm" suggestionItems="{oFlocModel_MD>/}" showValueHelp="true"
+														class="Input_PM sapUiSmallMarginEnd">
+														<suggestionItems>
+															<core:ListItem text="{oFlocModel_MD>Tplnr}"/>
+														</suggestionItems>
+														<layoutData>
+															<FlexItemData growFactor="1"/>
+														</layoutData>
+													</Input>
+													<ndc:BarcodeScannerButton class="sapUiSmallMarginBegin" scanFail="fnBarcodeFailed" scanSuccess="fnBarcodeSuccess1" tooltip="{i18n>Scanner}"/>
+												</HBox>
+											</f:fields>
+										</f:FormElement>
+										<f:FormElement>
+											<f:label >
+												<Label class="cl_Label_PS" text="{i18n>EquipText}" tooltip="{i18n>MPC}"></Label>
+											</f:label>
+											<f:fields>
+												<Input value="{oLocalCMDModel>/Equipment_Desc}" enabled="false" class="Input_PM"></Input>
+											</f:fields>
+										</f:FormElement>
+										<f:FormElement>
+											<f:label class="formClassLabel">
+												<Label class="cl_Label_PS" text="{i18n>MPC}" tooltip="{i18n>MPC}" required="true"></Label>
+											</f:label>
+											<f:fields>
+												<VBox>
+													<Input value="{path:'oLocalCMDModel>/MeasuringPoint', formatter:'.formatter.fnRemoveZero'}" liveChange="onMPCLiveChange" 
+														valueHelpRequest="onMPCF4" showValueHelp="true" class="Input_PM"></Input>
+												</VBox>
+											</f:fields>
+										</f:FormElement>
+										<f:FormElement>
+											<f:label class="formClassLabel">
+												<Label class="cl_Label_PS" text="{i18n>MPCDes}" tooltip="{i18n>MPC}" ></Label>
+											</f:label>
+											<f:fields>
+												<Input enabled="false" value="{oLocalCMDModel>/MeasuringPointText}" class="Input_PM"></Input>
+											</f:fields>
+										</f:FormElement>
+										<f:FormElement>
+											<f:label class="formClassLabel">
+												<Label class="cl_Label_PS" text="{i18n>MDoc}" tooltip="{i18n>MPC}" required="true"></Label>
+											</f:label>
+											<f:fields>
+												<Input value="{path:'oLocalCMDModel>/MeasuringDocNo', formatter:'.formatter.fnRemoveZero'}" liveChange="onMPCLiveChange" valueHelpRequest="onMDocF4"
+													showValueHelp="true" class="Input_PM"></Input>
+											</f:fields>
+										</f:FormElement>
+										<f:FormElement >
+											<f:label class="formClassLabel">
+												<Label class="cl_Label_PS" text="{i18n>Reason}"></Label>
+											</f:label>
+											<f:fields>
+												<Input value="{oLocalCMDModel>/ShortText}" enabled="true" showValueHelp="false" class="Input_PM"></Input>
+											</f:fields>
+										</f:FormElement>
+									</f:formElements>
+								</f:FormContainer>
+							</f:formContainers>
+						</f:Form>
+					</IconTabFilter>
+				</items>
+			</IconTabBar >
+		</content>
+		<footer>
+			<OverflowToolbar>
+				<ToolbarSpacer/>
+				<Button type="Accept" text="{i18n>Submit}" icon="sap-icon://save" press="onSubmitPress" class="ChangeBtn_PM"/>
+			</OverflowToolbar>
+		</footer>
+	</Page>	
+</mvc:View>

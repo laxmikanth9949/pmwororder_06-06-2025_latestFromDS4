@@ -1,0 +1,342 @@
+<mvc:View xmlns="sap.m" controllerName="com.olam.pmworkorder.controller.Create_MD" xmlns:ndc="sap.ndc" xmlns:l="sap.ui.layout"
+	xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:mvc="sap.ui.core.mvc">
+	<Page  title="{i18n>CreateMeasuringDoc}" showHeader="true" class="pageBg_PM cl_page toolHeader_PM" floatingFooter="true"
+		showNavButton="true" navButtonPress="onLogoPress">
+		<customHeader>
+			<Bar id="BAR_TITLE" class="sapHeaderBar_CSQ">
+				<contentLeft>
+					<Button icon="sap-icon://nav-back" press="onLogoPress" class="homeIcon_PM"></Button>
+				</contentLeft>
+				<contentMiddle>
+					<Title text="{i18n>CreateMeasuringDoc}"/>
+				</contentMiddle>
+				<contentRight>
+					<Button icon="sap-icon://refresh" press="onPressRefresh" class="homeIcon_PM"></Button>
+					<Button icon="sap-icon://customize" press="onPressCustom" class="homeIcon_PM"></Button>
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<content>
+			<IconTabBar id="IconTabBarID" class="TconTabTarBG addMargin_PM" select="onIconTabBarChange" expanded="{device>/isNoPhone}" >
+				<items>
+					<IconTabFilter text="{i18n>Equipment}" key="basicData">
+						<f:Form editable="true" class="sapUiSizeCompact">
+							<f:layout>
+								<f:ResponsiveGridLayout labelSpanXL="4" labelSpanL="12" labelSpanM="12" labelSpanS="12" adjustLabelSpan="true" emptySpanXL="0" emptySpanL="0"
+									emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="2" singleContainerFullSize="true"/>
+							</f:layout>
+							<f:formContainers>
+								<f:FormContainer>
+									<f:formElements>
+										<f:FormElement>
+											<f:label>
+												<Label class="cl_Label_PS" text="{i18n>Equipment}" required="true"/>
+											</f:label>
+											<f:fields>
+												<HBox>
+													<Input value="{path:'oPostModel>/Equipment', formatter:'.formatter.fnRemoveZero'}" liveChange="onEquipmentLiveChange" valueHelpRequest="onEquipmentF4"
+														showSuggestion="false" suggestionItemSelected="onEquipSuggestionConfirm" suggestionItems="{oEquipmentModel>/}" showValueHelp="true" 
+														change="onEquipmentChange" class="Input_PM">
+														<suggestionItems>
+															<core:ListItem text="{oEquipmentModel>Equnr}" additionalText="{oEquipmentModel>Eqktu}"/>
+														</suggestionItems>
+														<layoutData>
+															<FlexItemData growFactor="1"/>
+														</layoutData>
+													</Input>
+													<ndc:BarcodeScannerButton class="sapUiSmallMarginBegin" scanFail="fnBarcodeFailed" scanSuccess="fnBarcodeSuccess" tooltip="{i18n>Scanner}"/>
+												</HBox>
+											</f:fields>
+										</f:FormElement>
+										<f:FormElement>
+											<f:label >
+												<Label class="cl_Label_PS" text="{i18n>EquipText}" tooltip="{i18n>MPC}"></Label>
+											</f:label>
+											<f:fields>
+												<Input value="{oPostModel>/Equipment_Desc}" enabled="false" class="Input_PM"></Input>
+											</f:fields>
+										</f:FormElement>
+										<!-- Added by Manohar -->
+										<f:FormElement>
+											<f:label >
+											</f:label>
+											<f:fields>
+												<Button text="{i18n>AddMPC}" type="Emphasized" class="sapUiSizeCompact" press="onOpenValuePtList"/>
+											</f:fields>
+										</f:FormElement>
+										<!-- Ended by Manohar -->
+										<f:FormElement visible="false">
+											<f:label class="formClassLabel">
+												<Label class="cl_Label_PS" text="{i18n>MPC}" tooltip="{i18n>MPC}" required="true"></Label>
+											</f:label>
+											<f:fields>
+												<VBox>
+													<Input value="{path:'oPostModel>/MeasuringPoint', formatter:'.formatter.fnRemoveZero'}"
+														valueHelpRequest="onOpenValuePtList" showValueHelp="true" class="Input_PM"></Input>
+												</VBox>
+											</f:fields>
+										</f:FormElement>
+										<f:FormElement visible="false">
+											<f:label class="formClassLabel">
+												<Label class="cl_Label_PS" text="{i18n>MPCDes}" tooltip="{i18n>MPC}"></Label>
+											</f:label>
+											<f:fields>
+												<Input enabled="false" value="{oPostModel>/MeasuringPointText}" class="Input_PM"></Input>
+											</f:fields>
+										</f:FormElement>
+										<f:FormElement visible="false">
+											<f:label class="formClassLabel">
+												<Label class="cl_Label_PS" text="{i18n>MPCValue}" tooltip="{i18n>MPC}" required="true"></Label>
+											</f:label>
+											<f:fields>
+												<Input value="{oPostModel>/MeasuringValue}" change="onReading" showValueHelp="false" class="Input_PM"
+													description="{oPostModel>/MeasuringUnit}"></Input>
+											</f:fields>
+										</f:FormElement>
+										
+										<!-- Added by Manohar -->
+										<f:FormElement visible="false">
+											<f:label class="formClassLabel">
+												<Label class="cl_Label_PS" text="{i18n>LastCounterReading}" tooltip="{i18n>LastCounterReading}" ></Label>
+											</f:label>
+											<f:fields>
+												<Input value="{oPostModel>/LastCounterValue}" enabled="false" showValueHelp="false" class="Input_PM"></Input>
+											</f:fields>
+										</f:FormElement>
+										<!-- Ended by Manohar -->
+										
+										<f:FormElement visible="false">
+											<f:label class="formClassLabel">
+												<Label class="cl_Label_PS" text="{i18n>MCValue}" tooltip="{i18n>MPC}" required="true"></Label>
+											</f:label>
+											<f:fields>
+												<Input value="{oPostModel>/MeasuringValue}" description="{oPostModel>/MeasuringUnit}" change="onCounter" enabled="true"
+													showValueHelp="false" textAlign="Right" class="Input_PM"></Input>
+											</f:fields>
+										</f:FormElement>
+										<!--<f:FormElement visible="{path:'oPostModel>/Indct', formatter:'.formatter.getVisible1'}">-->
+										<f:FormElement visible="false">
+											<f:label class="formClassLabel">
+												<Label class="cl_Label_PS" text="{i18n>Dif}" tooltip="{i18n>MPC}"></Label>
+											</f:label>
+											<f:fields>
+												<Input value="{oPostModel>/Difference}" enabled="false" showValueHelp="false" class="Input_PM"></Input>
+											</f:fields>
+										</f:FormElement>
+										<!--<f:FormElement visible="{path:'oPostModel>/Indct', formatter:'.formatter.getVisible1'}">-->
+										<f:FormElement visible="false">
+											<f:label class="formClassLabel">
+												<Label class="cl_Label_PS" text="{i18n>Total}" tooltip="{i18n>MPC}"></Label>
+											</f:label>
+											<f:fields>
+												<Input value="{oPostModel>/Total}" enabled="false" showValueHelp="false" class="Input_PM"/>
+											</f:fields>
+										</f:FormElement>
+										<f:FormElement>
+											<f:label class="formClassLabel">
+												<Label class="cl_Label_PS" text="{i18n>Description}" tooltip="{i18n>MPC}"></Label>
+											</f:label>
+											<f:fields>
+												<Input value="{oPostModel>/ShortText}" enabled="true" showValueHelp="false" class="Input_PM"/>
+											</f:fields>
+										</f:FormElement>
+										<f:FormElement visible="false">
+											<f:label>
+												<Label class="cl_Label_PS" text="{i18n>FunctionalLocation}" />
+											</f:label>
+											<f:fields>
+												<ComboBox showSecondaryValues="false" value="{oPostModel>/ShortText}" items="{oFunctionalModel>/}" class="CB_PM">
+													<core:ListItem key="{oFunctionalModel>TPLNR}" text="{oFunctionalModel>TPLNR}" />
+												</ComboBox>
+											</f:fields>
+										</f:FormElement>
+										<f:FormElement >
+											<f:label class="formClassLabel">
+												<Label class="cl_Label_PS" text="{i18n>RecordedDate}" tooltip="{i18n>EMalDt}"></Label>
+											</f:label>
+											<f:fields>
+												<DatePicker maxDate="{oPostModel>/EdDateTime}" dateValue="{oPostModel>/EdDate}" change="onMalfunctionDateTimeChange" class="Input_PM"/>
+											</f:fields>
+										</f:FormElement>
+										<f:FormElement>
+											<f:label class="formClassLabel">
+												<Label class="cl_Label_PS" text="{i18n>RecordedTime}" tooltip="{i18n>EMalT}"></Label>
+											</f:label>
+											<f:fields>
+												<TimePicker valueFormat="HHmmss" displayFormat="HH:mm:ss" value="{oPostModel>/EdTime}" class="Input_PM"/>
+											</f:fields>
+										</f:FormElement>
+										<f:FormElement>
+											<f:label class="formClassLabel">
+												<Label class="cl_Label_PS" text="{i18n>LoginUser}" tooltip="{i18n>MPC}"></Label>
+											</f:label>
+											<f:fields>
+												<Input value="{oPostModel>/LoginUser}" enabled="true" showValueHelp="false" class="Input_PM"/>
+											</f:fields>
+										</f:FormElement>
+									</f:formElements>
+								</f:FormContainer>
+							</f:formContainers>
+						</f:Form>
+					</IconTabFilter>
+					<IconTabFilter text="{i18n>FunctionLocation}">
+						<f:Form editable="true" class="sapUiSizeCompact formCL_MC">
+							<f:layout>
+								<f:ResponsiveGridLayout labelSpanXL="4" labelSpanL="12" labelSpanM="12" labelSpanS="12" adjustLabelSpan="true" emptySpanXL="0" emptySpanL="0"
+									emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="2" singleContainerFullSize="true"/>
+							</f:layout>
+							<f:formContainers class="formClass">
+								<f:FormContainer>
+									<f:formElements>
+										<f:FormElement>
+											<f:label class="formClassLabel">
+												<Label class="cl_Label_PS" text="{i18n>FunctionLocation}" tooltip="{i18n>Equipment}" required="true"></Label>
+											</f:label>
+											<f:fields>
+												<HBox>
+													<Input value="{path:'oPostModel>/FLoc', formatter:'.formatter.fnRemoveZero'}" valueHelpRequest="onFlocF4" showSuggestion="true"
+														suggestionItemSelected="onEquipSuggestionConfirm" suggestionItems="{oFlocModel_MD>/}" showValueHelp="true"
+														class="Input_PM sapUiSmallMarginEnd">
+														<suggestionItems>
+															<core:ListItem text="{oFlocModel_MD>Tplnr}" additionalText="{oFlocModel_MD>Pltxu}"/>
+														</suggestionItems>
+														<layoutData>
+															<FlexItemData growFactor="1"/>
+														</layoutData>
+													</Input>
+													<ndc:BarcodeScannerButton class="sapUiSmallMarginBegin" scanFail="fnBarcodeFailed" scanSuccess="fnBarcodeSuccess1" tooltip="{i18n>Scanner}"/>
+												</HBox>
+											</f:fields>
+										</f:FormElement>
+										<f:FormElement>
+											<f:label class="formClassLabel">
+												<Label class="cl_Label_PS" text="{i18n>EquipText}" tooltip="{i18n>MPC}"></Label>
+											</f:label>
+											<f:fields>
+												<Input value="{oPostModel>/Floc_Desc}" enabled="false" class="Input_PM"></Input>
+											</f:fields>
+										</f:FormElement>
+										<f:FormElement>
+											<f:label >
+											</f:label>
+											<f:fields>
+												<Button text="{i18n>AddMPC}" type="Emphasized" class="sapUiSizeCompact" press="onOpenValuePtList"/>
+											</f:fields>
+										</f:FormElement>
+										<f:FormElement visible="false">
+											<f:label class="formClassLabel">
+												<Label class="cl_Label_PS" text="{i18n>MPC}" tooltip="{i18n>MPC}" required="true"></Label>
+											</f:label>
+											<f:fields>
+												<VBox>
+													<Input value="{path:'oPostModel>/MeasuringPoint', formatter:'.formatter.fnRemoveZero'}" liveChange="onMPCLiveChange"
+														valueHelpRequest="onOpenValuePtList" showValueHelp="true" class="Input_PM"></Input>
+												</VBox>
+											</f:fields>
+										</f:FormElement>
+										<f:FormElement visible="false">
+											<f:label class="formClassLabel">
+												<Label class="cl_Label_PS" text="{i18n>MPCDes}" tooltip="{i18n>MPC}"></Label>
+											</f:label>
+											<f:fields>
+												<Input enabled="false" value="{oPostModel>/MeasuringPointText}" class="Input_PM"></Input>
+											</f:fields>
+										</f:FormElement>
+										<f:FormElement visible="false">
+											<f:label class="formClassLabel">
+												<Label class="cl_Label_PS" text="{i18n>MPCValue}" tooltip="{i18n>MPC}" required="true"></Label>
+											</f:label>
+											<f:fields>
+												<Input value="{oPostModel>/MeasuringValue}" change="onReading" showValueHelp="false" class="Input_PM"
+													description="{oPostModel>/MeasuringUnit}"></Input>
+											</f:fields>
+										</f:FormElement>
+										
+										<!-- Added by Manohar -->
+										<f:FormElement visible="false">
+											<f:label class="formClassLabel">
+												<Label class="cl_Label_PS" text="{i18n>LastCounterReading}" tooltip="{i18n>LastCounterReading}"></Label>
+											</f:label>
+											<f:fields>
+												<Input value="{oPostModel>/LastCounterValue}" enabled="false" showValueHelp="false" class="Input_PM"></Input>
+											</f:fields>
+										</f:FormElement>
+										<!-- Ended by Manohar -->
+										
+										<!--<f:FormElement visible="{path:'oPostModel>/Indct', formatter:'.formatter.getVisible2'}">-->
+										<f:FormElement visible="false">
+											<f:label class="formClassLabel">
+												<Label class="cl_Label_PS" text="{i18n>MCValue}" tooltip="{i18n>MPC}" required="true"></Label>
+											</f:label>
+											<f:fields>
+												<Input value="{oPostModel>/MeasuringValue}" description="{oPostModel>/MeasuringUnit}" enabled="true" change="onReading"
+													showValueHelp="false" textAlign="Right" class="Input_PM"></Input>
+											</f:fields>
+										</f:FormElement>
+										<!--<f:FormElement visible="{path:'oPostModel>/Indct', formatter:'.formatter.getVisible1'}">-->
+										<f:FormElement visible="false">
+											<f:label class="formClassLabel">
+												<Label class="cl_Label_PS" text="{i18n>Dif}" tooltip="{i18n>MPC}"></Label>
+											</f:label>
+											<f:fields>
+												<Input value="{oPostModel>/Difference}" enabled="false" showValueHelp="false" class="Input_PM"></Input>
+											</f:fields>
+										</f:FormElement>
+										<!--<f:FormElement visible="{path:'oPostModel>/Indct', formatter:'.formatter.getVisible1'}">-->
+										<f:FormElement visible="false">
+											<f:label class="formClassLabel">
+												<Label class="cl_Label_PS" text="{i18n>Total}" tooltip="{i18n>MPC}"></Label>
+											</f:label>
+											<f:fields>
+												<Input value="{oPostModel>/Total}" enabled="false" showValueHelp="false" class="Input_PM"/>
+											</f:fields>
+										</f:FormElement>
+										<f:FormElement>
+											<f:label class="formClassLabel">
+												<Label class="cl_Label_PS" text="{i18n>Description}" tooltip="{i18n>MPC}"></Label>
+											</f:label>
+											<f:fields>
+												<Input value="{oPostModel>/ShortText}" enabled="true" showValueHelp="false" class="Input_PM"/>
+											</f:fields>
+										</f:FormElement>
+										<f:FormElement >
+											<f:label class="formClassLabel">
+												<Label class="cl_Label_PS" text="Recorded Date" tooltip="{i18n>EMalDt}"></Label>
+											</f:label>
+											<f:fields>
+												<DatePicker maxDate="{oPostModel>/EdDateTime}" dateValue="{oPostModel>/EdDate}" change="onMalfunctionDateTimeChange" class="Input_PM"/>
+											</f:fields>
+										</f:FormElement>
+										<f:FormElement>
+											<f:label class="formClassLabel">
+												<Label class="cl_Label_PS" text="Recorded Time" tooltip="{i18n>EMalT}"></Label>
+											</f:label>
+											<f:fields>
+												<TimePicker valueFormat="HHmmss" displayFormat="HH:mm:ss" value="{oPostModel>/EdTime}" class="Input_PM"/>
+											</f:fields>
+										</f:FormElement>
+										<f:FormElement>
+											<f:label class="formClassLabel">
+												<Label class="cl_Label_PS" text="{i18n>LoginUser}" tooltip="{i18n>MPC}"></Label>
+											</f:label>
+											<f:fields>
+												<Input value="{oPostModel>/LoginUser}" enabled="true" showValueHelp="false" class="Input_PM"/>
+											</f:fields>
+										</f:FormElement>
+									</f:formElements>
+								</f:FormContainer>
+							</f:formContainers>
+						</f:Form>
+					</IconTabFilter>
+				</items>
+			</IconTabBar >
+		</content>
+		<footer>
+			<OverflowToolbar>
+				<ToolbarSpacer/>
+				<Button type="Accept" text="{i18n>Submit}" icon="sap-icon://save" class="ChangeBtn_PM" press="onCreateDocument"/>
+			</OverflowToolbar>
+		</footer>
+	</Page>
+</mvc:View>

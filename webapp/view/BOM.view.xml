@@ -1,0 +1,142 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="com.olam.pmworkorder.controller.BOM" 
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:ndc="sap.ndc">
+	<App>
+		<pages>
+			<Page title="{i18n>BOM}" showHeader="true" class="pageBg_PM cl_page toolHeader_PM" floatingFooter="true" showNavButton="true"
+				navButtonPress="onLogoPress">
+				<customHeader>
+					<Bar id="BAR_TITLE" class="sapHeaderBar_CSQ">
+						<contentLeft>
+							<Button icon="sap-icon://nav-back" press="onLogoPress" class="homeIcon_PM"></Button>
+						</contentLeft>
+						<contentMiddle>
+							<Title text="{i18n>BOM}"/>
+						</contentMiddle>
+						<contentRight>
+							<Button icon="sap-icon://customize" press="onPressCustom" class="homeIcon_PM" visible="false"></Button>
+						</contentRight>
+					</Bar>
+				</customHeader>
+				<content>
+				<VBox class="sapUiLargeMarginTop IconTabFilterScroll2">
+						<SegmentedButton width="100%" id="id_BOMseg">
+							<items>
+								<SegmentedButtonItem text="{i18n>EBOM}" id="idebom" key="Ebom" press="onEbom"/>
+								<SegmentedButtonItem text="{i18n>FBOM}" id="idfbom" key="Fbom" press="onFbom"/>
+							</items>
+						</SegmentedButton>
+				</VBox>
+					<VBox class="IconTabFilterScroll2" id="Equipscreenid">
+						<Label class="cl_Label_PS" text="{i18n>Equipment}" required="true"/>
+						<HBox class="sapUiSizeCompact">
+							<Input id="idEquipmentBOM" valueHelpRequest="onEquipF4BOM" enabled="true" showValueHelp="true"
+								class="sapUiSizeCompact">
+								<layoutData>
+									<FlexItemData growFactor="1"/>
+								</layoutData>
+							</Input>
+							<ndc:BarcodeScannerButton class="sapUiSizeCompact" scanFail="fnBarcodeFailed" scanSuccess="fnBarcodeSuccess" tooltip="{i18n>Scanner}"/>
+						</HBox>
+					</VBox>
+					<VBox class="IconTabFilterScroll2" id="Functionscreenid">
+						<Label class="cl_Label_PS" text="{i18n>FunctionLocation}" required="true"/>
+						<HBox class="sapUiSizeCompact">
+							<Input id="idFLocBOM" valueHelpRequest="onFunLocF4BOM" liveChange="onFlocChangeBOM" enabled="true" showValueHelp="true"
+								class="sapUiSizeCompact" >
+								<layoutData>
+									<FlexItemData growFactor="1"/>
+								</layoutData>
+							</Input>
+						</HBox>
+					</VBox>
+					<ScrollContainer vertical="true" focusable="true">
+						<List id="idEBOMlist" class="cl_mpcustlist" items="{EquModel>/}" visible="false">
+							<items>
+								<CustomListItem type="Active" press="fncauseupdate">
+									<HBox width="100%" class="sapUiSmallMarginTop">
+										<VBox width="90%">
+											<VBox>
+												<HBox>
+													<Label text="{i18n>BomItemNumber} " width="10rem" class="sapUiTinyMarginBegin "/>
+													<Label text=": {EquModel>BomItemNumber}" class="sapUiTinyMarginBegin "/>
+												</HBox>
+											</VBox>
+											<VBox>
+												<HBox>
+													<Label text="{i18n>ItemCategory}" width="10rem" class="sapUiTinyMarginBegin "/>
+													<Label text=": {EquModel>ItemCategory}" class="sapUiTinyMarginBegin "/>
+												</HBox>
+											</VBox>
+											<VBox>
+												<HBox>
+													<Label text="{i18n>BomComponent}" width="10rem" class="sapUiTinyMarginBegin "/>
+													<Label text=": {EquModel>BomComponent}" class="sapUiTinyMarginBegin "/>
+												</HBox>
+											</VBox>
+											<VBox>
+												<HBox>
+													<Label text="{i18n>Uom}" width="10rem" class="sapUiTinyMarginBegin "/>
+													<Label text=": {EquModel>Uom}" class="sapUiTinyMarginBegin "/>
+												</HBox>
+											</VBox>
+											<VBox>
+												<HBox>
+													<Label text="{i18n>Quantity}" width="10rem" class="sapUiTinyMarginBegin "/>
+													<Label text=": {EquModel>Quantity} " class="sapUiTinyMarginBegin "/>
+												</HBox>
+											</VBox>
+										</VBox>
+									</HBox>
+								</CustomListItem>
+							</items>
+						</List>
+					</ScrollContainer>
+					
+						<ScrollContainer vertical="true" focusable="true">
+						<List id="idFBOMlist" class="cl_mpcustlist" items="{FunlocModel>/}" visible="false">
+							<items>
+								<CustomListItem type="Active" press="fncauseupdate">
+									<HBox width="100%" class="sapUiSmallMarginTop">
+										<VBox width="90%">
+											<VBox>
+												<HBox>
+													<Label text="{i18n>BomItemNumber} " width="10rem" class="sapUiTinyMarginBegin "/>
+													<Label text=": {FunlocModel>BomItemNumber}" class="sapUiTinyMarginBegin "/>
+												</HBox>
+											</VBox>
+											<VBox>
+												<HBox>
+													<Label text="{i18n>ItemCategory}" width="10rem" class="sapUiTinyMarginBegin "/>
+													<Label text=": {FunlocModel>ItemCategory}" class="sapUiTinyMarginBegin "/>
+												</HBox>
+											</VBox>
+											<VBox>
+												<HBox>
+													<Label text="{i18n>BomComponent}" width="10rem" class="sapUiTinyMarginBegin "/>
+													<Label text=": {FunlocModel>BomComponent}" class="sapUiTinyMarginBegin "/>
+												</HBox>
+											</VBox>
+											<VBox>
+												<HBox>
+													<Label text="{i18n>Uom}" width="10rem" class="sapUiTinyMarginBegin "/>
+													<Label text=": {FunlocModel>Uom}" class="sapUiTinyMarginBegin "/>
+												</HBox>
+											</VBox>
+											<VBox>
+												<HBox>
+													<Label text="{i18n>Quantity}" width="10rem" class="sapUiTinyMarginBegin "/>
+													<Label text=": {FunlocModel>Quantity} " class="sapUiTinyMarginBegin "/>
+												</HBox>
+											</VBox>
+										</VBox>
+									</HBox>
+								</CustomListItem>
+							</items>
+						</List>
+					</ScrollContainer>
+					
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

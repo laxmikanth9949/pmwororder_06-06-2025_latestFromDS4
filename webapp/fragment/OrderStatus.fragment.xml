@@ -1,0 +1,14 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" >
+	<SelectDialog title="{i18n>UserStatus}"
+	class="sapUiPopupWithPadding" 
+	items="{oOrderUserStatusModel>/}" 
+	search="fnOrdersearch_status" 
+	liveChange="fnOrdersearch_status"
+	confirm="fnOrderconfirm_status" 
+	cancel="fncancel" 
+	multiSelect="true" 
+	>
+		<!--growingThreshold="10"-->
+		<StandardListItem title="{oOrderUserStatusModel>ESTAT}" description="{oOrderUserStatusModel>TXT04}" info="{oOrderUserStatusModel>TXT30}"/>
+	</SelectDialog>
+</core:FragmentDefinition>

@@ -1,0 +1,6 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+<SelectDialog title="{i18n>UDCode}" class="sapUiPopupWithPadding" items="{oInspUDCode>/}" search="UDSearch"
+		confirm="UDConfirm" liveChange="UDSearch" cancel="UDCancel">
+	<StandardListItem  title="{oInspUDCode>Code}"  description="{oInspUDCode>Kurztext}"/>
+</SelectDialog>
+</core:FragmentDefinition>

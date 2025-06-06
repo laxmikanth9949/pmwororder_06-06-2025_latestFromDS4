@@ -1,0 +1,6 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+<SelectDialog title="{i18n>WorkOrder}" class="sapUiPopupWithPadding" items="{oWOIdModel>/}" search="WoSearch"
+		confirm="WoConfirm" liveChange="WoSearch" cancel="WorkOrderCancel">
+		<StandardListItem  title="{path:'oWOIdModel>Aufnr', formatter:'.formatter.fnRemoveZero'}" description="{oWOIdModel>Ktext}" />
+</SelectDialog>
+</core:FragmentDefinition>

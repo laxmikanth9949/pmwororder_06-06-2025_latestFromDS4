@@ -1,0 +1,68 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:ndc="sap.ndc" xmlns:m="sap.ui.commons.layout" xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core">
+	<Dialog verticalScrolling="true" class="sapUiNoContentPadding sapUiSizeCompact dialogCl" stretchOnPhone="true" type="Standard">
+		<customHeader>
+			<Bar>
+				<contentMiddle>
+					<Label text="{i18n>Operation}" class="MasterData_Title"></Label>
+				</contentMiddle>
+				<contentRight>
+					<Button icon="sap-icon://decline" press="onCancelItemBomClose" class="Close_Dialog"></Button>
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<content>
+			<!--<VBox justifyContent="Center">-->
+			<!--<RadioButtonGroup selectedIndex="0" select="onPrintRadioButtons">-->
+			<!--	<buttons>-->
+			<!--		<RadioButton visible="false"/>-->
+			<!--		<RadioButton text="With Weighbridge" class="CancelRadioBtn"/>-->
+			<!--		<RadioButton text="Without Weighbridge" class="CancelRadioBtn"/>-->
+			<!--	</buttons>-->
+			<!--</RadioButtonGroup>-->
+			<!--</VBox>-->
+			<List  class="sapUiSizeCompact" id="WoListMain" visible="true" items="{path : 'oBomModel>/'}">
+				<CustomListItem class="custlist_PN" type="Inactive" press="onListItemPress">
+						<VBox>
+							<FlexBox alignItems="Start" justifyContent="SpaceBetween">
+								<HBox>
+									<Label text="{i18n>LineItemI}" design="Bold" class="label SapUiTinyMarginEnd"></Label>
+									<Text text=" {oBomModel>item}" class="SapUiTinyMarginEnd"/>
+								</HBox>
+								<HBox alignItems="End" justifyContent="End" class="showMoreLessClass" >
+									<core:Icon src="sap-icon://delete" color="red" press="onDeleteBomItem"></core:Icon>
+								</HBox>
+							</FlexBox>
+							<HBox>
+								<Label text="{i18n>Material}" design="Bold" class=" label SapUiTinyMarginEnd"></Label>
+								<Text text=" {oBomModel>Idnrk}" class="SapUiTinyMarginEnd"/>
+							</HBox>
+							<HBox>
+								<Label text="{i18n>MaterialDescription}" design="Bold" class="label SapUiTinyMarginEnd"></Label>
+								<Text text=" {oBomModel>Maktx}" class="SapUiTinyMarginEnd"/>
+							</HBox>
+							
+							<HBox>
+								<Label text="{i18n>UOM}" design="Bold" class="label SapUiTinyMarginEnd"></Label>
+								<Text text=" {oBomModel>Meins}" class="SapUiTinyMarginEnd"/>
+							</HBox>
+							<HBox>
+								<Label text="{i18n>BalQuantity}" design="Bold" class="label SapUiTinyMarginEnd"></Label>
+								<Input value="{oBomModel>quan}" class="Dinput SapUiTinyMarginEnd">
+								</Input>
+							</HBox>
+							
+							
+							</VBox>
+							</CustomListItem>
+							</List>
+							<Text id="hiddenVornrCO" visible="false"/>
+							</content>
+		<beginButton>
+			<Button text="{i18n>ADD}" press="onAddBom"></Button>
+		</beginButton>
+		<endButton>
+			<Button text="{i18n>Save}" press="onSaveSubItembomOk"></Button>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

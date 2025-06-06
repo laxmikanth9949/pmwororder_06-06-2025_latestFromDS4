@@ -1,0 +1,7 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<SelectDialog title="{i18n>PMActivityType}" class="sapUiPopupWithPadding" items="{oPMActTypeModel>/}" search="onPMActivityTypeSearch"
+		confirm="onPMActivityTypeConfirm" liveChange="onPMActivityTypeSearch" cancel="onPMActivityTypeConfirm">
+		<StandardListItem title="{oPMActTypeModel>Ilart}"  description="{oPMActTypeModel>Ilatx}"/>
+	</SelectDialog>
+</core:FragmentDefinition>
+

@@ -1,0 +1,34 @@
+<core:FragmentDefinition xmlns:f="sap.ui.layout.form" xmlns:cm="sap.ui.commons" xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core"
+	xmlns="sap.m">
+	<Dialog class="sapUiNoContentPadding sapUiSizeCompact" afterClose="onDialogClose" showHeader="false" height="auto" contentWidth="auto"
+		resizable="true" type="Standard" id="dialog">
+		<subHeader>
+			<Bar>
+				<contentMiddle>
+					<Label text="Config Settings" design="Bold" class="MasterData_Title"/>
+				</contentMiddle>
+				<contentRight>
+					<Button icon="sap-icon://decline" press="onSettingsClose" class="Close_Dialog"/>
+				</contentRight>
+			</Bar>
+		</subHeader>
+		<content>
+			<VBox class="sapUiSmallMargin">
+				<VBox alignItems="left" justifyContent="left" class="sapUiSmallMarginBottom">
+					<Label text="{i18n>CompCode}" class="sapUiSmallMarginEnd "/>
+					<Input value="" id="idCompCode" type="Text" maxLength="4" class="input"></Input>
+				</VBox>
+				<VBox alignItems="Left" justifyContent="Left" class="sapUiSmallMarginBottom">
+					<Label text="{i18n>Plant}" class="sapUiSmallMarginEnd Master_Data_Label"/>
+					 <Input value="" id="PlantId" maxLength="4" class="input"></Input>
+				</VBox>
+				<VBox alignItems="left" justifyContent="left" class="sapUiSmallMarginBottom">
+					<Label text="{i18n>storageLocation}" class="sapUiSmallMarginEnd Master_Data_Label"/>
+					<Input value="" id="storageLocation" type="Text" maxLength="4" class="input"></Input>
+				</VBox>
+				<Button text="{i18n>DownloadMaster}" press="onValidateAuth"
+				     width="100%"  type="Emphasized" class="sapUiTinyMarginBottom sapUiTinyMarginTop clButton1"/>
+			</VBox>
+		</content>
+	</Dialog>
+</core:FragmentDefinition>

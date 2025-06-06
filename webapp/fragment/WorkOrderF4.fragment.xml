@@ -1,0 +1,6 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+<SelectDialog title="{i18n>WorkOrder}" class="sapUiPopupWithPadding" items="{oOrderIdModel_cp>/}" search="WoSearch"
+		confirm="WoConfirm" liveChange="WoSearch" cancel="WorkOrderCancel">
+		<StandardListItem  title="{path:'oOrderIdModel_cp>Orderid', formatter:'.formatter.fnRemoveZero'}"/>
+</SelectDialog>
+</core:FragmentDefinition>

@@ -1,0 +1,7 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<SelectDialog title="{i18n>ServiceNum}" class="sapUiPopupWithPadding" items="{GlobalModel>/F4Services}" search="onServiceNumSearch"
+		confirm="onServiceNumSearchConfirm" liveChange="onServiceNumSearch" cancel="ServiceNumSearchCancel">
+		<StandardListItem title="{path:'GlobalModel>Asktx'}"  description="{GlobalModel>Asnum}"/>
+	</SelectDialog>
+</core:FragmentDefinition>
+

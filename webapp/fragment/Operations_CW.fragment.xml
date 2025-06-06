@@ -1,0 +1,137 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:ndc="sap.ndc" xmlns:m="sap.ui.commons.layout" xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core">
+	<Dialog verticalScrolling="true" class="sapUiNoContentPadding sapUiSizeCompact dialogCl" stretchOnPhone="true" type="Standard">
+		<customHeader>
+			<Bar>
+				<contentMiddle>
+					<Label text="{i18n>Operation}" class="MasterData_Title"></Label>
+				</contentMiddle>
+				<contentRight>
+					<Button icon="sap-icon://decline" press="onCancelItemClose" class="Close_Dialog"></Button>
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<content>
+			<!--<VBox justifyContent="Center">-->
+			<!--<RadioButtonGroup selectedIndex="0" select="onPrintRadioButtons">-->
+			<!--	<buttons>-->
+			<!--		<RadioButton visible="false"/>-->
+			<!--		<RadioButton text="With Weighbridge" class="CancelRadioBtn"/>-->
+			<!--		<RadioButton text="Without Weighbridge" class="CancelRadioBtn"/>-->
+			<!--	</buttons>-->
+			<!--</RadioButtonGroup>-->
+			<!--</VBox>-->
+			
+			<!-- Added by Manohar -->
+			<HBox class="sapUiTinyMargin">
+				<Button text="{i18n>AddOperationMaterial}" type="Emphasized" class="sapUiSizeCompact" press="onMaterialF4"/>
+				<ndc:BarcodeScannerButton class="sapUiSmallMarginBegin" scanFail="fnBarcodeFailed" scanSuccess="fnBarcodeMatSuccess" tooltip="{i18n>Scanner}" />
+			</HBox>
+			<VBox class="sapUiTinyMargin">
+			<List items="{MULTIMATNR>/}">
+				<CustomListItem class="custlist_PN">
+						<VBox width="100%">
+							<Toolbar class="cl_toolbar" height="2rem">
+								<Label required="true" text="{i18n>LineItemI}: {MULTIMATNR>ItemNo}"/>
+								<ToolbarSpacer/>
+								<core:Icon src="sap-icon://delete" color="red" press="onDeleteMultiMaterial"></core:Icon>
+							</Toolbar>
+							<Toolbar class="cl_toolbar" height="2rem">
+								<Label required="true" text="{i18n>Material}: {MULTIMATNR>Matnr}"/>
+							</Toolbar>
+							<Toolbar class="cl_toolbar" height="2rem">
+								<Label text="{i18n>Description}: {MULTIMATNR>Maktx}"/>
+							</Toolbar>
+							<Toolbar class="cl_toolbar" height="2rem">
+								<Label required="true" text="{i18n>BalQuantity}: " width="8rem"/>
+								<Input value="{MULTIMATNR>Qty}" textAlign="Right" enabled="{= ${MULTIMATNR>DispHec} !== 'X'}"/>
+								<Input value="{MULTIMATNR>Uom}"/>
+							</Toolbar> 
+							<Toolbar class="cl_toolbar" height="2rem" visible="{= ${MULTIMATNR>DispHec} === 'X'}">
+								<Label text="{i18n>QtyPerHector}: " width="8rem"/>
+								<Input value="{MULTIMATNR>HectorQty}" liveChange="onHectorChange"/>
+							</Toolbar>
+							<Toolbar class="cl_toolbar" height="2rem">
+								<Label text="{i18n>SLoc}: " width="8rem"/>
+								<Input editable="false" value="{MULTIMATNR>SLoc}"/>
+							</Toolbar>
+						</VBox>
+				</CustomListItem>
+			</List>
+			</VBox>
+			<f:Form editable="true" visible="false" class="sapUiSizeCompact form">
+				<f:layout>
+					<f:ResponsiveGridLayout labelSpanXL="3" labelSpanL="3" labelSpanM="4" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0"
+						emptySpanM="0" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false"/>
+				</f:layout>
+				<f:formContainers>
+					<f:FormContainer>
+						<f:formElements>
+							<f:FormElement>
+								<f:label>
+									<Label text="{i18n>LineItemI}" design="Bold" class="FragmentText"></Label>
+								</f:label>
+								<f:fields>
+									<Input id="sitemId_CW"  class="InputPlaceholder_MC"/>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement>
+								<f:label>
+									<Label text="{i18n>Material}" design="Bold" class="FragmentText" required="true"></Label>
+								</f:label>
+								<f:fields>
+								
+									<Input id="MaterialID_CW" value="{path:'WorkOrderOperations>/Matnr',formatter:'.formatter.fnleadZero'}" liveChange="onPlantLiveChange" 
+										valueHelpRequest="onMaterialF4" showValueHelp="true" class="InputPlaceholder_MC">
+											<layoutData>
+												<FlexItemData growFactor="1" />
+											</layoutData>
+										</Input>
+					
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement>
+								<f:label>
+									<Label text="{i18n>MaterialDescription}" design="Bold" class="FragmentText"></Label>
+								</f:label>
+								<f:fields>
+									<Input  id="matd_CW" editable="false" valueHelpRequest="onMaterialF4" showValueHelp="false" class="InputPlaceholder_MC"/>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement  >
+								<f:label>
+									<Label text="{i18n>UOM}" design="Bold" class="FragmentText"></Label>
+								</f:label>
+								<f:fields>
+									<Input  id="UomId_CW" value="{WorkOrderOperations>/UOM}" />
+									
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement >
+								<f:label>
+									<Label text="{i18n>BalQuantity}" design="Bold" class="FragmentText" required="true"></Label>
+								</f:label>
+								<f:fields>
+									<Input id="qtyId_CW" value="{WorkOrderOperations>/AVLQT}"></Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement id="id_cwoqphec">
+								<f:label>
+									<Label text="{i18n>QantityPerHect}" design="Bold" class="FragmentText" required="true"></Label>
+								</f:label>
+								<f:fields>
+									<Input id="cwqtyperhec" value="{WorkOrderOperations>/QtyHector}" liveChange="onHectorChange"></Input>
+								</f:fields>
+							</f:FormElement>
+							
+							
+						</f:formElements>
+					</f:FormContainer>
+				</f:formContainers>
+			</f:Form>
+		</content>
+		<endButton>
+			<Button text="{i18n>Save}" press="onSaveSubItemOk"></Button>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

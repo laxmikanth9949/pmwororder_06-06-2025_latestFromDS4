@@ -1,0 +1,6 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<SelectDialog title="{i18n>permit}" class="sapUiPopupWithPadding" rememberSelections="true" multiSelect="true" items="{oPermitModel>/}" search="ConfCntF4Search" id="permitF4"
+		confirm="PermitF4Confirm" liveChange="ConfCntF4Search" cancel="PermitF4Cancel">
+		<StandardListItem  title="{path:'oPermitModel>Permit'}" description="{path:'oPermitModel>Gntxt'}"/>
+	</SelectDialog>
+</core:FragmentDefinition>

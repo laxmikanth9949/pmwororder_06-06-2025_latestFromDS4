@@ -1,0 +1,7 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<SelectDialog  title="{i18n>ShopPaper}"  items="{path: 'oShopPaperList>/'}" class="Dialog_WO" search="onShopPaperSearch"
+		confirm="onShopPaperConfirm" liveChange="onShopPaperSearch" >
+		<StandardListItem  title="{oShopPaperList>Workpaper}"  description = "{oShopPaperList>PmAppl}" />
+	</SelectDialog>
+	
+</core:FragmentDefinition>

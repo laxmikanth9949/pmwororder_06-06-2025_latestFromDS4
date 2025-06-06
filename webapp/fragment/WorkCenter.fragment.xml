@@ -1,0 +1,7 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<SelectDialog title="{i18n>Workcenter}" class="sapUiPopupWithPadding" items="{oWorkcenterModel>/}" search="onWCSearch"
+		confirm="onWCSearchConfirm" liveChange="onWCSearch" cancel="onWCSearchConfirm">
+		<StandardListItem title="{oWorkcenterModel>Arbpl}" description="{oWorkcenterModel>KtextUp}" />
+	</SelectDialog>
+</core:FragmentDefinition>
+

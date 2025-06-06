@@ -1,0 +1,99 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:ndc="sap.ndc" xmlns:m="sap.ui.commons.layout" xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core">
+	<Dialog verticalScrolling="true" class="sapUiNoContentPadding sapUiSizeCompact dialogCl" stretchOnPhone="true" type="Standard">
+		<customHeader>
+			<Bar>
+				<contentMiddle>
+					<Label text="{i18n>Operation}" class="MasterData_Title"></Label>
+				</contentMiddle>
+				<contentRight>
+					<Button icon="sap-icon://decline" press="onCancelEditItemClose" class="Close_Dialog"></Button>
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<content>
+			<f:Form editable="true" visible="true" class="sapUiSizeCompact form">
+				<f:layout>
+					<f:ResponsiveGridLayout labelSpanXL="3" labelSpanL="3" labelSpanM="4" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0"
+						emptySpanM="0" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false"/>
+				</f:layout>
+				<f:formContainers>
+					<f:FormContainer>
+						<f:formElements>
+							<f:FormElement>
+								<f:label>
+									<Label text="{i18n>LineItemI}" design="Bold" class="FragmentText"></Label>
+								</f:label>
+								<f:fields>
+									<Input id="sitemId_edit" value="{path:'WOperationsEditModel>/Item'}" class="InputPlaceholder_MC" editable="false"/>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement>
+								<f:label>
+									<Label text="{i18n>Material}" design="Bold" class="FragmentText" required="true"></Label>
+								</f:label>
+								<f:fields>
+								<HBox>
+									<Input id="MaterialID_edit" value="{path:'WOperationsEditModel>/MATERIAL',formatter:'.formatter.fnleadZero'}" 
+										liveChange="onPlantLiveChange" valueHelpRequest="onMaterialF4" showValueHelp="true" class="InputPlaceholder_MC" editable="false">
+										<layoutData>
+											<FlexItemData growFactor="1" />
+										</layoutData>
+									</Input>
+						<!--			<ndc:BarcodeScannerButton class="sapUiSmallMarginBegin" scanFail="fnBarcodeFailed" scanSuccess="fnBarcodeMatEditSuccess" tooltip="{i18n>Scanner}" />	-->
+								</HBox>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement>
+								<f:label>
+									<Label text="{i18n>MaterialDescription}" design="Bold" class="FragmentText"></Label>
+								</f:label>
+								<f:fields>
+									<Input  id="matd_edit" value="{path:'WOperationsEditModel>/MaterialDesc'}" editable="false" class="InputPlaceholder_MC"></Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement  >
+								<f:label>
+									<Label text="{i18n>UOM}" design="Bold" class="FragmentText"></Label>
+								</f:label>
+								<f:fields>
+									<Input  id="UomId_edit" value="{WOperationsEditModel>/UOM}" editable="false"/>
+									
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement >
+								<f:label>
+									<Label text="{i18n>SLoc}" design="Bold" class="FragmentText" required="true"></Label>
+								</f:label>
+								<f:fields>
+									<Input id="slocinpId_edit" editable="false" value="{WOperationsEditModel>/Sloc}"></Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement >
+								<f:label>
+									<Label text="{i18n>BalQuantity}" design="Bold" class="FragmentText" required="true"></Label>
+								</f:label>
+								<f:fields>
+									<Input id="qtyId_edit" value="{WOperationsEditModel>/REQUIREMENT_QUANTITY}"></Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement id="Id_qtyhectorcreedithbox">
+								<f:label>
+									<Label text="{i18n>QantityPerHect}" design="Bold" class="FragmentText" required="true"></Label>
+								</f:label>
+								<f:fields>
+									<Input id="Id_qtyhectorcreedit" value="{WOperationsEditModel>/QtyHector}" liveChange="onHectorChangeEdit"></Input>
+								</f:fields>
+							</f:FormElement>
+							
+							
+						</f:formElements>
+					</f:FormContainer>
+				</f:formContainers>
+			</f:Form>
+		</content>
+		<endButton>
+			<Button text="{i18n>Save}" press="onSaveEditCompOk"></Button>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

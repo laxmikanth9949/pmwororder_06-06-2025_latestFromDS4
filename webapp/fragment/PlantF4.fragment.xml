@@ -1,0 +1,6 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<SelectDialog title="{i18n>Plant}" class="sapUiPopupWithPadding" items="{path:'oPlantF4Model>/' , sorter:{path:'WERKS',descending:false}}" search="onPlantSearch"
+		confirm="onPlantConfirm" liveChange="onPlantSearch" cancel="onPlantCancel" titleAlignment="Center" >
+		<StandardListItem  title="{oPlantF4Model>WERKS}"  description="{oPlantF4Model>NAME1}"/>
+	</SelectDialog>
+</core:FragmentDefinition>

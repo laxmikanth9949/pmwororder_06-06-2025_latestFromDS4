@@ -1,0 +1,92 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:ndc="sap.ndc" xmlns:m="sap.ui.commons.layout" xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core">
+	<Dialog verticalScrolling="true" class="sapUiNoContentPadding sapUiSizeCompact dialogCl" stretchOnPhone="true" type="Standard">
+		<customHeader>
+			<Bar>
+				<contentMiddle>
+					<Label text="{i18n>Operation}" class="MasterData_Title"></Label>
+				</contentMiddle>
+				<contentRight>
+					<Button icon="sap-icon://decline" press="onCancelItemClose" class="Close_Dialog"></Button>
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<content>
+			<!--<VBox justifyContent="Center">-->
+			<!--<RadioButtonGroup selectedIndex="0" select="onPrintRadioButtons">-->
+			<!--	<buttons>-->
+			<!--		<RadioButton visible="false"/>-->
+			<!--		<RadioButton text="With Weighbridge" class="CancelRadioBtn"/>-->
+			<!--		<RadioButton text="Without Weighbridge" class="CancelRadioBtn"/>-->
+			<!--	</buttons>-->
+			<!--</RadioButtonGroup>-->
+			<!--</VBox>-->
+			<f:Form editable="true" visible="true" class="sapUiSizeCompact form">
+				<f:layout>
+					<f:ResponsiveGridLayout labelSpanXL="3" labelSpanL="3" labelSpanM="4" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0"
+						emptySpanM="0" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false"/>
+				</f:layout>
+				<f:formContainers>
+					<f:FormContainer>
+						<f:formElements>
+							<f:FormElement>
+								<f:label>
+									<Label text="{i18n>LineItemI}" design="Bold" class="FragmentText"></Label>
+								</f:label>
+								<f:fields>
+									<Input id="sitemId1"  class="InputPlaceholder_MC"/>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement>
+								<f:label>
+									<Label text="{i18n>Material}" design="Bold" class="FragmentText" required="true"></Label>
+								</f:label>
+								<f:fields>
+									<HBox>
+										<Input id="MaterialID1" value="{path:'WorkOrderOperations>/Matnr',formatter:'.formatter.fnleadZero'}" 
+											liveChange="onPlantLiveChange" valueHelpRequest="onMaterialF4" showValueHelp="true" class="InputPlaceholder_MC">
+											<layoutData>
+												<FlexItemData growFactor="1" />
+											</layoutData>
+										</Input>
+										<ndc:BarcodeScannerButton class="sapUiSmallMarginBegin" scanFail="fnBarcodeFailed" scanSuccess="fnBarcodeMatSuccess" tooltip="{i18n>Scanner}" />
+                                    </HBox>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement>
+								<f:label>
+									<Label text="{i18n>MaterialDescription}" design="Bold" class="FragmentText"></Label>
+								</f:label>
+								<f:fields>
+									<Input  id="matd1" editable="false" class="InputPlaceholder_MC"/>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement  >
+								<f:label>
+									<Label text="{i18n>UOM}" design="Bold" class="FragmentText"></Label>
+								</f:label>
+								<f:fields>
+									<Input  id="UomId1" value="{WorkOrderOperations>/UOM}" />
+									
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement >
+								<f:label>
+									<Label text="{i18n>BalQuantity}" design="Bold" class="FragmentText" required="true"></Label>
+								</f:label>
+								<f:fields>
+									<Input id="qtyId1" value="{WorkOrderOperations>/AVLQT}"></Input>
+								</f:fields>
+							</f:FormElement>
+							
+							
+						</f:formElements>
+					</f:FormContainer>
+				</f:formContainers>
+			</f:Form>
+		</content>
+		<endButton>
+			<Button text="{i18n>Save}" press="onSaveSubItemOk"></Button>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

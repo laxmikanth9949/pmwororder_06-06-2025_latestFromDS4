@@ -1,0 +1,47 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+    <Dialog verticalScrolling="true" class="sapUiNoContentPadding sapUiSizeCompact dialogCl" stretchOnPhone="true" type="Standard">
+        <customHeader>
+            <Bar>
+                <contentMiddle>
+                    <Label text="{i18n>Item}" class="MasterData_Title"></Label>
+                </contentMiddle>
+                <contentRight>
+                    <Button icon="sap-icon://decline" press="onServiceItemsClose" class="Close_Dialog"></Button>
+                </contentRight>
+            </Bar>
+        </customHeader>
+        <content>
+           <!--  <Table id="idServiceItemsTable" inset="false" items="{GlobalModel>/ServiceItems}"> -->
+            	  <Table id="idServiceItemsTable" inset="false" items="{GlobalModel>/ServicesSubList}">
+                <columns>
+                    <Column width="40%">
+                        <Text text="{i18n>Service}" />
+                    </Column>
+                    <Column hAlign="End">
+                        <Text text="{i18n>Price}" />
+                    </Column>
+                    <Column hAlign="End">
+                        <Text text="{i18n>Qty}" />
+                    </Column>
+                  <!--   <Column width="2rem">
+                        <Text text="" />
+                    </Column> -->
+                    <Column minScreenWidth="Desktop" demandPopin="true">
+                        <Text text="{i18n>CostElement}" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                            <ObjectIdentifier title="{GlobalModel>ServiceNumber}" text="{GlobalModel>ServiceText}" />
+                            <Text text="{GlobalModel>Price}" />
+                            <ObjectNumber number="{GlobalModel>Qty}" />
+                          <!--   <Button icon="sap-icon://delete" press="onServiceDelete" /> -->
+                            <Text text="{GlobalModel>CostElement}" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+    </Dialog>
+</core:FragmentDefinition>

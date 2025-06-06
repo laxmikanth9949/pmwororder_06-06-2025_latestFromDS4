@@ -1,0 +1,60 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+    <Dialog verticalScrolling="true" class="sapUiNoContentPadding sapUiSizeCompact dialogCl" stretchOnPhone="true" type="Standard">
+        <customHeader>
+            <Bar>
+            	  <contentLeft>
+                    <Button icon="sap-icon://nav-back" press="onBackTaskOpr" class="Close_Dialog" />
+                </contentLeft>
+                <contentMiddle>
+                    <Label text="{i18n>TaskList}" design="Bold" class="MasterData_Title" />
+                </contentMiddle>
+                <contentRight>
+                    <Button icon="sap-icon://decline" press="onCloseTaskList" class="Close_Dialog" />
+                </contentRight>
+            </Bar>
+        </customHeader> 
+        <content>
+            <List items="{GlobalModel>/F4Tasklist}"  visible="{GlobalModel>/TaskListVisible}">
+          <!--       <headerToolbar>
+                    <OverflowToolbar>
+                        <content>
+                            <Title text="Products" level="H2" />
+                            <ToolbarSpacer />
+                            <Label text="List Item type:" labelFor="state" />
+                            <Select id="state" selectedKey="Inactive" change="handleSelectChange">
+                                <items>
+                                    <core:Item key="Inactive" text="Inactive" />
+                                    <core:Item key="Active" text="Active" />
+                                    <core:Item key="Navigation" text="Navigation" />
+                                    <core:Item key="Detail" text="Detail" />
+                                    <core:Item key="DetailAndActive" text="Detail And Active" />
+                                </items>
+                            </Select>
+                        </content>
+                    </OverflowToolbar>
+                </headerToolbar> -->
+                <StandardListItem title="{GlobalModel>Ktext}" description="{GlobalModel>Plnnr}" info="{GlobalModel>Plnal}" press="onTaskListPress" type="Navigation" />
+            </List>
+            <List id="idTaskOprList_CH" items="{GlobalModel>/F4TaskOpr}" includeItemInSelection="true" sticky="InfoToolbar" visible="{GlobalModel>/TaskOprListVisible}" mode="MultiSelect">
+                <items>
+                    <StandardListItem title="{GlobalModel>Ltxa1}" description="{GlobalModel>Steus}" />
+                </items>
+      <!--           <headerToolbar>
+                    <OverflowToolbar>
+                        <Title text="Operations" level="H2" />
+                        <ToolbarSpacer />
+                    </OverflowToolbar>
+                </headerToolbar> -->
+                <infoToolbar>
+                    <OverflowToolbar>
+                        <Label text="{GlobalModel>/SelectedTask}"/>
+                    </OverflowToolbar>
+                </infoToolbar>
+            </List>
+        </content>
+        <endButton>
+        	 <Button text="{i18n>Back}" press="onBackTaskOpr" visible="{GlobalModel>/BackTaskOprVisible}"></Button>
+            <Button text="{i18n>Save}" press="onSaveTaskOpr" enabled="{GlobalModel>/SaveTaskOprBtnVisible}"></Button>
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

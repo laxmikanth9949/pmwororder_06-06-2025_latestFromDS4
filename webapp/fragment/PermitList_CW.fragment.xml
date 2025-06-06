@@ -1,0 +1,43 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	 <Dialog verticalScrolling="true" class="sapUiNoContentPadding sapUiSizeCompact dialogCl" stretchOnPhone="true" type="Standard">
+        <customHeader>
+            <Bar>
+                <contentMiddle>
+                    <Label text="{i18n>Permit}" class="MasterData_Title"></Label>
+                </contentMiddle>
+                <contentRight>
+                    <Button icon="sap-icon://decline" press="onPermitClose" class="Close_Dialog"></Button>
+                </contentRight>
+            </Bar>
+        </customHeader>
+		<content>
+		<List class="sapUiSizeCompact" id="existingPLId" items="{ path : 'openPermitsModel>/'}" headerText="Existing Permits">
+			<CustomListItem>
+				<FlexBox alignItems="Start" justifyContent="SpaceBetween">
+					<HBox>
+						<CheckBox select="onPermitItemCheck" selected="{openPermitsModel>Checked}" visible="{openPermitsModel>isEnabled}"/>
+						<VBox class="sapUiSmallMargin">
+							<Label design="Bold" text="{openPermitsModel>Permit}"/>
+							<Text text="{openPermitsModel>Gntxt}"/>
+						</VBox>
+					</HBox>
+					<Button text="{i18n>Issue}" visible="{openPermitsModel>isEnabled}" press="onIssue"/>
+				</FlexBox>
+			</CustomListItem>
+		</List>
+			<List class="sapUiSizeCompact" id="newPermitsListId" items="{ path : 'oPermitModel>/'}" mode="MultiSelect" headerText="{i18n>AddPermits}">
+			<infoToolbar>
+				<Toolbar>
+					<SearchField id="permitSearchId"
+						liveChange="onPermitSearch"
+						width="100%" />
+				</Toolbar>
+			</infoToolbar>
+				<StandardListItem title="{oPermitModel>Permit}" description="{oPermitModel>Gntxt}"/>
+			</List>
+		</content>
+       <endButton>
+            <Button text="{i18n>Save}" press="onPermitSave"></Button>
+        </endButton>	
+    </Dialog>
+</core:FragmentDefinition>

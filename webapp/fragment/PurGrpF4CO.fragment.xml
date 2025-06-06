@@ -1,0 +1,7 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<SelectDialog title="{i18n>PurGrp}" class="sapUiPopupWithPadding" items="{GlobalModel>/F4PurGroup}" search="onPurGrpSearch"
+		confirm="onPurGrpSearchConfirm" liveChange="onPurGrpSearch" cancel="PurGrpSearchCancel">
+		<StandardListItem title="{path:'GlobalModel>Ekgrp'}"  description="{GlobalModel>Eknam}"/>
+	</SelectDialog>
+</core:FragmentDefinition>
+

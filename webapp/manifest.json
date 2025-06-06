@@ -1,0 +1,866 @@
+{
+    "_version": "1.5.0",
+    "sap.app": {
+        "id": "com.olam.pmworkorder",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "1.0.0"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "sourceTemplate": {
+            "id": "ui5template.basicSAPUI5ApplicationProject",
+            "version": "1.40.12",
+            "toolsId": "692d1896-fa98-403a-b537-5817c60408a5"
+        },
+        "dataSources": {
+            "ZGTPMGW_WORKORDER_SRV": {
+                "uri": "/sap/opu/odata/sap/ZGTPMGW_WORKORDER_SRV/",
+                "type": "OData",
+                "settings": {
+                    "odataVersion": "2.0",
+                    "localUri": "localService/ZGTPMGW_WORKORDER_SRV/metadata.xml"
+                }
+            }
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        },
+        "supportedThemes": [
+            "sap_hcb",
+            "sap_belize"
+        ]
+    },
+    "sap.ui5": {
+        "rootView": {
+            "viewName": "com.olam.pmworkorder.view.App",
+            "type": "XML"
+        },
+        "dependencies": {
+            "minUI5Version": "1.30.0",
+            "libs": {
+                "sap.ui.core": {},
+                "sap.m": {},
+                "sap.ui.layout": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "com.olam.pmworkorder.i18n.i18n"
+                }
+            },
+            "": {
+                "type": "sap.ui.model.odata.v2.ODataModel",
+                "settings": {
+                    "defaultOperationMode": "Server",
+                    "defaultBindingMode": "OneTime",
+                    "defaultCountMode": "Request"
+                },
+                "dataSource": "ZGTPMGW_WORKORDER_SRV",
+                "preload": true
+            },
+            "WOMasterData": {
+                "type": "sap.ui.model.json.JSONModel",
+                "preload": true
+            },
+            "TasksMasterData": {
+                "type": "sap.ui.model.json.JSONModel",
+                "preload": true
+            },
+            "WOConfirmListData": {
+                "type": "sap.ui.model.json.JSONModel",
+                "preload": true
+            },
+            "WOTecoListData": {
+                "type": "sap.ui.model.json.JSONModel",
+                "preload": true
+            },
+            "CalibCreatMasterData": {
+                "type": "sap.ui.model.json.JSONModel",
+                "preload": true
+            },
+            "Create_CPData": {
+                "type": "sap.ui.model.json.JSONModel",
+                "preload": true
+            },
+            "oMasterFWPWOListData": {
+                "type": "sap.ui.model.json.JSONModel",
+                "preload": true
+            },
+            "InspListRROprMasterData": {
+                "type": "sap.ui.model.json.JSONModel",
+                "preload": true
+            },
+            "COConfirmListMasterData": {
+                "type": "sap.ui.model.json.JSONModel",
+                "preload": true
+            },
+            "COTecoListMasterData": {
+                "type": "sap.ui.model.json.JSONModel",
+                "preload": true
+            },
+            "oPlantF4Model": {
+                "type": "sap.ui.model.json.JSONModel",
+                "preload": true
+            },
+            "OfflineCheckModel": {
+                "type": "sap.ui.model.json.JSONModel",
+                "preload": true
+            },
+            "oNotificationModel": {
+                "type": "sap.ui.model.json.JSONModel",
+                "preload": true
+            },
+            "oNotifTypeModel": {
+                "type": "sap.ui.model.json.JSONModel",
+                "preload": true
+            },
+            "oFunctionalModel": {
+                "type": "sap.ui.model.json.JSONModel",
+                "preload": true
+            },
+            "oPlannerModel": {
+                "type": "sap.ui.model.json.JSONModel",
+                "preload": true
+            },
+            "oRevisionModel": {
+                "type": "sap.ui.model.json.JSONModel",
+                "preload": true
+            },
+            "oPermitModel": {
+                "type": "sap.ui.model.json.JSONModel",
+                "preload": true
+            },
+            "oWorkcenterModel": {
+                "type": "sap.ui.model.json.JSONModel",
+                "preload": true
+            },
+            "Globalcalkey": {
+                "type": "sap.ui.model.json.JSONModel",
+                "preload": true
+            },
+            "GlobalActType": {
+                "type": "sap.ui.model.json.JSONModel",
+                "preload": true
+            },
+            "GlobalActType1": {
+                "type": "sap.ui.model.json.JSONModel",
+                "preload": true
+            },
+            "oUserStatusModel_Order": {
+                "type": "sap.ui.model.json.JSONModel",
+                "preload": true
+            },
+            "oOrderUserStatusModel_Order": {
+                "type": "sap.ui.model.json.JSONModel",
+                "preload": true
+            },
+            "GlobalReasonCode": {
+                "type": "sap.ui.model.json.JSONModel",
+                "preload": true
+            },
+            "oSupervisorModel": {
+                "type": "sap.ui.model.json.JSONModel",
+                "preload": true
+            },
+            "oPriorityModel": {
+                "type": "sap.ui.model.json.JSONModel",
+                "preload": true
+            },
+            "oPriorityModel_Order": {
+                "type": "sap.ui.model.json.JSONModel",
+                "preload": true
+            },
+            "oNotifUserStatusModel": {
+                "type": "sap.ui.model.json.JSONModel",
+                "preload": true
+            },
+            "oOrderUserStatusModel": {
+                "type": "sap.ui.model.json.JSONModel",
+                "preload": true
+            },
+            "oOpenWOModel": {
+                "type": "sap.ui.model.json.JSONModel",
+                "preload": true
+            },
+            "oMPopenWOModel": {
+                "type": "sap.ui.model.json.JSONModel",
+                "preload": true
+            },
+            "oEquipmentModel": {
+                "type": "sap.ui.model.json.JSONModel",
+                "preload": true
+            },
+            "oPendingModel": {
+                "type": "sap.ui.model.json.JSONModel",
+                "preload": true
+            },
+            "oMsgModel": {
+                "type": "sap.ui.model.json.JSONModel",
+                "preload": true
+            },
+            "oHistoryModel": {
+                "type": "sap.ui.model.json.JSONModel",
+                "preload": true
+            },
+            "oNotificationNumber": {
+                "type": "sap.ui.model.json.JSONModel",
+                "preload": true
+            },
+            "MaterialModel": {
+                "type": "sap.ui.model.json.JSONModel",
+                "preload": true
+            },
+            "MaterialModelF4": {
+                "type": "sap.ui.model.json.JSONModel",
+                "preload": true
+            },
+            "FILTERSTATUSF4": {
+                "type": "sap.ui.model.json.JSONModel",
+                "preload": true
+            },
+            "oEquipmentModelF4": {
+                "type": "sap.ui.model.json.JSONModel",
+                "preload": true
+            },
+            "oWOHeaderObjModel": {
+                "type": "sap.ui.model.json.JSONModel",
+                "preload": true
+            },
+            "openOprModel": {
+                "type": "sap.ui.model.json.JSONModel",
+                "preload": true
+            },
+            "FWPOperModel": {
+                "type": "sap.ui.model.json.JSONModel",
+                "preload": true
+            },
+            "openSrvModel": {
+                "type": "sap.ui.model.json.JSONModel",
+                "preload": true
+            },
+            "openPermitsModel": {
+                "type": "sap.ui.model.json.JSONModel",
+                "preload": true
+            },
+            "openCompModel": {
+                "type": "sap.ui.model.json.JSONModel",
+                "preload": true
+            },
+            "oModel_Item": {
+                "type": "sap.ui.model.json.JSONModel",
+                "preload": true
+            },
+            "oModel_SubItem": {
+                "type": "sap.ui.model.json.JSONModel",
+                "preload": true
+            },
+            "oModel_SubItemLocal": {
+                "type": "sap.ui.model.json.JSONModel",
+                "preload": true
+            },
+            "woHistory": {
+                "type": "sap.ui.model.json.JSONModel",
+                "preload": true
+            },
+            "WOPendingHeader": {
+                "type": "sap.ui.model.json.JSONModel",
+                "preload": true
+            },
+            "WOPendingItem": {
+                "type": "sap.ui.model.json.JSONModel",
+                "preload": true
+            },
+            "WOPendingsubItem": {
+                "type": "sap.ui.model.json.JSONModel",
+                "preload": true
+            },
+            "oModelPending_Item": {
+                "type": "sap.ui.model.json.JSONModel",
+                "preload": true
+            },
+            "oBomModel": {
+                "type": "sap.ui.model.json.JSONModel",
+                "preload": true
+            },
+            "oModelpending_SubItem": {
+                "type": "sap.ui.model.json.JSONModel",
+                "preload": true
+            },
+            "oModelpending_Service": {
+                "type": "sap.ui.model.json.JSONModel",
+                "preload": true
+            },
+            "oWoNumber": {
+                "type": "sap.ui.model.json.JSONModel",
+                "preload": true
+            },
+            "oTecoModel": {
+                "type": "sap.ui.model.json.JSONModel",
+                "preload": true
+            },
+            "MasterList": {
+                "type": "sap.ui.model.json.JSONModel",
+                "preload": true
+            },
+            "oEquipMD": {
+                "type": "sap.ui.model.json.JSONModel",
+                "preload": true
+            },
+            "oFlocModel_MD": {
+                "type": "sap.ui.model.json.JSONModel",
+                "preload": true
+            },
+            "oMPCModel": {
+                "type": "sap.ui.model.json.JSONModel",
+                "preload": true
+            },
+            "oPostModel": {
+                "type": "sap.ui.model.json.JSONModel",
+                "preload": true
+            },
+            "oMdocModel": {
+                "type": "sap.ui.model.json.JSONModel",
+                "preload": true
+            },
+            "oWorkOprModel": {
+                "type": "sap.ui.model.json.JSONModel",
+                "preload": true
+            },
+            "oWoConPendingModel": {
+                "type": "sap.ui.model.json.JSONModel",
+                "preload": true
+            },
+            "oWoConHistoryModel": {
+                "type": "sap.ui.model.json.JSONModel",
+                "preload": true
+            },
+            "oCancelOprModel": {
+                "type": "sap.ui.model.json.JSONModel",
+                "preload": true
+            },
+            "oCelOprPendingModel": {
+                "type": "sap.ui.model.json.JSONModel",
+                "preload": true
+            },
+            "oCelOprHistoryModel": {
+                "type": "sap.ui.model.json.JSONModel",
+                "preload": true
+            },
+            "GlobalModel": {
+                "type": "sap.ui.model.json.JSONModel",
+                "preload": true
+            },
+            "oDispProp": {
+                "type": "sap.ui.model.json.JSONModel",
+                "preload": true
+            },
+            "oPMActType": {
+                "type": "sap.ui.model.json.JSONModel",
+                "preload": true
+            },
+            "FWPOpenOper": {
+                "type": "sap.ui.model.json.JSONModel",
+                "preload": true
+            },
+            "FWPOpenMeas": {
+                "type": "sap.ui.model.json.JSONModel",
+                "preload": true
+            },
+            "oShopPaperList": {
+                "type": "sap.ui.model.json.JSONModel",
+                "preload": true
+            },
+            "oInspListRR": {
+                "type": "sap.ui.model.json.JSONModel",
+                "preload": true
+            },
+            "InspRROprModel": {
+                "type": "sap.ui.model.json.JSONModel",
+                "preload": true
+            },
+            "oInspUDCode": {
+                "type": "sap.ui.model.json.JSONModel",
+                "preload": true
+            },
+            "oAttachmentModel": {
+                "type": "sap.ui.model.json.JSONModel",
+                "preload": true
+            },
+            "oNotifCodeModel": {
+                "type": "sap.ui.model.json.JSONModel",
+                "preload": true
+            },
+            "oNotifCodeGrpModel": {
+                "type": "sap.ui.model.json.JSONModel",
+                "preload": true
+            },
+            "oNotifCodeModelF4": {
+                "type": "sap.ui.model.json.JSONModel",
+                "preload": true
+            }
+        },
+        "routing": {
+            "config": {
+                "routerClass": "sap.m.routing.Router",
+                "viewType": "XML",
+                "viewPath": "com.olam.pmworkorder.view",
+                "controlId": "appId",
+                "controlAggregation": "pages",
+                "clearAggregation": true
+            },
+            "routes": [
+                {
+                    "pattern": "View1/{Werks}",
+                    "name": "View1",
+                    "target": [
+                        "View1"
+                    ]
+                },
+                {
+                    "pattern": "",
+                    "name": "Download",
+                    "target": [
+                        "Download"
+                    ]
+                },
+                {
+                    "pattern": "CreateNotif",
+                    "name": "CreateNotif",
+                    "target": [
+                        "CreateNotif"
+                    ]
+                },
+                {
+                    "pattern": "ChangeNotif",
+                    "name": "ChangeNotif",
+                    "target": [
+                        "ChangeNotif"
+                    ]
+                },
+                {
+                    "pattern": "NWOCreate",
+                    "name": "NWOCreate",
+                    "target": [
+                        "NWOCreate"
+                    ]
+                },
+                {
+                    "pattern": "WO_List",
+                    "name": "WO_List",
+                    "target": [
+                        "WO_List"
+                    ]
+                },
+                {
+                    "pattern": "DOC_List",
+                    "name": "DOC_List",
+                    "target": [
+                        "DOC_List"
+                    ]
+                },
+                {
+                    "pattern": "WOCreate",
+                    "name": "WOCreate",
+                    "target": [
+                        "WOCreate"
+                    ]
+                },
+                {
+                    "pattern": "WOChange",
+                    "name": "WOChange",
+                    "target": [
+                        "WOChange"
+                    ]
+                },
+                {
+                    "pattern": "Teco/{contextPath}",
+                    "name": "Teco",
+                    "target": [
+                        "Teco"
+                    ]
+                },
+                {
+                    "pattern": "Create_MD",
+                    "name": "Create_MD",
+                    "target": [
+                        "Create_MD"
+                    ]
+                },
+                {
+                    "pattern": "Cancel_MD",
+                    "name": "Cancel_MD",
+                    "target": [
+                        "Cancel_MD"
+                    ]
+                },
+                {
+                    "pattern": "Create_CP/{contextPath}",
+                    "name": "Create_CP",
+                    "target": [
+                        "Create_CP"
+                    ]
+                },
+                {
+                    "pattern": "Cancel_CP",
+                    "name": "Cancel_CP",
+                    "target": [
+                        "Cancel_CP"
+                    ]
+                },
+                {
+                    "pattern": "WOTecoList",
+                    "name": "WOTecoList",
+                    "target": [
+                        "WOTecoList"
+                    ]
+                },
+                {
+                    "pattern": "NotifList",
+                    "name": "NotifList",
+                    "target": [
+                        "NotifList"
+                    ]
+                },
+                {
+                    "pattern": "OpenWOList",
+                    "name": "OpenWOList",
+                    "target": [
+                        "OpenWOList"
+                    ]
+                },
+                {
+                    "pattern": "MaintenanceList",
+                    "name": "MaintenanceList",
+                    "target": [
+                        "MaintenanceList"
+                    ]
+                },
+                {
+                    "pattern": "WOConfirmList",
+                    "name": "WOConfirmList",
+                    "target": [
+                        "WOConfirmList"
+                    ]
+                },
+                {
+                    "pattern": "FWPWOList",
+                    "name": "FWPWOList",
+                    "target": [
+                        "FWPWOList"
+                    ]
+                },
+                {
+                    "pattern": "Reports",
+                    "name": "Reports",
+                    "target": [
+                        "Reports"
+                    ]
+                },
+                {
+                    "pattern": "FWPOPERList/{WONo}/{EquipText}/{EquipNo}",
+                    "name": "FWPOPERList",
+                    "target": [
+                        "FWPOPERList"
+                    ]
+                },
+                {
+                    "pattern": "CalibrationList",
+                    "name": "CalibrationList",
+                    "target": [
+                        "CalibrationList"
+                    ]
+                },
+                {
+                    "pattern": "OpenCalibList",
+                    "name": "OpenCalibList",
+                    "target": [
+                        "OpenCalibList"
+                    ]
+                },
+                {
+                    "pattern": "COCreate",
+                    "name": "COCreate",
+                    "target": [
+                        "COCreate"
+                    ]
+                },
+                {
+                    "pattern": "COChange",
+                    "name": "COChange",
+                    "target": [
+                        "COChange"
+                    ]
+                },
+                {
+                    "pattern": "COConfirmList",
+                    "name": "COConfirmList",
+                    "target": [
+                        "COConfirmList"
+                    ]
+                },
+                {
+                    "pattern": "Create_CPCO/{contextPath}",
+                    "name": "Create_CPCO",
+                    "target": [
+                        "Create_CPCO"
+                    ]
+                },
+                {
+                    "pattern": "COTecoList",
+                    "name": "COTecoList",
+                    "target": [
+                        "COTecoList"
+                    ]
+                },
+                {
+                    "pattern": "COTeco/{contextPath}",
+                    "name": "COTeco",
+                    "target": [
+                        "COTeco"
+                    ]
+                },
+                {
+                    "pattern": "InspListRR",
+                    "name": "InspListRR",
+                    "target": [
+                        "InspListRR"
+                    ]
+                },
+                {
+                    "pattern": "InspListRROpr/{contextPath}",
+                    "name": "InspListRROpr",
+                    "target": [
+                        "InspListRROpr"
+                    ]
+                },
+                {
+                    "pattern": "InspListUD",
+                    "name": "InspListUD",
+                    "target": [
+                        "InspListUD"
+                    ]
+                },
+                {
+                    "pattern": "InspListUDOpr/{contextPath}",
+                    "name": "InspListUDOpr",
+                    "target": [
+                        "InspListUDOpr"
+                    ]
+                },
+                {
+                    "pattern": "BOM",
+                    "name": "BOM",
+                    "target": [
+                        "BOM"
+                    ]
+                },
+                {
+                    "pattern": "Userlog",
+                    "name": "Userlog",
+                    "target": [
+                        "Userlog"
+                    ]
+                }
+            ],
+            "targets": {
+                "View1": {
+                    "viewName": "View1",
+                    "viewId": "View1",
+                    "viewType": "XML"
+                },
+                "Download": {
+                    "viewName": "DownLoadMaster",
+                    "viewId": "Download",
+                    "viewType": "XML"
+                },
+                "CreateNotif": {
+                    "viewName": "CreateNotif",
+                    "viewId": "CreateNotif",
+                    "viewType": "XML"
+                },
+                "ChangeNotif": {
+                    "viewName": "ChangeNotif",
+                    "viewId": "ChangeNotif",
+                    "viewType": "XML"
+                },
+                "WOCreate": {
+                    "viewName": "WOCreate",
+                    "viewId": "WOCreate",
+                    "viewType": "XML"
+                },
+                "WOChange": {
+                    "viewName": "WOChange",
+                    "viewId": "WOChange",
+                    "viewType": "XML"
+                },
+                "NWOCreate": {
+                    "viewName": "NWOCreate",
+                    "viewId": "NWOCreate",
+                    "viewType": "XML"
+                },
+                "WO_List": {
+                    "viewName": "WO_List",
+                    "viewId": "WO_List",
+                    "viewType": "XML"
+                },
+                "DOC_List": {
+                    "viewName": "DOC_List",
+                    "viewId": "DOC_List",
+                    "viewType": "XML"
+                },
+                "Teco": {
+                    "viewName": "Teco",
+                    "viewId": "Teco",
+                    "viewType": "XML"
+                },
+                "Create_MD": {
+                    "viewName": "Create_MD",
+                    "viewId": "Create_MD",
+                    "viewType": "XML"
+                },
+                "Cancel_MD": {
+                    "viewName": "Cancel_MD",
+                    "viewId": "Cancel_MD",
+                    "viewType": "XML"
+                },
+                "Create_CP": {
+                    "viewName": "Create_CP",
+                    "viewId": "Create_CP",
+                    "viewType": "XML"
+                },
+                "Cancel_CP": {
+                    "viewName": "Cancel_CP",
+                    "viewId": "Cancel_CP",
+                    "viewType": "XML"
+                },
+                "NotifList": {
+                    "viewName": "NotifList",
+                    "viewId": "NotifList",
+                    "viewType": "XML"
+                },
+                "OpenWOList": {
+                    "viewName": "OpenWOList",
+                    "viewId": "OpenWOList",
+                    "viewType": "XML"
+                },
+                "WOConfirmList": {
+                    "viewType": "XML",
+                    "viewName": "WOConfirmList"
+                },
+                "WOTecoList": {
+                    "viewName": "WOTecoList",
+                    "viewId": "WOTecoList",
+                    "viewType": "XML"
+                },
+                "FWPWOList": {
+                    "viewName": "FWPWOList",
+                    "viewId": "FWPWOList",
+                    "viewType": "XML"
+                },
+                "MaintenanceList": {
+                    "viewName": "MaintenanceList",
+                    "viewId": "MaintenanceList",
+                    "viewType": "XML"
+                },
+                "SplitApp": {
+                    "viewType": "XML",
+                    "viewName": "Main"
+                },
+                "Reports": {
+                    "viewType": "XML",
+                    "viewName": "Reports"
+                },
+                "FWPOPERList": {
+                    "viewType": "XML",
+                    "viewName": "FWPOPERList"
+                },
+                "CalibrationList": {
+                    "viewType": "XML",
+                    "viewName": "CalibrationList"
+                },
+                "OpenCalibList": {
+                    "viewType": "XML",
+                    "viewName": "OpenCalibList"
+                },
+                "COCreate": {
+                    "viewType": "XML",
+                    "viewName": "COCreate"
+                },
+                "COChange": {
+                    "viewType": "XML",
+                    "viewName": "COChange"
+                },
+                "COConfirmList": {
+                    "viewType": "XML",
+                    "viewName": "COConfirmList"
+                },
+                "Create_CPCO": {
+                    "viewType": "XML",
+                    "viewName": "Create_CPCO"
+                },
+                "COTecoList": {
+                    "viewType": "XML",
+                    "viewName": "COTecoList"
+                },
+                "COTeco": {
+                    "viewType": "XML",
+                    "viewName": "COTeco"
+                },
+                "InspListRR": {
+                    "viewType": "XML",
+                    "viewName": "InspListRR"
+                },
+                "InspListRROpr": {
+                    "viewType": "XML",
+                    "viewName": "InspListRROpr"
+                },
+                "InspListUD": {
+                    "viewType": "XML",
+                    "viewName": "InspListUD"
+                },
+                "InspListUDOpr": {
+                    "viewType": "XML",
+                    "viewName": "InspListUDOpr"
+                },
+                "BOM": {
+                    "viewName": "BOM",
+                    "viewId": "BOM",
+                    "viewType": "XML"
+                },
+                "Userlog": {
+                    "viewName": "Userlog",
+                    "viewId": "Userlog",
+                    "viewType": "XML"
+                }
+            }
+        },
+        "resources": {
+            "css": [
+                {
+                    "uri": "css/style_new.css"
+                }
+            ]
+        }
+    }
+}

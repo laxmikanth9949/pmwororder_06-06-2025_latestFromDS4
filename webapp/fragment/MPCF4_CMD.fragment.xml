@@ -1,0 +1,7 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<SelectDialog title="{i18n>MPC}" class="sapUiPopupWithPadding" items="{oMPf4Model>/}" search="onMPCSearch"
+		confirm="onMPCSearchConfirm" liveChange="onMPCSearch" cancel="onMPCSearchConfirm">
+		<StandardListItem title="{path:'oMPf4Model>Point', formatter:'.formatter.fnRemoveZero'}"  description="{oMPf4Model>Pttxt}"/>
+	</SelectDialog>
+</core:FragmentDefinition>
+

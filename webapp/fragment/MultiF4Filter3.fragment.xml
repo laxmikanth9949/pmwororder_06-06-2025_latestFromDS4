@@ -1,0 +1,22 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<Dialog title="{i18n>Workcenter}" class="Dialog_SG" stretch="true" contentHeight="80%">
+		<subHeader>
+			<Toolbar>
+				<Input width="100%" id="id_s3" class="cl_inqinpcss" placeholder="{i18n>Search}" liveChange="onFilter3Search"/>
+			</Toolbar>
+		</subHeader>
+		<content>
+			<List id="id_f3list" class="sapUiPopupWithPadding" items="{oWorkcenterModel>/}" selectionChange="onValidateF4"
+				mode="MultiSelect" growing="true" growingThreshold="100" growingScrollToLoad="true" includeItemInSelection="true">
+				<StandardListItem selected="{oWorkcenterModel>FLAG}" title="{oWorkcenterModel>ARBPL}" description="{oWorkcenterModel>KTEXT}" type="Active"></StandardListItem>
+			</List>
+		</content>
+		<beginButton>
+			<Button text="{i18n>OK}" press="onFilter3Confirm"/>
+		</beginButton>
+		<endButton>
+			<Button text="{i18n>Cancel}" press="onFilter3Cancel"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>
+

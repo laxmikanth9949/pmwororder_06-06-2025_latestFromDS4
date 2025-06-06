@@ -1,0 +1,37 @@
+<core:FragmentDefinition xmlns:f="sap.ui.layout.form" xmlns:cm="sap.ui.commons"  xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core"
+	xmlns="sap.m" xmlns:ndc="sap.ndc">
+	<Dialog class="sapUiNoContentPadding sapUiSizeCompact dialogCl" afterClose="onCloseDownFrag" showHeader="false" contentHeight="auto"
+		contentWidth="70%" resizable="true" type="Standard">
+		<subHeader>
+			<Bar>
+				<contentMiddle>
+					<Label text="{i18n>Select}" design="Bold" class="MasterData_Title"/>
+				</contentMiddle>
+				<contentRight>
+					<Button icon="sap-icon://decline" press="onCloseDownFrag" class="Close_Dialog"/>
+				</contentRight>
+			</Bar>
+		</subHeader>
+		<content>
+			<VBox fitContainer="true" alignItems="Center" justifyContent="Center" alignContent="Center">
+			<VBox>
+				<CustomListItem class="custlistBtn_PM strip_Cl_Btn2" type="Active" press="fnAddPictures">
+						<HBox>
+							<core:Icon src="sap-icon://camera" class="sapUiSmallMarginBeginEnd CLIcon_PM" ></core:Icon>
+							<Text text="{i18n>Camera}" class="clText"></Text>
+						</HBox>
+					</CustomListItem>
+					<CustomListItem class="custlistBtn_PM strip_Cl_Btn6" type="Active" press="OnUpload">
+						<HBox>
+							<core:Icon src="sap-icon://add-photo" class="sapUiSmallMarginBeginEnd CLIcon_PM" press="OnUpload"></core:Icon>
+							<Text text="{i18n>Upload}" class="clText"></Text>
+						</HBox>
+					</CustomListItem>
+					
+				
+					
+				</VBox>
+			</VBox>
+		</content>
+	</Dialog>
+</core:FragmentDefinition>

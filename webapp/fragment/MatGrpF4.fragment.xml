@@ -1,0 +1,7 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<SelectDialog title="{i18n>MatGrp}" class="sapUiPopupWithPadding" items="{GlobalModel>/F4MatGroup}" search="onMatGrpSearch"
+		confirm="onMatGrpSearchConfirm" liveChange="onMatGrpSearch" cancel="MatGrpSearchCancel">
+		<StandardListItem title="{path:'GlobalModel>Matkl'}"  description="{GlobalModel>Wgbez}"/>
+	</SelectDialog>
+</core:FragmentDefinition>
+

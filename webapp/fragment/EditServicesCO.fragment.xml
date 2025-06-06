@@ -1,0 +1,78 @@
+<core:FragmentDefinition xmlns:f="sap.ui.layout.form" xmlns:cm="sap.ui.commons" xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:ndc="sap.ndc">
+    <Dialog verticalScrolling="true" class="sapUiNoContentPadding sapUiSizeCompact dialogCl" stretchOnPhone="true" type="Standard">
+        <subHeader>
+            <Bar>
+                <contentMiddle>
+                    <Label text="{i18n>ServiceDetails}" design="Bold" class="MasterData_Title" />
+                </contentMiddle>
+                <contentRight>
+                    <Button icon="sap-icon://decline" press="onCloseEditServFrag" class="Close_Dialog" />
+                </contentRight>
+            </Bar>
+        </subHeader>
+        <content>
+            <Table inset="false">
+                <columns>
+                    <Column width="60%">
+                        <Text text="{i18n>ServiceNum}" />
+                    </Column>
+                    <Column>
+                        <Text text="{i18n>Qty}" />
+                    </Column>
+                    <Column>
+                        <Text text="{i18n>Price}" />
+                    </Column>
+                    <Column minScreenWidth="Desktop" demandPopin="true">
+                        <Text text="{i18n>ServiceText}" />
+                    </Column>
+                    <Column minScreenWidth="Desktop" demandPopin="true">
+                        <Text text="{i18n>CostElement}" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <cells>
+							<Input id="idE_ServiceNumCO" value="{GlobalModel>/ServiceNumValue}" showValueHelp="true" valueHelpRequest="onSrvNoF4"/>
+                     <!--   <ComboBox id="idE_ServiceNum" showSecondaryValues="true" items="{GlobalModel>/F4Services}" change="onChangeService" value="{GlobalModel>/ServiceNumValue}" required="true">
+                                <core:ListItem key="{GlobalModel>Asktx}" text="{GlobalModel>Asnum}" additionalText="{GlobalModel>Asktx} - {GlobalModel>Meins}" />
+                            </ComboBox>		-->
+                            <Input id="idE_ServQtyCO" value="{GlobalModel>/ServiceQty}" required="true" type="Number"/>
+                            <Input id="idE_ServPriceCO" value="{GlobalModel>/ServicePrice}" required="true" type="Number"/>
+                            <Input id="idE_ServTextCO" enabled="{GlobalModel>/ServEditable}" value="{GlobalModel>/ServiceText}" required="true" />
+                            <VBox>
+								<Input id="idE_CostEleCO" value="{GlobalModel>/CostEleValue}" showValueHelp="true" valueHelpRequest="onCostEleF4"/>
+					<!--		<ComboBox id="idE_CostEle" showSecondaryValues="true" items="{GlobalModel>/F4CostEle}" change="onChangeGL" value="{GlobalModel>/CostEleValue}" required="true">
+                                    <core:ListItem key="{GlobalModel>Saknr}" text="{GlobalModel>Saknr}" additionalText="{GlobalModel>Txt20}" />
+                                </ComboBox>		-->
+                           <ObjectNumber number="*{i18n>Allfieldsaremandatory}" state="Error"/>
+                                <Button text="{i18n>Add}" icon="sap-icon://add" class="sapUiSmallMargin" press="onAddServicesExisting" visible="{GlobalModel>/AddServicesVisible}"/>
+                            </VBox>
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+            <f:SimpleForm title="{i18n>ServiceHeader}" labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="12" singleContainerFullSize="false" class="sapUiSmallMarginTop" visible="{GlobalModel>/EditServiceVisible}">
+                <f:content>
+                    <Label text="{i18n>MatGrp}" required="true"/>
+					<Input id="idMatGroupEditCO" value="{GlobalModel>/SelectedMatGrp}" showValueHelp="true" valueHelpRequest="onMatGrpF4"/>
+              <!--      <ComboBox id="idMatGroupEdit" showSecondaryValues="true" items="{GlobalModel>/F4MatGroup}" change="onChangepo" filterSecondaryValues="true">
+                        <core:ListItem key="{GlobalModel>Matkl}" text="{GlobalModel>Wgbez}" additionalText="{GlobalModel>Matkl}" />
+                    </ComboBox>		-->
+                    <Label text="{i18n>PurGrp}" required="true"/>
+					<Input id="idPurGrpEditCO" value="{GlobalModel>/SelectedPurGrp}" showValueHelp="true" valueHelpRequest="onPurGrpF4"/>
+             <!--       <ComboBox id="idPurGrpEdit" showSecondaryValues="true" items="{GlobalModel>/F4PurGroup}" change="onChangepo" filterSecondaryValues="true">
+                        <core:ListItem key="{GlobalModel>Ekgrp}" text="{GlobalModel>Eknam}" additionalText="{GlobalModel>Ekgrp}" />
+                    </ComboBox>		-->
+                    <Label text="{i18n>PurOrg}" required="true"/>
+					<Input id="idPurOrgEditCO" value="{GlobalModel>/SelectedPurOrg}" showValueHelp="true" valueHelpRequest="onPurOrgF4"/>
+              <!--      <ComboBox id="idPurOrgEdit" showSecondaryValues="true" items="{GlobalModel>/F4PurOrg}" change="onChangepo" filterSecondaryValues="true">
+                        <core:ListItem key="{GlobalModel>Ekorg}" text="{GlobalModel>Ekotx}" additionalText="{GlobalModel>Ekorg}" />
+                    </ComboBox>		-->
+                </f:content>
+            </f:SimpleForm>
+        </content>
+        <endButton>
+            <Button text="{i18n>Save}" press="onSaveEditService" enabled="{GlobalModel>/EditServiceVisible}"></Button>
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

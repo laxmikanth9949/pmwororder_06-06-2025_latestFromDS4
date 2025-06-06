@@ -1,0 +1,148 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:ndc="sap.ndc" xmlns:m="sap.ui.commons.layout" xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core">
+	<Dialog verticalScrolling="true" class="sapUiNoContentPadding sapUiSizeCompact dialogCl" stretchOnPhone="true" type="Standard">
+		<customHeader>
+			<Bar>
+				<contentMiddle>
+					<Label text="{i18n>Operation}" class="MasterData_Title"></Label>
+				</contentMiddle>
+				<contentRight>
+					<Button icon="sap-icon://decline" press="onOperationClose" class="Close_Dialog"></Button>
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<content>
+			<f:Form editable="true" visible="true" class="sapUiSizeCompact form">
+				<f:layout>
+					<f:ResponsiveGridLayout labelSpanXL="3" labelSpanL="3" labelSpanM="4" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0"
+						emptySpanM="0" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false"/>
+				</f:layout>
+				<f:formContainers>
+					<f:FormContainer>
+						<f:formElements>
+							<f:FormElement>
+								<f:label>
+									<Label text="{i18n>Operation}" design="Bold" class="FragmentText" required="true"></Label>
+								</f:label>
+								<f:fields>
+									<VBox>
+										<Input enabled="false" value="{oPerationModel>/Operation}"  class="InputPlaceholder_MC" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="onOperationF4"></Input>
+									</VBox>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement>
+								<f:label>
+									<Label text="{i18n>Description}" design="Bold" class="FragmentText"></Label>
+								</f:label>
+								<f:fields>
+									<Input  value="{oPerationModel>/Description}" class="InputPlaceholder_MC" editable="false"></Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement>
+								<f:label>
+									<Label text="{i18n>WorkCenter}" design="Bold" class="FragmentText"></Label>
+								</f:label>
+								<f:fields>
+									<ComboBox showSecondaryValues="true" value="{oPerationModel>/MnWkCtr}" items="{ path: 'oWorkcenterModel>/', sorter: { path: 'text' } }" id="id_work" change ="onChangeWorkCenter">
+										<core:ListItem key="{oWorkcenterModel>Arbpl}" text="{oWorkcenterModel>Arbpl}" additionalText="{oWorkcenterModel>KtextUp}"/>  <!-- text="{oWorkcenterModel>ARBPL} : {oWorkcenterModel>KTEXTUP}" -->
+									</ComboBox>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement>
+								<f:label>
+									<Label text="{i18n>ConfText}" required="true" design="Bold" class="FragmentText"></Label>
+								</f:label>
+								<f:fields>
+									<Input value="{oPerationModel>/ConfText}" maxLength="40"/>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement>
+								<f:label>
+									<Label text="{i18n>MalD}" design="Bold" class="FragmentText" required="true"></Label>
+								</f:label>
+								<f:fields>
+									<DatePicker id="startDTId_cp" dateValue="{oPerationModel>/ExecStartDate}" displayFormat="MM/dd/yyyy" 
+										maxDate="{oPerationModel>/maxDate}" change="onDateChange"/>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement>
+								<f:label>
+									<Label text="{i18n>MalT}" design="Bold" class="FragmentText" required="true"></Label>
+								</f:label>
+								<f:fields>
+									<TimePicker id="startTime" value="{oPerationModel>/ExecStartTime}" displayFormat="HH:mm:ss" support2400="true" valueFormat="HH:mm:ss" change="onTimeChange"/>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement>
+								<f:label>
+									<Label text="{i18n>EMalD}" design="Bold" class="FragmentText" required="true"></Label>
+								</f:label>
+								<f:fields>
+									<DatePicker id="finDTId_cp" displayFormat="MM/dd/yyyy" dateValue="{oPerationModel>/ExecFinDate}" maxDate="{oPerationModel>/maxDate}"  change="onDateChange"/>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement>
+								<f:label>
+									<Label text="{i18n>EMalT}" design="Bold" class="FragmentText" required="true"></Label>
+								</f:label>
+								<f:fields>
+									<TimePicker id="endTime" value="{oPerationModel>/ExecFinTime}" valueFormat="HH:mm:ss" displayFormat="HH:mm:ss" support2400="true" change="onTimeChange"/>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement >
+								<f:label>
+									<Label text="{i18n>ActWork}" design="Bold" class="FragmentText" ></Label>
+								</f:label>
+								<f:fields>
+									<Input value="{path:'oPerationModel>/ActWork', formatter:'.formatter.getHoursMinsformat'}" id="id_timehrs" editable="false"/>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement>
+							<f:label>
+							        <Label class="FragmentText" text="{i18n>ReasonCode}" design="Bold"/>
+							</f:label>
+							<f:fields>
+									<ComboBox id="idReasoncode1" showSecondaryValues="true" change="onSetReasonCode" selectedKey="1" items ="{GlobalReasonCode>/}" value ="{oPerationModel>/Reason_Code}">
+                                          <core:ListItem key="{GlobalReasonCode>Grund}" text="{GlobalReasonCode>Grund}" additionalText="{GlobalReasonCode>Grdtx}" />
+                                      
+                                    </ComboBox>
+									
+							</f:fields>
+							</f:FormElement>
+							<f:FormElement>
+								<f:fields>
+								<HBox>
+							<!--		<Label text="{i18n>Complete}" design="Bold" class="FragmentText sapUiSmallMarginEnd"></Label>	-->
+								
+									<CheckBox selected="{oPerationModel>/FinConf}" text="{i18n>FinalConfimation}"/>
+								</HBox>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement>
+								<f:fields>
+								<HBox>
+							<!--		<Label text="{i18n>Complete}" design="Bold" class="FragmentText sapUiSmallMarginEnd"></Label>	-->
+								
+									<CheckBox selected="{oPerationModel>/Complete}" text="{i18n>Complete}"/>
+								</HBox>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement>
+								<f:fields>
+								<HBox>
+							<!--		<Label text="{i18n>Complete}" design="Bold" class="FragmentText sapUiSmallMarginEnd"></Label>	-->
+								
+									<CheckBox selected="{oPerationModel>/ClearRes}" text="{i18n>ClearRes}"/>
+								</HBox>
+								</f:fields>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+				</f:formContainers>
+			</f:Form>
+		</content>
+		<endButton>
+			<Button text="{i18n>Save}" press="onSaveItemOk"></Button>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

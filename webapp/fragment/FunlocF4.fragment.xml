@@ -1,0 +1,7 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<SelectDialog title="{i18n>FunctionLocation}" class="sapUiPopupWithPadding" items="{oFunctionalModel>/}" search="onFlocSearch"
+		confirm="onFlocSearchConfirm" liveChange="onFlocSearch" cancel="onFlocSearchConfirm">
+		<StandardListItem title="{oFunctionalModel>Tplnr}"  description="{oFunctionalModel>Pltxt}"/>
+	</SelectDialog>
+</core:FragmentDefinition>
+

@@ -1,0 +1,9 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	
+	<SelectDialog title="{i18n>Object_partcode}" class="sapUiPopupWithPadding" items="{JMOjbpartcode>/}" search="ojbectpartcodeSearch"
+		confirm="ojbPartcodeSearchConfirm" liveChange="ojbectpartcodeSearch" cancel="ojbPartcodeSearchConfirm">
+		<StandardListItem title="{JMOjbpartcode>Code}"  description="{JMOjbpartcode>CodeText}"/>
+	
+	</SelectDialog>
+	
+</core:FragmentDefinition>

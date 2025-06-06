@@ -1,0 +1,7 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<SelectDialog  title="{i18n>material}"  items="{path: 'oMaterialModel>/'}" class="Dialog_WO" search="onProductF4Search"
+		confirm="onMaterialNumberChange" liveChange="onProductF4Search" >
+		<StandardListItem  title="{oMaterialModel>Matnr}" info="{oMaterialModel>Charg}" description = "{oMaterialModel>Maktx}" infoState = "Success"/>
+	</SelectDialog>
+	
+</core:FragmentDefinition>

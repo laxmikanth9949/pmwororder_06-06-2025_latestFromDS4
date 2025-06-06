@@ -1,0 +1,56 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:ndc="sap.ndc" xmlns:m="sap.ui.commons.layout" xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core">
+	<Dialog verticalScrolling="true" class="sapUiNoContentPadding sapUiSizeCompact dialogCl" stretchOnPhone="true" type="Standard">
+		<customHeader>
+			<Bar>
+				<contentMiddle>
+					<Label text="{i18n>MPC}" class="MasterData_Title"></Label>
+				</contentMiddle>
+				<contentRight>
+					<Button icon="sap-icon://decline" press="onCancelMVMDClose"  class="Close_Dialog"></Button>
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<content>
+			<!-- Added by Manohar -->
+			<VBox class="sapUiTinyMargin">
+				<Button text="+ {i18n>AddMPC}" type="Emphasized" class="sapUiSizeCompact" press="onMPCF4"/>
+			</VBox>
+			<VBox class="sapUiTinyMargin">
+			<List items="{VALUES>/}">
+				<CustomListItem class="custlist_PN">
+						<VBox width="100%">
+							<Toolbar class="cl_toolbar" height="2rem" visible="false">
+								<Label text="{i18n>MeassuringPoint}: {VALUES>LineNo}"/>
+							</Toolbar>
+							<Toolbar class="cl_toolbar" height="2rem">
+								<Label required="true" text="{i18n>MPC}: {VALUES>MPC}"/>
+							</Toolbar>
+							<Toolbar class="cl_toolbar" height="2rem">
+								<Label text="{i18n>MPCDes}: {VALUES>MPCText}"/>
+								<ToolbarSpacer/>
+								<core:Icon src="sap-icon://delete" color="red" press="onDeleteMultiValue"></core:Icon>
+							</Toolbar>
+							<Toolbar class="cl_toolbar" height="2rem" visible="{VALUES>Indct}">
+								<Label text="{i18n>LastCounterReading}: " width="10rem"/>
+								<Input value="{VALUES>LastValue}" textAlign="Left" enabled="false"/>
+							</Toolbar> 
+							<Toolbar class="cl_toolbar" height="2rem">
+								<Label required="true" text="{i18n>MCValue}: " width="10rem"/>
+								<Input value="{VALUES>ReadValue}" change="onReadingCouter"/>
+							</Toolbar>
+							<Toolbar class="cl_toolbar" height="2rem">
+								<Label text="{i18n>UOM}: " width="10rem"/>
+								<Input editable="false" value="{VALUES>Unitm}"/>
+							</Toolbar>
+						</VBox>
+				</CustomListItem>
+			</List>
+			</VBox>
+			
+		</content>
+		<endButton>
+			<Button text="{i18n>Save}" press="onMVMDItemOk"></Button>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

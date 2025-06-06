@@ -1,0 +1,44 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout">
+	<Dialog title="{i18n>Filter}" class="cl_dialog" stretch="true" showHeader="false">
+	<subHeader>
+		<Toolbar class="cl_filtersubheadertoolbar">
+			<Title text="{i18n>Filter}"/>
+			<ToolbarSpacer/>
+			<Button icon="sap-icon://clear-filter" press="fnApplyFilter1" class="cl_close" type="Reject"/>
+		</Toolbar>
+		
+	</subHeader>
+		<content>
+			<VBox class="sapUiTinyMargin">
+				
+				<Text class="cl_text3" text="{i18n>Description}" />
+				<Input id="id_wofilter6_c" value="{FILTER>/DESC}" class="Input_PM sapUiSizeCompact" />
+				
+				<Text class="cl_text3" text="{i18n>WorkorderStatus}" />
+				<Input id="id_wofilter7_c" value="{FILTER>/Status}" valueHelpRequest="onFilter7Open" valueHelpOnly="true" enabled="true" showValueHelp="true" class="Input_PM sapUiSizeCompact" />
+				
+				
+				<Text class="cl_text3" text="{i18n>WorkOrderType}" />
+				<Input id="id_wofilter1_c" value="{FILTER>/WOType}" valueHelpRequest="onFilter6Open" valueHelpOnly="true" enabled="true" showValueHelp="true" class="Input_PM sapUiSizeCompact"/>
+				
+				
+				<Text class="cl_text3 sapUiTinyMarginTop" text="{i18n>PlannerGroup}"  />
+				<Input id="id_wofilter2_c" value="{FILTER>/PG}" valueHelpRequest="onFilter2Open" valueHelpOnly="true" enabled="true" showValueHelp="true" class="Input_PM sapUiSizeCompact"/>
+				
+				<Text class="cl_text3 sapUiTinyMarginTop" text="{i18n>Workcenter}" />
+				<Input id="id_wofilter3_c" value="{FILTER>/WC}" valueHelpRequest="onFilter3Open" valueHelpOnly="true" enabled="true" showValueHelp="true" class="Input_PM sapUiSizeCompact"/>
+				
+				<Text class="cl_text3 sapUiTinyMarginTop" text="{i18n>Equipment}" />
+				<Input id="id_wofilter4_c" value="{FILTER>/Equip}" valueHelpRequest="onEquipF4" enabled="true" showValueHelp="true" class="Input_PM sapUiSizeCompact" valueHelpOnly="true">
+				</Input>
+				
+				<Text class="cl_text3 sapUiTinyMarginTop" text="{i18n>FLoc}"/>
+				<Input id="id_wofilter5_c" value="{FILTER>/FL}" valueHelpRequest="onFunLocF4" enabled="true" showValueHelp="true" class="Input_PM sapUiSizeCompact" valueHelpOnly="true"/>
+			</VBox>
+		</content>
+		<buttons>
+			<Button text="{i18n>ApplyFilters}" press="fnApplyFilter1" class="cl_save2" type="Emphasized"/>
+			<Button text="{i18n>Close}" press="fnCloseFilter" class="cl_close" type="Reject"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

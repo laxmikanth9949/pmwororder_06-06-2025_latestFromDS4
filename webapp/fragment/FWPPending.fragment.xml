@@ -1,0 +1,20 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout">
+	<Dialog title="{i18n>Pending}" class="cl_dialog" stretch="true">
+		<content>
+			<List items="{FWPOpenOper>/}">
+				<CustomListItem>
+					<VBox class="sapUiTinyMargin">
+					<Text text="{FWPOpenOper>Orderid}"/>
+					<Text text="{FWPOpenOper>Operation} - {FWPOpenOper>Description}"/>
+					<Text text="{FWPOpenOper>Equnr} - {FWPOpenOper>Eqktu}"/>
+					<Text text="{FWPOpenOper>MnWkCtr}"/>
+					</VBox>
+				</CustomListItem>
+			</List>		
+		</content>
+		<buttons>
+			<Button text="{i18n>Sync}" press="fnSync"  type="Emphasized"/>
+			<Button text="{i18n>Close}" press="fnCloseSync"  type="Reject"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

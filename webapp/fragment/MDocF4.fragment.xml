@@ -1,0 +1,7 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<SelectDialog title="{i18n>Mdocm}" class="sapUiPopupWithPadding" items="{oMdocF4Model>/}" search="onMDocF4Search"
+		confirm="onMDocF4SearchConfirm" liveChange="onMDocF4Search" cancel="onMDocF4SearchConfirm">
+		<StandardListItem title="{path:'oMdocF4Model>Mdocm', formatter:'.formatter.fnRemoveZero'}" description="{oMdocF4Model>Mdtxt}"/>
+	</SelectDialog>
+</core:FragmentDefinition>
+

@@ -1,0 +1,103 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:ndc="sap.ndc" xmlns:m="sap.ui.commons.layout" xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core">
+	<Dialog verticalScrolling="true" class="sapUiNoContentPadding sapUiSizeCompact dialogCl" stretchOnPhone="true" type="Standard">
+		<customHeader>
+			<Bar>
+				<contentMiddle>
+					<Label text="{i18n>ResultRecord}" class="MasterData_Title"></Label>
+				</contentMiddle>
+				<contentRight>
+					<Button icon="sap-icon://decline" press="onOperationClose" class="Close_Dialog"></Button>
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<content>
+			<f:Form editable="true" visible="true" class="sapUiSizeCompact form">
+				<f:layout>
+					<f:ResponsiveGridLayout labelSpanXL="3" labelSpanL="3" labelSpanM="4" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0"
+						emptySpanM="0" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false"/>
+				</f:layout>
+				<f:formContainers>
+					<f:FormContainer>
+						<f:formElements>
+						<f:FormElement>
+								<f:label>
+									<Label text="{i18n>InspectionLot}" design="Bold" class="FragmentText" ></Label>
+								</f:label>
+								<f:fields>
+									<VBox>
+										<Input enabled="false" value="{InspRROprModel>/Insplot}"  class="InputPlaceholder_MC" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="onOperationF4"></Input>
+									</VBox>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement>
+								<f:label>
+									<Label text="{i18n>Operation}" design="Bold" class="FragmentText" ></Label>
+								</f:label>
+								<f:fields>
+									<VBox>
+										<Input enabled="false" value="{InspRROprModel>/Inspoper}"  class="InputPlaceholder_MC" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="onOperationF4"></Input>
+									</VBox>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement>
+								<f:label>
+									<Label text="{i18n>Description}" design="Bold" class="FragmentText"></Label>
+								</f:label>
+								<f:fields>
+									<Input  value="{InspRROprModel>/TxtOper}" class="InputPlaceholder_MC" editable="false"></Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement>
+								<f:label>
+									<Label text="{i18n>CharacteristicValue}" design="Bold" class="FragmentText"></Label>
+								</f:label>
+								<f:fields>
+									<Input enabled="false" value="{InspRROprModel>/Inspchar}-{InspRROprModel>/CharDesc}"  class="InputPlaceholder_MC" showValueHelp="false" valueHelpOnly="true" valueHelpRequest="onOperationF4"></Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement>
+								<f:label>
+									<Label text="{i18n>Specification}" design="Bold" class="FragmentText"></Label>
+								</f:label>
+								<f:fields>
+									<Input enabled="false" value="{InspRROprModel>/SpecRange}"  class="InputPlaceholder_MC" showValueHelp="false" valueHelpOnly="true" valueHelpRequest="onOperationF4"></Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement>
+								<f:label>
+									<Label text="{i18n>Evaluation}" design="Bold" class="FragmentText"></Label>
+								</f:label>
+								<f:fields>
+									<RadioButtonGroup id="rbg3">
+			                        <RadioButton  text="{i18n>Accept}"  selected="true"/>
+			                        <RadioButton  text="{i18n>Reject}"/>
+		                            </RadioButtonGroup>								  
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement>
+								<f:label>
+									<Label text="{i18n>MeanValue}" design="Bold" class="FragmentText" required="true"></Label>
+								</f:label>
+								<f:fields>
+									<Input value="{InspRROprModel>/MeanValue}" maxLength="40"/>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement>
+								<f:label>
+									<Label text="{i18n>Remarks}" design="Bold" class="FragmentText"></Label>
+								</f:label>
+								<f:fields>
+									<Input enabled="true" value="{InspRROprModel>/Remark}"  class="InputPlaceholder_MC" showValueHelp="false" valueHelpOnly="true" valueHelpRequest="onOperationF4"></Input>
+								</f:fields>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+				</f:formContainers>
+			</f:Form>
+		</content>
+		<endButton>
+			<Button text="{i18n>Save}" press="onSaveItemOk"></Button>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

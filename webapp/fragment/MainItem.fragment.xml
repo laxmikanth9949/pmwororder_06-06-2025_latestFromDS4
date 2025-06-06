@@ -1,0 +1,229 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:ndc="sap.ndc" xmlns:m="sap.ui.commons.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+    <Dialog verticalScrolling="true" class="sapUiNoContentPadding sapUiSizeCompact dialogCl" stretchOnPhone="true" type="Standard">
+        <customHeader>
+            <Bar>
+                <contentMiddle>
+                    <Label text="{i18n>Item}" class="MasterData_Title"></Label>
+                </contentMiddle>
+                <contentRight>
+                    <Button icon="sap-icon://decline" press="onCancelMainItemClose" class="Close_Dialog"></Button>
+                </contentRight>
+            </Bar>
+        </customHeader>
+        <content>
+            <f:Form editable="true" visible="true" class="sapUiSizeCompact form">
+                <f:layout>
+                    <f:ResponsiveGridLayout labelSpanXL="3" labelSpanL="3" labelSpanM="4" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false" />
+                </f:layout>
+                <f:formContainers>
+                    <f:FormContainer>
+                        <f:formElements>
+                            <f:FormElement>
+                                <f:label>
+                                    <Label text="{i18n>LineItemI}" design="Bold" class="FragmentText"></Label>
+                                </f:label>
+                                <f:fields>
+                                    <Input id="itemId"></Input>
+                                </f:fields>
+                            </f:FormElement>
+                            <f:FormElement>
+                                <f:label>
+                                    <Label class="FragmentText" text="{i18n>conKey}" required="true" />
+                                </f:label>
+                                <f:fields>
+                                    <ComboBox id="conKeyid" showSecondaryValues="false" change="onChangeConKey" selectedKey="PM01">
+                                        <core:Item key="PM01" text="{i18n>PM01}" />
+                                        <core:Item key="PM03" text="{i18n>PM03}" />
+                                    </ComboBox>
+                                </f:fields>
+                            </f:FormElement>
+                            <f:FormElement>
+                                <f:label>
+                                    <Label text="{i18n>Workcenter}" design="Bold" class="FragmentText"></Label>
+                                </f:label>
+                                <f:fields>
+                                   
+                                    <ComboBox showSecondaryValues="true" id="WorkId" items="{oWorkcenterModel>/}" change="onchangeworkorder">
+                                        <core:ListItem key="{oWorkcenterModel>Arbpl}" text="{oWorkcenterModel>Arbpl}" additionalText="{oWorkcenterModel>KtextUp}" />
+                                    </ComboBox>
+                                </f:fields>
+                            </f:FormElement>
+                            <f:FormElement>
+                                <f:label>
+                                    <Label text="{i18n>Text}" design="Bold" class="FragmentText" required="true"></Label>
+                                </f:label>
+                                <f:fields>
+                                    <Input id="idText" class="InputPlaceholder_MC" maxLength="40"></Input>
+                                </f:fields>
+                            </f:FormElement>
+                             <f:FormElement>
+                                <f:label>
+                                    <Label text="{i18n>ActiType_f}" design="Bold" class="FragmentText" ></Label>
+                                </f:label>
+                                <f:fields>
+                                  <!-- <Input id="idAct_type1" class="InputPlaceholder_MC"></Input> -->
+                                    <ComboBox showSecondaryValues="true" id="idAct_type1" items="{GlobalActType>/}">
+                                        <core:ListItem key="{GlobalActType>Lstar}" text="{GlobalActType>Lstar}" additionalText="{GlobalActType>Ltext}" />
+                                    </ComboBox>
+                                </f:fields>
+                            </f:FormElement>
+                             <f:FormElement>
+                                <f:label>
+                                    <Label text="{i18n>Calkey_f}" design="Bold" class="FragmentText" ></Label>
+                                </f:label>
+                                <f:fields>
+                                    <!-- <ComboBox class="CB_PM" showSecondaryValues="true" id="idCalkey1" items="{oPlannerModel>/}" change="onChangepo">
+                                        <core:ListItem key="{oPlannerModel>INGRP}" text="{oPlannerModel>INGRP}" additionalText="{oPlannerModel>EQKTX}" />
+                                    </ComboBox> -->
+                                   
+                                        <ComboBox id="idCalkey1" showSecondaryValues="true" change="onChangeCalculationKey" selectedKey="1" items ="{Globalcalkey>/}" >
+                                         <core:ListItem key="{Globalcalkey>DomVal}" text="{Globalcalkey>ValText}" additionalText="{Globalcalkey>ValText}" />
+                                     
+                                    </ComboBox>
+                                </f:fields>
+                            </f:FormElement>
+                             <f:FormElement>
+                                <f:label>
+                                    <Label text="{i18n>WorkAct_f}" design="Bold" class="FragmentText" ></Label>
+                                </f:label>
+                                <f:fields>
+                                    <Input id="idWorkAct1" type="Number" class="InputPlaceholder_MC" change="onChangeWork">
+                                    <layoutData>
+                                            <FlexItemData growFactor="1" />
+                                        </layoutData></Input>
+                                    <ComboBox id="idUOM" showSecondaryValues="false" change="onChangeWorkActUnit" selectedKey="HR">
+                                        <core:Item key="HR" text="{i18n>HR}" />
+                                        <core:Item key="MIN" text="{i18n>MIN}" />
+                                    </ComboBox>
+                                </f:fields>
+                            </f:FormElement>
+                             <f:FormElement>
+                                <f:label>
+                                    <Label text="{i18n>NormalAct_f}" design="Bold" class="FragmentText" ></Label>
+                                </f:label>
+                                <f:fields>
+                                    <Input id="idNormalAct1" type="Number" class="InputPlaceholder_MC" change="onChangeNormal">
+                                    <layoutData>
+                                            <FlexItemData growFactor="2" />
+                                        </layoutData></Input>
+                                       <ComboBox id="idUOM1" showSecondaryValues="false" change="onChangeNormalActUnit" selectedKey="HR">
+                                        <core:Item key="HR" text="{i18n>HR}" />
+                                        <core:Item key="MIN" text="{i18n>MIN}" />
+                                    </ComboBox>
+                                </f:fields>
+                            </f:FormElement>
+                             <f:FormElement>
+                                <f:label>
+                                    <Label text="{i18n>Capno_f}" design="Bold" class="FragmentText" ></Label>
+                                </f:label>
+                                <f:fields>
+                                    <Input id="idCapno1" type="Number" class="InputPlaceholder_MC" change="onChangeCap"></Input>
+                                </f:fields>
+                            </f:FormElement>
+                        </f:formElements>
+                    </f:FormContainer>
+                </f:formContainers>
+            </f:Form>
+            <IconTabBar visible="{GlobalModel>/ServDetVisible}" headerMode="Inline" class="sapUiResponsiveContentPadding">
+                <items>
+                    <IconTabFilter text="{i18n>ServiceHeader}">
+                        <f:SimpleForm labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="12" singleContainerFullSize="false">
+                            <f:content>
+                                <Label text="{i18n>MatGrp}" required="true"/>
+                                <Input value="{GlobalModel>/SelectedMatGrp}" showValueHelp="true" valueHelpRequest="onMatGrpF4"/>
+                            <!--    <ComboBox showSecondaryValues="true" items="{GlobalModel>/F4MatGroup}" change="onChangepo" selectedKey="{GlobalModel>/SelectedMatGrp}" filterSecondaryValues="true">
+                                    <core:ListItem key="{GlobalModel>Matkl}" text="{GlobalModel>Wgbez}" additionalText="{GlobalModel>Matkl}" />
+                                </ComboBox> -->
+                               
+                                <Label text="{i18n>PurGrp}" required="true"/>
+                                <Input value="{GlobalModel>/SelectedPurGrp}" showValueHelp="true" valueHelpRequest="onPurGrpF4"/>
+                         <!--        <ComboBox showSecondaryValues="true" items="{GlobalModel>/F4PurGroup}" change="onChangepo" selectedKey="{GlobalModel>/SelectedPurGrp}" filterSecondaryValues="true">
+                                    <core:ListItem key="{GlobalModel>Ekgrp}" text="{GlobalModel>Eknam}" additionalText="{GlobalModel>Ekgrp}" />
+                                </ComboBox> -->
+                                <Label text="{i18n>PurOrg}" required="true"/>
+                                <Input value="{GlobalModel>/SelectedPurOrg}" showValueHelp="true" valueHelpRequest="onPurOrgF4"/>
+                          <!--       <ComboBox showSecondaryValues="true" items="{GlobalModel>/F4PurOrg}" change="onChangepo" selectedKey="{GlobalModel>/SelectedPurOrg}" filterSecondaryValues="true">
+                                    <core:ListItem key="{GlobalModel>Ekorg}" text="{GlobalModel>Ekotx}" additionalText="{GlobalModel>Ekorg}" />
+                                </ComboBox>     -->
+                                <Label text="{i18n>RequestedBy}" required="true"/>
+                                <Input value="{GlobalModel>/RequestedBy}"/>
+                            </f:content>
+                        </f:SimpleForm>
+                    </IconTabFilter>
+                    <IconTabFilter text="{i18n>ServiceItems}">
+                        <Table inset="false">
+                            <columns>
+                                <Column width="60%">
+                                     <Label text="{i18n>ServiceNum}"/>
+                                </Column>
+                                <Column>
+                                    <Label text="{i18n>Qty}" required="true"/>
+                                </Column>
+                                <Column>
+                                    <Label text="{i18n>Price}" required="true"/>
+                                </Column>
+                                <Column minScreenWidth="Desktop" demandPopin="true">
+                                    <Label text="{i18n>ServiceText}" required="true"/>
+                                </Column>
+                                <Column minScreenWidth="Desktop" demandPopin="true">
+                                    <Label text="{i18n>CostElement}" required="true"/>
+                                </Column>
+                                <!--      <Column minScreenWidth="Desktop" demandPopin="true">
+                                    <Text text="" />
+                                </Column> -->
+                            </columns>
+                            <items>
+                                <ColumnListItem>
+                                    <cells>
+                                        <Input value="{GlobalModel>/ServiceNumValue}" showValueHelp="true" valueHelpRequest="onSrvNoF4"/>
+                                  <!--      <ComboBox showSecondaryValues="true" items="{GlobalModel>/F4Services}" change="onChangeService" value="{GlobalModel>/ServiceNumValue}" required="true">
+                                            <core:ListItem key="{GlobalModel>Asktx}" text="{GlobalModel>Asnum}" additionalText="{GlobalModel>Asktx} - {GlobalModel>Meins}" />
+                                        </ComboBox>     -->
+                                        <Input id="idServQty" value="{GlobalModel>/ServiceQty}" required="true" type="Number" />
+                                        <Input id="idServPrice" value="{GlobalModel>/ServicePrice}" required="true" type="Number" />
+                                        <Input id="idServText" enabled="{GlobalModel>/ServEditable}" value="{GlobalModel>/ServiceText}" required="true" maxLength="40"/>
+                                        <VBox>
+                                            <Input value="{GlobalModel>/CostEleValue}" showValueHelp="true" valueHelpRequest="onCostEleF4"/>
+                                       <!--     <ComboBox showSecondaryValues="true" items="{GlobalModel>/F4CostEle}" change="onChangeGL" value="{GlobalModel>/CostEleValue}" required="true">
+                                                <core:ListItem key="{GlobalModel>Saknr}" text="{GlobalModel>Saknr}" additionalText="{GlobalModel>Txt20}" />
+                                            </ComboBox>         -->
+                                            <HBox>
+                                                <Button text="{i18n>Add}" icon="sap-icon://add" class="sapUiSmallMargin" press="onAddServices" />
+                                                <Button text="{i18n>ViewServices}" class="sapUiSmallMargin" press="onViewServiceItems" />
+                                            </HBox>
+                                        </VBox>
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                        </Table>
+                        <!--         <f:SimpleForm visible="{GlobalModel>/ServDetVisible}" labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="12" singleContainerFullSize="false">
+                            <f:content>
+                                <Label text="Service No." />
+                                <ComboBox showSecondaryValues="true" items="{GlobalModel>/F4Services}" change="onChangepo">
+                                    <core:ListItem key="{GlobalModel>Asktx}" text="{GlobalModel>Asnum}" additionalText="{GlobalModel>Asktx} - {GlobalModel>Meins}" />
+                                </ComboBox>
+                                <Label text="Short Text" />
+                                <Input id="idServText" value="" />
+                                <Label text="Quantity" />
+                                <Input id="idServQty" value="" />
+                                <Label text="Price" />
+                                <Input id="idServPrice" value="" />
+                                <Label text="Unit" />
+                                <Input id="idServUnit" value="" />
+                                <Label text="Cost Element" />
+                                <ComboBox showSecondaryValues="true" items="{GlobalModel>/F4PurOrg}" change="onChangepo">
+                                    <core:ListItem key="{GlobalModel>Ekorg}" text="{GlobalModel>Ekotx}" additionalText="{GlobalModel>Ekorg}" />
+                                </ComboBox>
+                                <Button text="Add Service" />
+                                <Button text="View Services" />
+                            </f:content>
+                        </f:SimpleForm> -->
+                    </IconTabFilter>
+                </items>
+            </IconTabBar>
+        </content>
+        <endButton>
+            <Button text="{i18n>Save}" press="onSaveMainItemOk"></Button>
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

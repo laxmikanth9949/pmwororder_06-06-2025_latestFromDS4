@@ -1,0 +1,38 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout">
+	<Dialog title="{i18n>Filter}" class="cl_dialog" stretch="true" showHeader="false">
+	<subHeader>
+		<Toolbar>
+			<Title text="{i18n>Filter}"/>
+			<ToolbarSpacer/>
+			<Button icon="sap-icon://clear-filter" press="fnApplyFilter1" class="cl_close" type="Reject"/>
+		</Toolbar>
+		
+	</subHeader>
+		<content>
+			<VBox class="sapUiTinyMargin">
+				<Text class="cl_text3" text="{i18n>NotifType}" />
+				<Input id="id_filter1" value="{FILTER>/NotifType}" valueHelpRequest="onFilter1Open" showValueHelp="true" class="Input_PM sapUiSizeCompact" valueHelpOnly="true"/>
+				
+				<Text class="cl_text3" text="{i18n>NotificationStatus}" />
+				<Input id="id_filter7" value="{FILTER>/Status}" valueHelpRequest="onFilter7Open" showValueHelp="true" class="Input_PM sapUiSizeCompact" valueHelpOnly="true"/>
+				
+				<Text class="cl_text3 sapUiTinyMarginTop" text="{i18n>PlannerGroup}"  />
+				<Input id="id_filter2" value="{FILTER>/PG}" valueHelpRequest="onFilter2Open" showValueHelp="true" class="Input_PM sapUiSizeCompact" valueHelpOnly="true"/>
+				
+				<Text class="cl_text3 sapUiTinyMarginTop" text="{i18n>Workcenter}" />
+				<Input id="id_filter3" value="{FILTER>/WC}" valueHelpRequest="onFilter3Open" showValueHelp="true" class="Input_PM sapUiSizeCompact" valueHelpOnly="true"/>
+				
+				<Text class="cl_text3 sapUiTinyMarginTop" text="{i18n>Equipment}" />
+				<Input id="id_filter4" value="{FILTER>/Equip}" valueHelpRequest="onEquipF4" showValueHelp="true" class="Input_PM sapUiSizeCompact" valueHelpOnly="true">
+				</Input>
+				
+				<Text class="cl_text3 sapUiTinyMarginTop" text="{i18n>FLoc}"/>
+				<Input id="id_filter5" value="{FILTER>/FL}" valueHelpRequest="onFunLocF4" showValueHelp="true" class="Input_PM sapUiSizeCompact" valueHelpOnly="true"/>
+			</VBox>
+		</content>
+		<buttons>
+			<Button text="{i18n>ApplyFilters}" press="fnApplyFilter1" class="cl_save2" type="Emphasized"/>
+			<Button text="{i18n>Close}" press="fnCloseFilter" class="cl_close" type="Reject"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

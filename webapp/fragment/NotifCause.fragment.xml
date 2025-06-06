@@ -1,0 +1,9 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	
+	<SelectDialog title="{i18n>cause}" class="sapUiPopupWithPadding" items="{JMCause>/}" search="CauseSearch"
+		confirm="CauseSearchConfirm" liveChange="CauseSearch" cancel="CauseSearchConfirm">
+		<StandardListItem title="{JMCause>CodeGroup}"  description="{JMCause>CodeGroupText}"/>
+	
+	</SelectDialog>
+	
+</core:FragmentDefinition>

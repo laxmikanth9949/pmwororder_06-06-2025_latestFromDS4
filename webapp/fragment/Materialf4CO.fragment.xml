@@ -1,0 +1,14 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<SelectDialog title="{i18n>Material}" class="sapUiPopupWithPadding" items="{MaterialModelF4>/}" search="materialSearch"
+		confirm="materialSearchConfirm" liveChange="materialSearch" cancel="materialSearchCancel" multiSelect="true" rememberSelections="false">
+		<!--<StandardListItem  title="{path:'MaterialModelF4>MATNR'}"  description="{MaterialModelF4>MAKTX}"/>-->
+		
+		<!-- Added by Manohar -->
+		<ObjectListItem title="{MaterialModelF4>Matnr}" type="Active">
+			<ObjectAttribute text="{MaterialModelF4>Maktx}"/>
+			<ObjectAttribute text="{i18n>Quantity}: {path:'MaterialModelF4>Labst', formatter:'.formatter.fnRemoveSpace'} {MaterialModelF4>Meins}"/>
+			<ObjectAttribute text="{i18n>SLoc}: {MaterialModelF4>Lgort}"/>
+		</ObjectListItem>
+		
+	</SelectDialog>
+</core:FragmentDefinition>

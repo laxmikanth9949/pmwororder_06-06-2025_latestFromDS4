@@ -1,0 +1,6 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<SelectDialog title="{i18n>Operation}" class="sapUiPopupWithPadding" items="{operationF4Model>/}" search="OperationF4Search"
+		confirm="OperationF4Confirm" liveChange="OperationF4Search" cancel="OperationF4Cancel">
+		<StandardListItem  title="{operationF4Model>Operation}"  description="{operationF4Model>Description}"/>
+	</SelectDialog>
+</core:FragmentDefinition>

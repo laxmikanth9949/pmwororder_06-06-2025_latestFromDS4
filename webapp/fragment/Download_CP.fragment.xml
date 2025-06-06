@@ -1,0 +1,29 @@
+<core:FragmentDefinition xmlns:f="sap.ui.layout.form" xmlns:cm="sap.ui.commons" xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core"
+	xmlns="sap.m" xmlns:ndc="sap.ndc">
+	<Dialog class="sapUiNoContentPadding sapUiSizeCompact" afterClose="onCloseDownFrag" showHeader="false" height="auto" contentWidth="auto"
+		resizable="true" type="Standard">
+		<subHeader>
+			<Bar>
+				<contentMiddle>
+					<Label text="{i18n>WorkOrderD}" design="Bold" class="MasterData_Title"/>
+				</contentMiddle>
+				<contentRight>
+					<Button icon="sap-icon://decline" press="onCloseDownFrag" class="Close_Dialog"/>
+				</contentRight>
+			</Bar>
+		</subHeader>
+		<content>
+			<VBox class="sapUiSmallMargin">
+				<VBox alignItems="left" justifyContent="left" class="sapUiSmallMarginBottom">
+					<Label text="{i18n>Plant}" class="AppTitle1"></Label>
+					<Input width="100%" id="plant_CP_Id" editable="false" class="Login" type="Number" maxLength="4" placeholder="{i18n>Plant}" />
+				</VBox>
+				<VBox alignItems="Left" justifyContent="Left" class="sapUiSmallMarginBottom">
+					<Label class="LabelClass sapUiSmallMarginEnd" text="{i18n>DateRange}" tooltip="{i18n>DateRange}"></Label>
+					<DateRangeSelection id="DRS_CP" />
+				</VBox>
+				<Button text="{i18n>Proceed}" class="Login_Btn" press="onDownloadMaster"></Button>
+			</VBox>
+		</content>
+	</Dialog>
+</core:FragmentDefinition>

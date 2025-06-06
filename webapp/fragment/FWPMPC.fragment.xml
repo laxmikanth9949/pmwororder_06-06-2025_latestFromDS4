@@ -1,0 +1,7 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<SelectDialog title="{i18n>MPC}" class="sapUiPopupWithPadding" items="{oMPCModel>/}" search="onMPCSearch"
+		confirm="onMPCConfirm" liveChange="onMPCSearch" cancel="onMPCConfirm" multiSelect="true" rememberSelection="true">
+		<StandardListItem title="{path:'oMPCModel>MeasPnt', formatter:'.formatter.fnRemoveZero'}"  description="{oMPCModel>MeasDesc}"/>
+	</SelectDialog>
+</core:FragmentDefinition>
+

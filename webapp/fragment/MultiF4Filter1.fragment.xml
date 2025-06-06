@@ -1,0 +1,22 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<Dialog title="{i18n>NotifType}" class="Dialog_SG" stretch="true" contentHeight="80%">
+		<subHeader>
+			<Toolbar>
+				<Input width="100%" id="id_s1" class="cl_inqinpcss" placeholder="{i18n>Search}" liveChange="onFilter1Search"/>
+			</Toolbar>
+		</subHeader>
+		<content>
+			<List id="id_f1list" class="sapUiPopupWithPadding" items="{oNotifTypeModel>/}" selectionChange="onValidateF4"
+				mode="MultiSelect" growing="true" growingThreshold="100" growingScrollToLoad="true" includeItemInSelection="true">
+				<StandardListItem selected="{oNotifTypeModel>FLAG}" title="{oNotifTypeModel>Text}" type="Active"></StandardListItem>
+			</List>
+		</content>
+		<beginButton>
+			<Button text="{i18n>OK}" press="onFilter1Confirm"/>
+		</beginButton>
+		<endButton>
+			<Button text="{i18n>Cancel}" press="onFilter1Cancel"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>
+

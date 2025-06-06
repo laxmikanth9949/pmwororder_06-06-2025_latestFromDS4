@@ -1,0 +1,14 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+<SelectDialog title="{i18n>Equipment}" class="sapUiPopupWithPadding" items="{oEquipModel_Teco>/}" search="EquipSearch"
+		confirm="EquipConfirm" liveChange="EquipSearch" cancel="onEquipF4fragClose">
+		<StandardListItem  title="{path:'oEquipModel_Teco>Equnr', formatter:'.formatter.fnRemoveZero'}" description="{oEquipModel_Teco>Eqktu}"/>
+</SelectDialog>
+</core:FragmentDefinition>
+
+<!-- <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<SelectDialog title="{i18n>Equipment}" class="sapUiPopupWithPadding" items="{oEquipmentModel>/}" search="EquipSearch"
+		confirm="EquipConfirm" liveChange="EquipSearch" cancel="onEquipF4fragClose">
+		<StandardListItem title="{path:'oEquipmentModel>EQUNR', formatter:'.formatter.fnRemoveZero'}"  description="{oEquipmentModel>EQKTX}"/>
+	</SelectDialog>
+</core:FragmentDefinition>
+--> 

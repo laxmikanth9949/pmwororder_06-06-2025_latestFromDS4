@@ -1,0 +1,99 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<Dialog title="{DETAIL>/Header}({DETAIL>/Length})" class="Dialog_ReportDetail" stretch="true" contentHeight="80%">
+		<content>
+			<List items="{DETAIL>/Details/}" class="cl_reportcustlistdetailcss">
+				<CustomListItem class="sapUiTinyMargin">
+					<VBox class="sapUiTinyMargin">
+						<HBox justifyContent="SpaceBetween">
+							<VBox width="50%">
+								<Text text="{i18n>Equipment}" class="cl_reportdetaillable"/>
+							</VBox>
+							<VBox width="50%">
+								<Text text=": {DETAIL>EqunrDesc}" class="cl_reportdetaillableval"/>
+							</VBox>
+						</HBox>
+						<HBox justifyContent="SpaceBetween">
+							<VBox width="50%">
+								<Text text=""/>
+							</VBox>
+							<VBox width="50%">
+								<Text text="- {DETAIL>Equnr}" class="cl_reportdetaillableval"/>
+							</VBox>
+						</HBox>
+						<HBox justifyContent="SpaceBetween">
+							<VBox width="50%">
+								<Text text="{i18n>FLocTask}" class="cl_reportdetaillable"/>
+							</VBox>
+							<VBox width="50%">
+								<Text text=": {DETAIL>FLocDes}" class="cl_reportdetaillableval"/>
+							</VBox>
+						</HBox>
+						<HBox justifyContent="SpaceBetween">
+							<VBox width="50%">
+								<Text text=""/>
+							</VBox>
+							<VBox width="50%">
+								<Text text="- {DETAIL>FLoc}" class="cl_reportdetaillableval"/>
+							</VBox>
+						</HBox>
+						<HBox justifyContent="SpaceBetween">
+							<VBox width="50%">
+								<Text text="{i18n>Notification}" class="cl_reportdetaillable"/>
+							</VBox>
+							<VBox width="50%">
+								<Text text=": {DETAIL>Notification}" class="cl_reportdetaillableval"/>
+							</VBox>
+						</HBox>
+						<HBox justifyContent="SpaceBetween">
+							<VBox width="50%">
+								<Text text=""/>
+							</VBox>
+							<VBox width="50%">
+								<Text text="- {DETAIL>NotifDesc}" class="cl_reportdetaillableval"/>
+							</VBox>
+						</HBox>
+						<HBox justifyContent="SpaceBetween">
+							<VBox width="50%">
+								<Text text="{i18n>NotifType}" class="cl_reportdetaillable"/>
+							</VBox>
+							<VBox width="50%">
+								<Text text=": {DETAIL>Type}" class="cl_reportdetaillableval"/>
+							</VBox>
+						</HBox>
+						<HBox justifyContent="SpaceBetween">
+							<VBox width="50%">
+								<Text text="{i18n>Date}" class="cl_reportdetaillable"/>
+							</VBox>
+							<VBox width="50%">
+								<Text text=": {DETAIL>NotifDate}" class="cl_reportdetaillableval"/>
+							</VBox>
+						</HBox>
+						<HBox justifyContent="SpaceBetween">
+							<VBox width="50%">
+								<Text text="{i18n>Plant}" class="cl_reportdetaillable"/>
+							</VBox>
+							<VBox width="50%">
+								<Text text=": {DETAIL>Plant}" class="cl_reportdetaillableval"/>
+							</VBox>
+						</HBox>
+						<HBox justifyContent="SpaceBetween">
+							<VBox width="50%">
+								<Text text="{i18n>Breakdown}" class="cl_reportdetaillable"/>
+							</VBox>
+							<VBox width="50%">
+								<Text text=": {DETAIL>BreakDuration}" class="cl_reportdetaillableval"/>
+							</VBox>
+						</HBox>
+					</VBox>
+				
+				</CustomListItem>
+			
+			</List>
+			
+		</content>
+		<endButton>
+			<Button text="{i18n>Cancel}" class="cl_reportcancel" press="fnCloseDetail"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>
+

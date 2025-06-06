@@ -1,0 +1,6 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<SelectDialog title="{i18n>Notification}" class="sapUiPopupWithPadding" items="{oNotificationNumber>/}" search="NotificationSearch"
+		confirm="NotificationSearchConfirm" liveChange="NotificationSearch" cancel="NotificationSearchCancel">
+		<StandardListItem  title="{path:'oNotificationNumber>NotificationNumber'}"  description="{oNotificationNumber>SHORT_TEXT}"/>
+	</SelectDialog>
+</core:FragmentDefinition>

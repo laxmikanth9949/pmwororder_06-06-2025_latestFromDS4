@@ -1,0 +1,7 @@
+
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<SelectDialog title="{i18n>ConfNo}" class="sapUiPopupWithPadding" items="{oConfNoF4Model>/}" search="ConfNoF4Search"
+		confirm="ConfNoF4Confirm" liveChange="ConfNoF4Search" cancel="ConfNoF4Cancel">
+		<StandardListItem  title="{path:'oConfNoF4Model>ConfNo'}"/>
+	</SelectDialog>
+</core:FragmentDefinition>

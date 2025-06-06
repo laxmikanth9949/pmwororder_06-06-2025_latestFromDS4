@@ -1,0 +1,7 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<SelectDialog multiSelect="true" title="{i18n>MPC}" class="sapUiPopupWithPadding" items="{oMPCModel>/}" search="onMPCSearch"
+		confirm="onMPCSearchConfirm" liveChange="onMPCSearch" cancel="onMPCSearchConfirm">
+		<StandardListItem title="{path:'oMPCModel>Point', formatter:'.formatter.fnRemoveZero'} : {oMPCModel>Mrngu}"  description="{oMPCModel>Pttxt}" selected="{oMPCModel>Selected}"/>
+	</SelectDialog>
+</core:FragmentDefinition>
+

@@ -1,0 +1,7 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<SelectDialog title="{i18n>CostElement}" class="sapUiPopupWithPadding" items="{GlobalModel>/F4CostEle}" search="onCostElementSearch"
+		confirm="onCostElementSearchConfirm" liveChange="onCostElementSearch" cancel="CostElementSearchCancel">
+		<StandardListItem title="{path:'GlobalModel>Saknr'}"  description="{GlobalModel>Txt20}"/>
+	</SelectDialog>
+</core:FragmentDefinition>
+

@@ -1,0 +1,22 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<Dialog title="{i18n>FunctionLocation}" class="Dialog_SG" stretch="true" contentHeight="80%">
+		<subHeader>
+			<Toolbar>
+				<Input width="100%" id="id_wos5_calib" class="cl_inqinpcss" placeholder="{i18n>Search}" liveChange="onFlocSearch"/>
+			</Toolbar>
+		</subHeader>
+		<content>
+			<List id="id_wof5list_c" class="sapUiPopupWithPadding" items="{oFunctionalModel>/}" selectionChange="onValidateF4"
+				mode="MultiSelect" growing="true" growingThreshold="100" growingScrollToLoad="true" includeItemInSelection="true">
+				<StandardListItem selected="{oFunctionalModel>FLAG}" title="{oFunctionalModel>TPLNR}" description="{oFunctionalModel>PLTXT}" type="Active"></StandardListItem>
+			</List>
+		</content>
+		<beginButton>
+			<Button text="{i18n>OK}" press="onFlocSearchConfirm"/>
+		</beginButton>
+		<endButton>
+			<Button text="{i18n>Cancel}" press="onFlocSearchCancel"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>
+

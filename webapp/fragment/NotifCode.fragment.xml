@@ -1,0 +1,7 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<SelectDialog title="{i18n>Code}" class="sapUiPopupWithPadding" items="{oNotifCodeModel>/}" search="CodeSearch"
+		confirm="CodeSearchConfirm" liveChange="CodeSearch" cancel="CodeSearchConfirm">
+		<StandardListItem title="{oNotifCodeModel>Code}"  description="{oNotifCodeModel>Kurztext}"/>
+	</SelectDialog>
+</core:FragmentDefinition>
+

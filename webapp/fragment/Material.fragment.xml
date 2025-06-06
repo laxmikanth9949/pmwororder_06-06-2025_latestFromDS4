@@ -1,0 +1,81 @@
+<core:FragmentDefinition xmlns:f="sap.ui.layout.form" xmlns:cm="sap.ui.commons" xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core" xmlns:ndc="sap.ndc"
+	xmlns="sap.m">
+	<Dialog class="sapUiNoContentPadding Dialog_MasterData" verticalScrolling="false" stretchOnPhone="true" afterClose="onDialogClose" showHeader="false" height="auto" contentWidth="60%"
+		resizable="true" type="Standard" >
+		<subHeader>
+			<Bar>
+				<contentMiddle>
+					<Label text="{i18n>MaterialDetails}" class="MasterData_Title"/>
+				</contentMiddle>
+				<contentRight>
+					<Button icon="sap-icon://decline" press="onMaterialDialogClose" class="Close_Dialog"/>
+				</contentRight>
+			</Bar>
+		</subHeader>
+		<content>
+			<l:Grid defaultSpan="L6 M12 S12" class="sapUiSmallMarginBegin sapUiSmallMarginEnd sapUiSmallMarginTop">
+				<l:content>
+						<!--<VBox class="clPageMargin">
+					<VBox class="IconTabFilterScroll" >
+					<VBox  class="sapUiSmallMargin">-->
+					<VBox>
+				<VBox  class="sapUiTinyMarginBottom">
+					<Label xmlns="sap.m" text="{i18n>materialNumber}" class="initLabel sapUiSmallMarginEnd" />
+					<HBox>
+						<Input id="material" liveChange="onMaterialNumberChange"  value="{oMaterialItem>/Matnr}" valueHelpRequest="onMaterialNumberF4" showSuggestion="true" suggestionItemSelected="onMaterialNumberChange" 
+							suggestionItems="{path: 'oMaterialModel>/'}"  maxLength="18" showValueHelp="true" class="InputPlaceholder_MC ">
+							<suggestionItems>
+								<core:ListItem key="{oMaterialModel>Matnr}" text="{oMaterialModel>Matnr}" additionalText="{oMaterialModel>Maktx}"/>
+							</suggestionItems>
+						</Input>
+						<!--<ComboBox  class="input"  width="100%"	 value="{oMaterialItem>/Matnr}"						
+							items="{path: 'oMaterialModel>/'}" selectionChange="onMaterialNumberChange"  enabled="true">		
+							<core:Item key="{oMaterialModel>Matnr}" text="{oMaterialModel>Matnr} - {oMaterialModel>Maktx}" />													
+						</ComboBox>-->
+						<ndc:BarcodeScannerButton scanFail="fnBarcodeFailed"  scanSuccess="fnBarcodeSuccess" tooltip="{i18n>Scanner}"/> 
+					</HBox>
+					<Text id="materialDesc" text="{oMaterialItem>/Maktx}"></Text>
+				</VBox>
+				<VBox  class="sapUiSmallMarginBottom">
+					<Label xmlns="sap.m" text="{i18n>batch}" class="initLabel sapUiSmallMarginEnd" />
+					<Input value="{oMaterialItem>/Charg}" class="input"></Input>
+					
+				</VBox>
+				<HBox>
+				<VBox class="sapUiSmallMarginBottom sapUiSmallMarginEnd">
+					<Label xmlns="sap.m" text="{i18n>quantity}" class="initLabel sapUiSmallMarginEnd" />
+					<Input id="quantity" liveChange="onQuantityLiveChange" change="onQuantityChange" maxLength="17" value="{oMaterialItem>/quantity}" class="sapUiSmallMarginEnd input" ></Input>
+				</VBox>
+				<VBox   class="sapUiSmallMarginBottom sapUiSmallMarginEnd">							
+					<Label xmlns="sap.m" text="{i18n>Unit}" class="initLabel sapUiSmallMarginBegin" />
+					<Input  value="{oMaterialItem>/Meins}" enabled="false" class="sapUiSmallMarginEnd input"></Input>
+				</VBox>
+				</HBox>
+				
+				<VBox   class="sapUiSmallMarginBottom">							
+					<Label xmlns="sap.m"   text="{i18n>bin}" class="initLabel sapUiSmallMarginEnd" />
+					<Input value="{oMaterialItem>/Lgpbe}" enabled="false" class="input"></Input>
+				</VBox>
+				
+				<HBox   class="sapUiSmallMarginBottom">
+					<CheckBox  id="zeroCount" selected="{oMaterialItem>/XNull}" select="onZeroCountSelect" class="sapUiSmallMarginEnd"></CheckBox>
+					<Label xmlns="sap.m" text="{i18n>zeroCount}" class="initLabel sapUiSmallMarginTop sapUiSmallMarginEnd" />
+					
+				</HBox>
+			</VBox>
+					
+				</l:content>
+			</l:Grid>
+		</content>
+		<FlexBox 	alignItems="End" 
+					justifyContent="End">
+				<Button text="{i18n>save}"   press="onSaveMaterial" type="Emphasized" class=" clButtonBlack" ></Button>
+			</FlexBox>
+		<!-- <Toolbar>
+			<ToolbarSpacer/>
+			
+				
+				
+		</Toolbar> -->
+	</Dialog>
+</core:FragmentDefinition>

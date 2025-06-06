@@ -1,0 +1,23 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<Dialog title="{i18n>WorkorderStatus}" class="Dialog_SG" stretch="true" contentHeight="80%">
+		<subHeader>
+			<Toolbar>
+				<Input width="100%" id="id_wos7_calib" class="cl_inqinpcss" placeholder="{i18n>Search}" liveChange="EquipSearch"/>
+			</Toolbar>
+		</subHeader>
+		<content>
+			<List id="id_wof7list_c" class="sapUiPopupWithPadding" items="{FILTERSTATUSF4>/}" selectionChange="onValidateF4"
+				mode="MultiSelect" growing="true" growingThreshold="100" growingScrollToLoad="true" includeItemInSelection="true">
+				<StandardListItem selected="{FILTERSTATUSF4>FLAG}" title="{FILTERSTATUSF4>Text}" type="Active"></StandardListItem>
+			</List>
+		</content>
+		<beginButton>
+			<Button text="{i18n>OK}" press="onFilter7Confirm"/>
+		</beginButton>
+		<endButton>
+			<Button text="{i18n>Cancel}" press="onFilter7Cancel"/>
+		</endButton>
+	</Dialog>
+	
+</core:FragmentDefinition>
+

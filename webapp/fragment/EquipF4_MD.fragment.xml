@@ -1,0 +1,7 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<SelectDialog title="{i18n>Equipment}" class="sapUiPopupWithPadding" items="{oEquipmentModel>/}" search="onEquipSearch"
+		confirm="onEquipSearchConfirm" liveChange="onEquipSearch" cancel="onEquipSearchConfirm">
+		<StandardListItem title="{path:'oEquipmentModel>Equnr', formatter:'.formatter.fnRemoveZero'}"  description="{oEquipmentModel>Eqktu}"/>
+	</SelectDialog>
+</core:FragmentDefinition>
+

@@ -1,0 +1,39 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<Dialog title="{i18n>Equipment}" id="id_operation" class="Dialog_SG" stretch="true" contentHeight="80%">
+		<content>
+			<List class="sapUiPopupWithPadding" items="{SUBITEM>/Data/}">
+				<CustomListItem>
+					<VBox class="sapUiTinyMargin" visible="{= ${SUBITEM>/Item} === 'I'}">
+						<Toolbar height="2rem" class="cl_fwp_toolbarCss">
+							<Text class="cl_fwp_wotitle" text="{path:'SUBITEM>Material'} - "/>
+							<Text text="{SUBITEM>Maktx}" class="cl_fwp_date1"/>
+						</Toolbar>
+						<Toolbar height="1.5rem" class="cl_fwp_toolbarCss">
+							<Text text="{SUBITEM>RequirementQuantity} {SUBITEM>Uom}" class="cl_fwp_date"/>
+						</Toolbar>
+					</VBox>
+					<VBox class="sapUiTinyMargin" visible="{= ${SUBITEM>/Item} === 'S'}">
+						<Toolbar height="2rem" class="cl_fwp_toolbarCss">
+							<Text class="cl_fwp_wotitle" text="{path:'SUBITEM>Service'} - "/>
+							<Text text="{SUBITEM>ServiceText}" class="cl_fwp_date1"/>
+						</Toolbar>
+						<Toolbar height="1.5rem" class="cl_fwp_toolbarCss">
+							<Text text="{SUBITEM>GrossPrice}" class="cl_fwp_date"/>
+						</Toolbar>
+						<Toolbar height="1.5rem" class="cl_fwp_toolbarCss">
+							<Text text="{SUBITEM>Quantity} {SUBITEM>Uom}" class="cl_fwp_date"/>
+						</Toolbar>
+						<Toolbar height="1.5rem" class="cl_fwp_toolbarCss">
+							<Text class="cl_fwp_date" text="{path:'SUBITEM>GlAccount'}"/>
+						</Toolbar>
+					</VBox>
+				</CustomListItem>
+			</List>
+		</content>
+		<endButton>
+			<Button text="{i18n>Cancel}" press="EquipSearchCancel"/>
+		</endButton>
+	</Dialog>
+	
+</core:FragmentDefinition>
+

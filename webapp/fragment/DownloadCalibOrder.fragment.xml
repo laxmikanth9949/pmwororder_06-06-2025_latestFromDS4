@@ -1,0 +1,32 @@
+<core:FragmentDefinition xmlns:f="sap.ui.layout.form" xmlns:cm="sap.ui.commons" xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core"
+	xmlns="sap.m">
+	<Dialog class="sapUiNoContentPadding sapUiSizeCompact dialogCl" afterClose="onCloseDownFrag" showHeader="false" height="auto" contentWidth="auto"
+		resizable="true" type="Standard" id="dialogc">
+		<subHeader>
+			<Bar>
+				<contentMiddle>
+					<Label text="{i18n>WorkOrder}" design="Bold" class="MasterData_Title"/>
+				</contentMiddle>
+				<contentRight>
+					<Button icon="sap-icon://decline" press="onCloseDownFrag" class="Close_Dialog"/>
+				</contentRight>
+			</Bar>
+		</subHeader>
+		<content>
+			<VBox class="sapUiSmallMargin">
+				<VBox alignItems="left" justifyContent="left" class="sapUiSmallMarginBottom">
+					<Label text="{i18n>Plant}" class="cl_Label_PS"></Label>
+					<Input width="100%" id="plantWOId_calib" value="{oModel>/Plant}" editable="false" class="Login" type="Number" maxLength="4" placeholder="{i18n>Plant}" />
+				</VBox>
+				<VBox alignItems="Left" justifyContent="Left" class="sapUiSmallMarginBottom">
+					<Label class="cl_Label_PS" text="{i18n>DateRange}" tooltip="{i18n>DateRange}"></Label>
+					<DateRangeSelection id="DRS_WO_calib"/>
+				</VBox>
+				<VBox alignItems="Center" justifyContent="Center" alignContent="Center">
+					<Button text="{i18n>Proceed}" class="Login_Btn" press="onDownloadMaster"></Button>
+				</VBox>
+			</VBox>
+		</content>
+	</Dialog>
+</core:FragmentDefinition>
+
